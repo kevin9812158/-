@@ -123,8 +123,17 @@
     <div class="striphint">黃色橫線＝高音拍，灰色底線＝低音拍。內建常用詞聲調僅供參考，請以辭典（如 OJAD／NHK 日本語発音アクセント辞典）為準。</div>
   </div>
 
+  <div class="card hidden" id="cardWord">
+    <h2>④ 匯出 Word 可編輯元件（.docx）</h2>
+    <p class="tip" style="margin-bottom:10px">產生一張 Word 表格：每個音拍一格，注音在漢字上方，紅色聲調線帶升降轉角。下載後在 Word 直接插入或複製貼上，所有文字都可再編輯。</p>
+    <div class="row">
+      <button class="primary" id="btnDocx">下載 .docx</button>
+      <span class="status" id="wordStatus"></span>
+    </div>
+  </div>
+
   <div class="card hidden" id="cardImg">
-    <h2>④ 聲調注音圖（注音在漢字上方，紅線標高音、垂直線標升降）</h2>
+    <h2>⑤ 聲調注音圖（注音在漢字上方，紅線標高音、垂直線標升降）</h2>
     <div class="imgwrap"><canvas id="pitchCanvas"></canvas></div>
     <div class="row">
       <button class="primary" id="btnCopyImg">複製圖片（貼進 Word／Excel）</button>
@@ -168,6 +177,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script>
 'use strict';
 
@@ -318,6 +328,7 @@ function renderAll() {
   renderTokens(); renderStrip(); renderOutputs();
   $('cardTokens').classList.remove('hidden');
   $('cardStrip').classList.remove('hidden');
+  $('cardWord').classList.remove('hidden');
   $('cardImg').classList.remove('hidden');
   $('cardOut').classList.remove('hidden');
 }
@@ -582,6 +593,172 @@ document.querySelectorAll('.copy').forEach(btn => {
     setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('copied'); }, 1500);
   });
 });
+
+/* =====================================================================
+   Word (.docx) 匯出
+   結構：一張三行表格，每音拍一欄
+   行 1 = 聲調線（紅色邊框：top=高音、left=升、right=降）
+   行 2 = 假名（每格一拍）
+   行 3 = 原文（跨欄合併成一格）
+   ===================================================================== */
+const MORA_W  = 420;   // 每音拍欄寬（twips，1 twip = 1/20 pt）
+const SPACE_W = 200;   // 詞間距欄寬
+const RED = 'E0432E';
+
+function escXml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function buildPlan() {
+  const plan = [];
+  tokens.forEach((tk, ti) => {
+    if (tk.punct || !tk.morae.length) {
+      const cw = MORA_W * Math.max(1, [...tk.surface].length);
+      plan.push({ type:'text', w: cw, surface: tk.surface, tokenIdx: ti });
+    } else {
+      tk.morae.forEach(m => plan.push({ type:'mora', w: MORA_W, txt: m.txt, mark: m.mark, tokenIdx: ti }));
+      plan.push({ type:'space', w: SPACE_W, tokenIdx: ti });
+    }
+  });
+
+  // 計算每個 mora 格需要哪些邊框
+  for (let i = 0; i < plan.length; i++) {
+    const c = plan[i];
+    if (c.type !== 'mora') continue;
+    // 前一個 mora（同詞或跨詞）
+    const prev = (() => { for (let k=i-1;k>=0;k--) if(plan[k].type==='mora') return plan[k]; return null; })();
+    // 後一個 mora（跨過 space）
+    const next = (() => { for (let k=i+1;k<plan.length;k++) if(plan[k].type==='mora') return plan[k]; return null; })();
+    c.bTop   = c.mark === 'H';
+    c.bLeft  = c.mark === 'H' && (!prev || prev.mark !== 'H');
+    c.bRight = c.mark === 'H' && (!next || next.mark !== 'H');
+  }
+  return plan;
+}
+
+function bSpec(side, on) {
+  return on
+    ? `<w:${side} w:val="single" w:sz="18" w:space="0" w:color="${RED}"/>`
+    : `<w:${side} w:val="none"   w:sz="0"  w:space="0" w:color="auto"/>`;
+}
+function tcBorders(t,l,r,b) {
+  return `<w:tcBorders>${bSpec('top',t)}${bSpec('left',l)}${bSpec('right',r)}${bSpec('bottom',b)}</w:tcBorders>`;
+}
+function tcPr(w, span, borders, vAlign='center') {
+  return `<w:tcPr><w:tcW w:w="${w}" w:type="dxa"/>${span>1?`<w:gridSpan w:val="${span}"/>`:''}`
+       + `${borders}<w:vAlign w:val="${vAlign}"/></w:tcPr>`;
+}
+function para(txt, jc, sz, eastAsia) {
+  const fnt = eastAsia ? `<w:rFonts w:hint="eastAsia" w:eastAsia="${eastAsia}" w:ascii="${eastAsia}"/>` : '';
+  return `<w:p><w:pPr><w:jc w:val="${jc}"/><w:spacing w:before="0" w:after="0"/></w:pPr>`
+       + `<w:r><w:rPr>${fnt}<w:sz w:val="${sz}"/><w:szCs w:val="${sz}"/></w:rPr>`
+       + `<w:t xml:space="preserve">${escXml(txt)}</w:t></w:r></w:p>`;
+}
+
+async function generateDocx() {
+  if (!window.JSZip) { $('wordStatus').textContent = 'JSZip 尚未載入，請稍後再試。'; return; }
+  if (!tokens.length)  { $('wordStatus').textContent = '請先解析文字。'; return; }
+
+  const plan = buildPlan();
+  const gridXml = plan.map(c => `<w:gridCol w:w="${c.w}"/>`).join('');
+
+  /* 行 1：聲調線 */
+  let r1 = `<w:tr><w:trPr><w:trHeight w:val="90" w:hRule="exact"/></w:trPr>`;
+  for (const c of plan) {
+    const b = tcBorders(c.bTop||false, c.bLeft||false, c.bRight||false, false);
+    r1 += `<w:tc>${tcPr(c.w,1,b)}${para('','center',4,'')}</w:tc>`;
+  }
+  r1 += '</w:tr>';
+
+  /* 行 2：假名 */
+  let r2 = `<w:tr><w:trPr><w:trHeight w:val="260" w:hRule="exact"/></w:trPr>`;
+  for (const c of plan) {
+    const txt = c.type === 'mora' ? c.txt : '';
+    r2 += `<w:tc>${tcPr(c.w,1,tcBorders(false,false,false,false))}${para(txt,'center',16,'MS Gothic')}</w:tc>`;
+  }
+  r2 += '</w:tr>';
+
+  /* 行 3：原文（合併同詞各音拍欄） */
+  let r3 = `<w:tr><w:trPr><w:trHeight w:val="440" w:hRule="exact"/></w:trPr>`;
+  const done = new Set();
+  for (let ci = 0; ci < plan.length; ci++) {
+    if (done.has(ci)) continue;
+    const c = plan[ci];
+    if (c.type === 'space') {
+      r3 += `<w:tc>${tcPr(c.w,1,tcBorders(false,false,false,false))}${para('','center',4,'')}</w:tc>`;
+      continue;
+    }
+    const ti = c.tokenIdx;
+    let span = 0, totalW = 0;
+    for (let k = ci; k < plan.length && plan[k].tokenIdx === ti && plan[k].type !== 'space'; k++) {
+      span++; totalW += plan[k].w; done.add(k);
+    }
+    r3 += `<w:tc>${tcPr(totalW,span,tcBorders(false,false,false,false))}${para(tokens[ti].surface,'center',32,'MS Gothic')}</w:tc>`;
+  }
+  r3 += '</w:tr>';
+
+  const docXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:body>
+<w:tbl>
+<w:tblPr>
+  <w:tblW w:w="0" w:type="auto"/>
+  <w:tblBorders>
+    <w:top w:val="none"/><w:left w:val="none"/>
+    <w:bottom w:val="none"/><w:right w:val="none"/>
+    <w:insideH w:val="none"/><w:insideV w:val="none"/>
+  </w:tblBorders>
+  <w:tblCellMar>
+    <w:top w:w="0" w:type="dxa"/><w:left w:w="40" w:type="dxa"/>
+    <w:bottom w:w="0" w:type="dxa"/><w:right w:w="40" w:type="dxa"/>
+  </w:tblCellMar>
+  <w:tblLook w:val="0000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:noHBand="1" w:noVBand="1"/>
+</w:tblPr>
+<w:tblGrid>${gridXml}</w:tblGrid>
+${r1}${r2}${r3}
+</w:tbl>
+<w:p><w:pPr><w:spacing w:before="0" w:after="0"/></w:pPr></w:p>
+<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="720" w:right="720" w:bottom="720" w:left="720"/></w:sectPr>
+</w:body>
+</w:document>`;
+
+  const ctXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml"  ContentType="application/xml"/>
+  <Override PartName="/word/document.xml"
+    ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+</Types>`;
+
+  const pkgRels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1"
+    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument"
+    Target="word/document.xml"/>
+</Relationships>`;
+
+  const docRels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"/>`;
+
+  const zip = new JSZip();
+  zip.file('[Content_Types].xml', ctXml);
+  zip.file('_rels/.rels', pkgRels);
+  zip.file('word/document.xml', docXml);
+  zip.file('word/_rels/document.xml.rels', docRels);
+
+  const blob = await zip.generateAsync({
+    type: 'blob',
+    mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'pitch-accent.docx'; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  $('wordStatus').textContent = '已下載 ✓';
+  setTimeout(() => { $('wordStatus').textContent = ''; }, 3000);
+}
+
+$('btnDocx').addEventListener('click', generateDocx);
 
 $('btnParse').addEventListener('click', parse);
 $('src').addEventListener('keydown', e => {
