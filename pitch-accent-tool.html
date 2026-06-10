@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日文聲調線圖＋注音產生器</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117; color: #e6e8ee; min-height: 100vh;
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    padding: 32px 20px 60px;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: .05em; margin-bottom: 4px; }
+  .sub { color: #8b93a7; font-size: 13px; margin-bottom: 24px; line-height: 1.7; }
+  .card {
+    background: #161b26; border: 1px solid #262d3d; border-radius: 14px;
+    padding: 20px; margin-bottom: 18px;
+  }
+  .card h2 { font-size: 14px; color: #9db0d0; font-weight: 600; margin-bottom: 12px; letter-spacing: .08em; }
+  textarea {
+    width: 100%; min-height: 80px; resize: vertical; padding: 12px 14px;
+    font-size: 18px; color: #e6e8ee; background: #0d1117;
+    border: 1px solid #2a3247; border-radius: 10px; outline: none;
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  }
+  textarea:focus { border-color: #4a6cf7; }
+  .row { display: flex; gap: 10px; margin-top: 12px; align-items: center; flex-wrap: wrap; }
+  button {
+    padding: 9px 20px; font-size: 14px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #2a3247; background: #1d2435; color: #e6e8ee;
+    transition: background .15s, border-color .15s;
+  }
+  button:hover { background: #28324a; }
+  button.primary { background: #2952e3; border-color: #2952e3; font-weight: 600; }
+  button.primary:hover { background: #3b63f0; }
+  button.mini { padding: 5px 12px; font-size: 12px; }
+  .status { font-size: 13px; color: #8b93a7; }
+  .status.err { color: #f08080; }
+
+  /* token 編輯區 */
+  .tokens { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tok {
+    background: #0d1117; border: 1px solid #2a3247; border-radius: 10px;
+    padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; min-width: 70px;
+  }
+  .tok .surface { font-size: 16px; font-weight: 600; color: #ffd479; text-align: center;
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif; }
+  .tok input.reading {
+    width: 100%; min-width: 60px; padding: 4px 6px; font-size: 14px; text-align: center;
+    background: #161b26; color: #e6e8ee; border: 1px solid #2a3247; border-radius: 6px; outline: none;
+    font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  }
+  .tok select {
+    padding: 3px 4px; font-size: 12px; background: #161b26; color: #9db0d0;
+    border: 1px solid #2a3247; border-radius: 6px; outline: none; cursor: pointer;
+  }
+  .tok.punct { opacity: .45; justify-content: center; }
+
+  /* 音拍點擊區 */
+  .morastrip { display: flex; flex-wrap: wrap; gap: 2px; align-items: flex-end; }
+  .mora {
+    display: flex; flex-direction: column; align-items: center; cursor: pointer;
+    border-radius: 6px; padding: 2px 1px; user-select: none;
+  }
+  .mora:hover { background: #1d2435; }
+  .mora .bar { width: 100%; height: 4px; border-radius: 2px; margin-bottom: 3px; }
+  .mora.H .bar { background: #ffd479; }
+  .mora.L .bar { background: transparent; border-bottom: 2px solid #44506e; height: 2px; margin-top: 2px; }
+  .mora.H { transform: translateY(-8px); }
+  .mora .txt { font-size: 20px; font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif; }
+  .mora.fixed { cursor: default; opacity: .4; }
+  .mora.fixed:hover { background: none; }
+  .gap { width: 10px; }
+  .striphint { font-size: 12px; color: #677089; margin-top: 10px; }
+
+  /* 輸出 */
+  .out { position: relative; margin-bottom: 14px; }
+  .out h3 { font-size: 13px; color: #9db0d0; margin-bottom: 6px; font-weight: 600; }
+  .out pre {
+    background: #0d1117; border: 1px solid #2a3247; border-radius: 10px;
+    padding: 14px 16px; font-size: 19px; line-height: 1.5; overflow-x: auto;
+    font-family: "MS Gothic", "Osaka-Mono", "Noto Sans Mono CJK JP", monospace;
+    white-space: pre; color: #e6e8ee;
+  }
+  .out .copy { position: absolute; top: 28px; right: 10px; }
+  .copied { color: #6fe3a5 !important; border-color: #6fe3a5 !important; }
+  .tip { font-size: 12px; color: #677089; line-height: 1.8; margin-top: 6px; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>日文聲調線圖＋注音產生器</h1>
+  <p class="sub">輸入日文 → 自動斷詞、標注假名與高低聲調 → 一鍵複製<b>純文字格式</b>貼進 Word。<br>
+  聲調線用全形「￣（高）／＿（低）」對齊假名，在 Word 中選用日文等寬字型（MS Gothic、ＭＳ 明朝）即可上下完美對齊。</p>
+
+  <div class="card">
+    <h2>① 輸入日文</h2>
+    <textarea id="src" placeholder="例：私は日本語を勉強しています。">私は学生です。</textarea>
+    <div class="row">
+      <button class="primary" id="btnParse">解析</button>
+      <span class="status" id="status">正在載入日文辭典（約 17MB，首次需數秒）…</span>
+    </div>
+  </div>
+
+  <div class="card hidden" id="cardTokens">
+    <h2>② 校正讀音與聲調型（可改假名、選聲調核 ⓪①②…）</h2>
+    <div class="tokens" id="tokens"></div>
+  </div>
+
+  <div class="card hidden" id="cardStrip">
+    <h2>③ 微調：點擊任一音拍切換高／低</h2>
+    <div class="morastrip" id="strip"></div>
+    <div class="striphint">黃色橫線＝高音拍，灰色底線＝低音拍。內建常用詞聲調僅供參考，請以辭典（如 OJAD／NHK 日本語発音アクセント辞典）為準。</div>
+  </div>
+
+  <div class="card hidden" id="cardOut">
+    <h2>④ 複製到 Word</h2>
+
+    <div class="out">
+      <h3>聲調線圖（雙行，￣高 ＿低）</h3>
+      <pre id="outPitch"></pre>
+      <button class="mini copy" data-for="outPitch">複製</button>
+    </div>
+
+    <div class="out">
+      <h3>漢字＋假名注音（括號式）</h3>
+      <pre id="outFuri"></pre>
+      <button class="mini copy" data-for="outFuri">複製</button>
+    </div>
+
+    <div class="out">
+      <h3>完整版（注音＋聲調線圖）</h3>
+      <pre id="outFull"></pre>
+      <button class="mini copy" data-for="outFull">複製</button>
+    </div>
+
+    <div class="out">
+      <h3>單行上線版（高音拍假名加上劃線 ◌̅ ）</h3>
+      <pre id="outInline"></pre>
+      <button class="mini copy" data-for="outInline">複製</button>
+    </div>
+
+    <p class="tip">貼進 Word 後若上下沒對齊：全選 → 字型改成「MS Gothic」或「ＭＳ 明朝」等日文等寬字型即可。<br>
+    單行上線版使用 Unicode 組合字元（U+0305），多數字型可正常顯示，適合行內引用。</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
+<script>
+'use strict';
+
+/* ---------- 內建常用詞聲調（reading → 聲調核），僅作預設值 ---------- */
+const ACCENT_DICT = {
+  'わたし':0,'あなた':2,'がくせい':0,'せんせい':3,'にほん':2,'にほんご':0,
+  'きょう':1,'あした':3,'きのう':2,'てんき':1,'ともだち':0,'だいがく':0,
+  'がっこう':0,'かいしゃ':0,'えき':1,'でんしゃ':0,'くるま':0,'じてんしゃ':2,
+  'ほん':1,'みず':0,'おちゃ':0,'ごはん':1,'さかな':0,'たまご':2,
+  'やま':2,'かわ':2,'あめ':1,'ねこ':1,'いぬ':2,
+  'あさ':1,'ひる':2,'よる':1,'いま':1,'ことし':0,'らいねん':0,
+  'なまえ':0,'しごと':0,'べんきょう':0,'りょこう':0,'おんがく':1,'えいが':1,
+  'えいご':0,'おかね':0,'じかん':0,'げんき':1,'びょうき':0,
+  'たべる':2,'のむ':1,'いく':0,'くる':1,'する':0,'みる':1,
+  'よむ':1,'かく':1,'はなす':2,'きく':0,'かう':0,'いう':0,
+  'たかい':2,'やすい':2,'おおきい':3,'ちいさい':3,'いい':1,'わるい':2,
+  'すき':2,'きらい':0,'じょうず':3,'へた':2
+};
+
+/* ---------- 工具函式 ---------- */
+const SMALL = 'ぁぃぅぇぉゃゅょゎァィゥェォャュョヮ';
+const KANJI_RE = /[㐀-鿿々〆ヶ]/;
+
+function kataToHira(s) {
+  return s.replace(/[ァ-ヶ]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x60));
+}
+function isKanaStr(s) {
+  return /^[ぁ-ゖァ-ヶーゝゞ]+$/.test(s);
+}
+/* 切音拍：拗音（きゃ等）併入前一拍；っ、ー、ん 各自一拍 */
+function moraSplit(kana) {
+  const out = [];
+  for (const ch of kana) {
+    if (SMALL.includes(ch) && out.length) out[out.length - 1] += ch;
+    else out.push(ch);
+  }
+  return out;
+}
+/* 標準聲調型 → 高低序列。0=平板, 1=頭高, k=中高/尾高 */
+function patternFor(accent, n) {
+  const p = [];
+  if (n === 0) return p;
+  if (accent === 0) { p.push(n === 1 ? 'H' : 'L'); for (let i = 1; i < n; i++) p.push('H'); }
+  else if (accent === 1) { p.push('H'); for (let i = 1; i < n; i++) p.push('L'); }
+  else { p.push('L'); for (let i = 1; i < n; i++) p.push(i < accent ? 'H' : 'L'); }
+  return p;
+}
+
+/* ---------- 狀態 ---------- */
+let tokenizer = null;
+let tokens = []; // {surface, reading, pos, accent('auto'|num), morae:[{txt,mark}], punct}
+
+const $ = id => document.getElementById(id);
+const statusEl = $('status');
+
+kuromoji.builder({ dicPath: 'https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict' }).build((err, t) => {
+  if (err) {
+    statusEl.textContent = '辭典載入失敗（離線？）— 仍可手動模式：直接輸入假名後按解析。';
+    statusEl.classList.add('err');
+  } else {
+    tokenizer = t;
+    statusEl.textContent = '辭典就緒 ✓';
+  }
+});
+
+/* ---------- 解析 ---------- */
+function parse() {
+  const text = $('src').value.trim();
+  if (!text) return;
+  tokens = [];
+
+  if (tokenizer) {
+    for (const t of tokenizer.tokenize(text)) {
+      const surface = t.surface_form;
+      if (/^\s+$/.test(surface)) continue;
+      const isPunct = !/[ぁ-ゖァ-ヶー㐀-鿿々〆ヶa-zA-Z0-9Ａ-Ｚａ-ｚ０-９]/.test(surface);
+      const reading = t.reading ? kataToHira(t.reading) : (isKanaStr(surface) ? kataToHira(surface) : surface);
+      const pos = t.pos || '';
+      tokens.push(makeToken(surface, reading, pos, isPunct));
+    }
+  } else {
+    // 手動模式：整句當假名
+    tokens.push(makeToken(text, kataToHira(text), '名詞', false));
+  }
+  applyDefaults();
+  renderAll();
+}
+
+function makeToken(surface, reading, pos, punct) {
+  return { surface, reading, pos, punct, accent: 'auto', morae: [] };
+}
+
+/* 依聲調型重算某 token 的高低；particle 的 'auto' 依前一個實詞 */
+function applyDefaults() {
+  let prevAccent = null;
+  for (const tk of tokens) {
+    if (tk.punct || !isKanaStr(tk.reading)) { tk.morae = []; continue; }
+    const morae = moraSplit(tk.reading);
+    const isParticle = /^助詞|^助動詞/.test(tk.pos);
+
+    if (!isParticle) {
+      if (tk.accent === 'auto') {
+        tk.accent = ACCENT_DICT.hasOwnProperty(tk.reading) ? ACCENT_DICT[tk.reading] : 0;
+      }
+      const pat = patternFor(tk.accent, morae.length);
+      tk.morae = morae.map((m, i) => ({ txt: m, mark: pat[i] }));
+      prevAccent = tk.accent;
+    } else {
+      // 助詞／助動詞：平板後接高，有核後接低；です・ます 特例
+      let pat;
+      const afterHeiban = (prevAccent === 0 || prevAccent === null);
+      if ((tk.reading === 'です' || tk.reading === 'ます') && morae.length === 2) {
+        pat = afterHeiban ? ['H', 'L'] : ['L', 'L'];
+      } else {
+        pat = morae.map(() => afterHeiban ? 'H' : 'L');
+      }
+      tk.morae = morae.map((m, i) => ({ txt: m, mark: pat[i] }));
+    }
+  }
+}
+
+function recomputeToken(idx) {
+  // 重算該 token 與其後連續的助詞
+  const tk = tokens[idx];
+  if (isKanaStr(tk.reading)) {
+    const morae = moraSplit(tk.reading);
+    const acc = typeof tk.accent === 'number' ? tk.accent : 0;
+    const pat = patternFor(acc, morae.length);
+    tk.morae = morae.map((m, i) => ({ txt: m, mark: pat[i] }));
+  } else tk.morae = [];
+  for (let j = idx + 1; j < tokens.length; j++) {
+    const p = tokens[j];
+    if (!/^助詞|^助動詞/.test(p.pos)) break;
+    const morae = moraSplit(p.reading);
+    const afterHeiban = (typeof tk.accent === 'number' ? tk.accent : 0) === 0;
+    let pat;
+    if ((p.reading === 'です' || p.reading === 'ます') && morae.length === 2) {
+      pat = afterHeiban ? ['H', 'L'] : ['L', 'L'];
+    } else {
+      pat = morae.map(() => afterHeiban ? 'H' : 'L');
+    }
+    p.morae = morae.map((m, i) => ({ txt: m, mark: pat[i] }));
+  }
+}
+
+/* ---------- 渲染 ---------- */
+function renderAll() {
+  renderTokens(); renderStrip(); renderOutputs();
+  $('cardTokens').classList.remove('hidden');
+  $('cardStrip').classList.remove('hidden');
+  $('cardOut').classList.remove('hidden');
+}
+
+function renderTokens() {
+  const box = $('tokens');
+  box.innerHTML = '';
+  tokens.forEach((tk, i) => {
+    const div = document.createElement('div');
+    div.className = 'tok' + (tk.punct ? ' punct' : '');
+    const sf = document.createElement('div');
+    sf.className = 'surface'; sf.textContent = tk.surface;
+    div.appendChild(sf);
+    if (!tk.punct && isKanaStr(tk.reading)) {
+      const inp = document.createElement('input');
+      inp.className = 'reading'; inp.value = tk.reading;
+      inp.size = Math.max(tk.reading.length, 2);
+      inp.addEventListener('change', () => {
+        const v = kataToHira(inp.value.trim());
+        if (isKanaStr(v)) { tk.reading = v; recomputeToken(i); renderAll(); }
+        else inp.value = tk.reading;
+      });
+      div.appendChild(inp);
+
+      const isParticle = /^助詞|^助動詞/.test(tk.pos);
+      if (!isParticle) {
+        const sel = document.createElement('select');
+        const n = moraSplit(tk.reading).length;
+        const circ = ['⓪','①','②','③','④','⑤','⑥','⑦','⑧','⑨','⑩'];
+        for (let a = 0; a <= n; a++) {
+          const op = document.createElement('option');
+          op.value = a; op.textContent = '聲調 ' + (circ[a] || a);
+          sel.appendChild(op);
+        }
+        sel.value = typeof tk.accent === 'number' ? tk.accent : 0;
+        sel.addEventListener('change', () => {
+          tk.accent = parseInt(sel.value, 10);
+          recomputeToken(i); renderAll();
+        });
+        div.appendChild(sel);
+      }
+    }
+    box.appendChild(div);
+  });
+}
+
+function renderStrip() {
+  const strip = $('strip');
+  strip.innerHTML = '';
+  tokens.forEach((tk, ti) => {
+    if (tk.punct || !tk.morae.length) {
+      if (tk.punct) {
+        const d = document.createElement('div');
+        d.className = 'mora fixed';
+        d.innerHTML = '<div class="bar"></div><div class="txt">' + tk.surface + '</div>';
+        strip.appendChild(d);
+      }
+      return;
+    }
+    tk.morae.forEach((m, mi) => {
+      const d = document.createElement('div');
+      d.className = 'mora ' + m.mark;
+      d.innerHTML = '<div class="bar"></div><div class="txt">' + m.txt + '</div>';
+      d.addEventListener('click', () => {
+        m.mark = m.mark === 'H' ? 'L' : 'H';
+        renderStrip(); renderOutputs();
+      });
+      strip.appendChild(d);
+    });
+    const g = document.createElement('div'); g.className = 'gap';
+    strip.appendChild(g);
+  });
+}
+
+/* ---------- 輸出組字 ---------- */
+function buildPitchLines() {
+  let marks = '', kana = '';
+  for (const tk of tokens) {
+    if (tk.punct) {
+      kana += tk.surface;
+      marks += '　'.repeat([...tk.surface].length);
+      continue;
+    }
+    if (!tk.morae.length) {
+      kana += tk.surface;
+      marks += '　'.repeat([...tk.surface].length);
+      continue;
+    }
+    for (const m of tk.morae) {
+      const w = [...m.txt].length; // 拗音佔兩字寬
+      kana += m.txt;
+      marks += (m.mark === 'H' ? '￣' : '＿').repeat(w);
+    }
+  }
+  return marks + '\n' + kana;
+}
+
+function buildFurigana() {
+  let s = '';
+  for (const tk of tokens) {
+    s += tk.surface;
+    if (!tk.punct && KANJI_RE.test(tk.surface) && isKanaStr(tk.reading)) {
+      s += '（' + tk.reading + '）';
+    }
+  }
+  return s;
+}
+
+function buildInline() {
+  let s = '';
+  for (const tk of tokens) {
+    if (tk.punct || !tk.morae.length) { s += tk.surface; continue; }
+    for (const m of tk.morae) {
+      for (const ch of m.txt) s += ch + (m.mark === 'H' ? '̅' : '');
+    }
+  }
+  return s;
+}
+
+function renderOutputs() {
+  const pitch = buildPitchLines();
+  $('outPitch').textContent = pitch;
+  $('outFuri').textContent = buildFurigana();
+  $('outFull').textContent = buildFurigana() + '\n\n' + pitch;
+  $('outInline').textContent = buildInline();
+}
+
+/* ---------- 複製 ---------- */
+document.querySelectorAll('.copy').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const text = $(btn.dataset.for).textContent;
+    try { await navigator.clipboard.writeText(text); }
+    catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); ta.remove();
+    }
+    btn.textContent = '已複製 ✓'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('copied'); }, 1500);
+  });
+});
+
+$('btnParse').addEventListener('click', parse);
+$('src').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) parse();
+});
+</script>
+</body>
+</html>
