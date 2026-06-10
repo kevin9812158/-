@@ -88,13 +88,20 @@
   .copied { color: #6fe3a5 !important; border-color: #6fe3a5 !important; }
   .tip { font-size: 12px; color: #677089; line-height: 1.8; margin-top: 6px; }
   .hidden { display: none; }
+  .imgwrap {
+    background: #fff; border: 1px solid #2a3247; border-radius: 10px;
+    padding: 10px; overflow-x: auto; margin-bottom: 12px;
+  }
+  .imgwrap.dark { background: #0d1117; }
+  #pitchCanvas { display: block; }
+  label.status { display: flex; align-items: center; gap: 6px; cursor: pointer; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>日文聲調線圖＋注音產生器</h1>
-  <p class="sub">輸入日文 → 自動斷詞、標注假名與高低聲調 → 一鍵複製<b>純文字格式</b>貼進 Word。<br>
-  聲調線用全形「￣（高）／＿（低）」對齊假名，在 Word 中選用日文等寬字型（MS Gothic、ＭＳ 明朝）即可上下完美對齊。</p>
+  <p class="sub">輸入日文 → 自動斷詞、標注假名與高低聲調 → 產生<b>注音在漢字上方＋紅色聲調線（含垂直升降記號）</b>的圖片，一鍵複製貼進 Word／Excel。<br>
+  另附純文字版（全形「￣／＿」對齊假名），方便需要可編輯文字的場合。</p>
 
   <div class="card">
     <h2>① 輸入日文</h2>
@@ -116,8 +123,20 @@
     <div class="striphint">黃色橫線＝高音拍，灰色底線＝低音拍。內建常用詞聲調僅供參考，請以辭典（如 OJAD／NHK 日本語発音アクセント辞典）為準。</div>
   </div>
 
+  <div class="card hidden" id="cardImg">
+    <h2>④ 聲調注音圖（注音在漢字上方，紅線標高音、垂直線標升降）</h2>
+    <div class="imgwrap"><canvas id="pitchCanvas"></canvas></div>
+    <div class="row">
+      <button class="primary" id="btnCopyImg">複製圖片（貼進 Word／Excel）</button>
+      <button id="btnDlImg">下載 PNG</button>
+      <label class="status"><input type="checkbox" id="chkDark"> 深色版</label>
+      <span class="status" id="imgStatus"></span>
+    </div>
+    <p class="tip">複製後直接在 Word／Excel 按 Ctrl+V 貼上即可。圖片以 2 倍解析度輸出，縮放後依然清晰。</p>
+  </div>
+
   <div class="card hidden" id="cardOut">
-    <h2>④ 複製到 Word</h2>
+    <h2>⑤ 純文字版（可編輯）</h2>
 
     <div class="out">
       <h3>聲調線圖（雙行，￣高 ＿低）</h3>
@@ -299,6 +318,7 @@ function renderAll() {
   renderTokens(); renderStrip(); renderOutputs();
   $('cardTokens').classList.remove('hidden');
   $('cardStrip').classList.remove('hidden');
+  $('cardImg').classList.remove('hidden');
   $('cardOut').classList.remove('hidden');
 }
 
@@ -423,7 +443,130 @@ function renderOutputs() {
   $('outFuri').textContent = buildFurigana();
   $('outFull').textContent = buildFurigana() + '\n\n' + pitch;
   $('outInline').textContent = buildInline();
+  drawPitchImage();
 }
+
+/* ---------- 圖像渲染（OJAD 風格：注音在上、紅色聲調線＋垂直升降） ---------- */
+const IMG_SCALE = 2; // 輸出 2x 解析度
+const JP_FONT = '"Hiragino Sans","Yu Gothic","Meiryo",sans-serif';
+
+function drawPitchImage() {
+  const canvas = $('pitchCanvas');
+  const ctx = canvas.getContext('2d');
+  const dark = $('chkDark').checked;
+  document.querySelector('.imgwrap').classList.toggle('dark', dark);
+
+  const SURF = 30, FURI = 15;          // 字級
+  const padX = 12, tokenGap = 10;
+  const lineY = 12;                    // 聲調線高度
+  const tickH = 8;                     // 垂直升降線長度
+  const furiBase = lineY + 4 + FURI;   // 注音 baseline
+  const surfBase = furiBase + 8 + SURF;
+  const height = surfBase + 10;
+
+  // 量測階段
+  ctx.font = SURF + 'px ' + JP_FONT;
+  const layout = []; // {x, surface, surfW, furi, furiW, morae:[{txt,mark,x0,x1}]}
+  let x = padX;
+  for (const tk of tokens) {
+    ctx.font = SURF + 'px ' + JP_FONT;
+    const surfW = ctx.measureText(tk.surface).width;
+    const hasFuri = !tk.punct && KANJI_RE.test(tk.surface) && isKanaStr(tk.reading);
+    let furiW = 0;
+    if (hasFuri) { ctx.font = FURI + 'px ' + JP_FONT; furiW = ctx.measureText(tk.reading).width; }
+    const w = Math.max(surfW, furiW);
+    const item = { x, w, surface: tk.surface, surfW, furi: hasFuri ? tk.reading : '', furiW, morae: [] };
+
+    if (tk.morae.length) {
+      // 音拍 x 範圍：有注音時對齊注音、否則對齊本文
+      const fs = hasFuri ? FURI : SURF;
+      ctx.font = fs + 'px ' + JP_FONT;
+      const baseX = x + (w - (hasFuri ? furiW : surfW)) / 2;
+      let mx = baseX;
+      for (const m of tk.morae) {
+        const mw = ctx.measureText(m.txt).width;
+        item.morae.push({ txt: m.txt, mark: m.mark, x0: mx, x1: mx + mw });
+        mx += mw;
+      }
+    }
+    layout.push(item);
+    x += w + (tk.punct ? 2 : tokenGap);
+  }
+  const width = x + padX - tokenGap;
+
+  canvas.width = width * IMG_SCALE;
+  canvas.height = height * IMG_SCALE;
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
+  ctx.setTransform(IMG_SCALE, 0, 0, IMG_SCALE, 0, 0);
+
+  // 背景
+  ctx.fillStyle = dark ? '#0d1117' : '#ffffff';
+  ctx.fillRect(0, 0, width, height);
+  const inkColor = dark ? '#e6e8ee' : '#1a1a1a';
+  const furiColor = dark ? '#9db0d0' : '#555555';
+
+  // 文字
+  ctx.textBaseline = 'alphabetic';
+  for (const it of layout) {
+    ctx.fillStyle = inkColor;
+    ctx.font = SURF + 'px ' + JP_FONT;
+    ctx.fillText(it.surface, it.x + (it.w - it.surfW) / 2, surfBase);
+    if (it.furi) {
+      ctx.fillStyle = furiColor;
+      ctx.font = FURI + 'px ' + JP_FONT;
+      ctx.fillText(it.furi, it.x + (it.w - it.furiW) / 2, furiBase);
+    }
+  }
+
+  // 聲調線：收集全句音拍序列，找出連續 H 段，畫橫線＋兩端垂直下勾
+  const seq = [];
+  layout.forEach((it, li) => it.morae.forEach(m => seq.push({ ...m, li })));
+  ctx.strokeStyle = '#e0432e';
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  let i = 0;
+  while (i < seq.length) {
+    if (seq[i].mark !== 'H') { i++; continue; }
+    let j = i;
+    while (j + 1 < seq.length && seq[j + 1].mark === 'H') j++;
+    const x0 = seq[i].x0, x1 = seq[j].x1;
+    ctx.beginPath();
+    // 左端：若不是句首才畫上升豎線
+    if (i > 0) { ctx.moveTo(x0, lineY + tickH); ctx.lineTo(x0, lineY); }
+    else ctx.moveTo(x0, lineY);
+    ctx.lineTo(x1, lineY);
+    // 右端：若後面還有音拍（下降）畫下降豎線
+    if (j < seq.length - 1) ctx.lineTo(x1, lineY + tickH);
+    ctx.stroke();
+    i = j + 1;
+  }
+}
+
+/* ---------- 圖片複製／下載 ---------- */
+$('chkDark').addEventListener('change', drawPitchImage);
+
+$('btnCopyImg').addEventListener('click', async () => {
+  const canvas = $('pitchCanvas');
+  const st = $('imgStatus');
+  try {
+    const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+    await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+    st.textContent = '已複製 ✓ 到 Word/Excel 按 Ctrl+V 貼上';
+    st.classList.remove('err');
+  } catch (e) {
+    st.textContent = '此瀏覽器不支援複製圖片，請改用「下載 PNG」。';
+    st.classList.add('err');
+  }
+  setTimeout(() => { st.textContent = ''; }, 4000);
+});
+
+$('btnDlImg').addEventListener('click', () => {
+  const a = document.createElement('a');
+  a.href = $('pitchCanvas').toDataURL('image/png');
+  a.download = 'pitch-accent.png';
+  a.click();
+});
 
 /* ---------- 複製 ---------- */
 document.querySelectorAll('.copy').forEach(btn => {
