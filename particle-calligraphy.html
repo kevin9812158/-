@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>粒子書法 · Particle Calligraphy</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; background: #06070d; font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; }
+  canvas { display: block; }
+  .ui {
+    position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%);
+    display: flex; gap: 10px; align-items: center; z-index: 10;
+  }
+  .ui input {
+    width: min(420px, 70vw); padding: 12px 18px; font-size: 18px;
+    color: #e8e9f0; background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.18); border-radius: 999px;
+    outline: none; backdrop-filter: blur(12px); transition: border-color .25s, box-shadow .25s;
+  }
+  .ui input:focus { border-color: rgba(140,170,255,.7); box-shadow: 0 0 24px rgba(110,140,255,.25); }
+  .ui button {
+    padding: 12px 20px; font-size: 16px; cursor: pointer; color: #e8e9f0;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+    border-radius: 999px; backdrop-filter: blur(12px); transition: background .2s;
+  }
+  .ui button:hover { background: rgba(255,255,255,.16); }
+  .hint {
+    position: fixed; top: 22px; left: 50%; transform: translateX(-50%);
+    color: rgba(232,233,240,.45); font-size: 13px; letter-spacing: .12em;
+    z-index: 10; user-select: none; text-align: center; line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="hint">輸入文字按 Enter，粒子會凝聚成字　·　滑鼠掃過可吹散它們　·　按空白鍵換色</div>
+<div class="ui">
+  <input id="text" type="text" maxlength="12" placeholder="輸入任何文字…" autocomplete="off">
+  <button id="go">凝聚</button>
+</div>
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+let W, H, DPR;
+
+function resize() {
+  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  W = window.innerWidth; H = window.innerHeight;
+  canvas.width = W * DPR; canvas.height = H * DPR;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+}
+resize();
+window.addEventListener('resize', () => { resize(); if (currentText) morphTo(currentText); });
+
+// ---- 調色盤（按空白鍵循環）----
+const palettes = [
+  { name: '墨金', hues: [42, 36, 48], sat: 80, bg: '#06070d' },
+  { name: '青冥', hues: [185, 200, 168], sat: 75, bg: '#040a0c' },
+  { name: '緋櫻', hues: [340, 352, 12], sat: 70, bg: '#0b060a' },
+  { name: '紫電', hues: [265, 285, 230], sat: 78, bg: '#07060f' },
+];
+let paletteIdx = 0;
+
+// ---- 粒子 ----
+const particles = [];
+const MAX_P = 2600;
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.vx = 0; this.vy = 0;
+    this.tx = this.x; this.ty = this.y;
+    this.size = 0.6 + Math.random() * 1.8;
+    this.drift = Math.random() * Math.PI * 2;
+    this.driftSpeed = 0.005 + Math.random() * 0.02;
+    this.assignColor();
+  }
+  assignColor() {
+    const p = palettes[paletteIdx];
+    const hue = p.hues[Math.floor(Math.random() * p.hues.length)] + (Math.random() * 14 - 7);
+    const light = 55 + Math.random() * 30;
+    this.color = `hsl(${hue}, ${p.sat}%, ${light}%)`;
+  }
+  update(mouse) {
+    // 朝目標點的彈簧力
+    const dx = this.tx - this.x, dy = this.ty - this.y;
+    this.vx += dx * 0.012;
+    this.vy += dy * 0.012;
+
+    // 滑鼠排斥
+    if (mouse.active) {
+      const mx = this.x - mouse.x, my = this.y - mouse.y;
+      const d2 = mx * mx + my * my;
+      const R = 110;
+      if (d2 < R * R && d2 > 0.01) {
+        const d = Math.sqrt(d2);
+        const f = (1 - d / R) * 9;
+        this.vx += (mx / d) * f;
+        this.vy += (my / d) * f;
+      }
+    }
+
+    // 微小漂浮，讓字「呼吸」
+    this.drift += this.driftSpeed;
+    this.vx += Math.cos(this.drift) * 0.02;
+    this.vy += Math.sin(this.drift * 1.3) * 0.02;
+
+    this.vx *= 0.88; this.vy *= 0.88;
+    this.x += this.vx; this.y += this.vy;
+  }
+  draw(ctx) {
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < MAX_P; i++) particles.push(new Particle());
+
+// ---- 把文字取樣成目標點 ----
+let currentText = '';
+function sampleText(text) {
+  const off = document.createElement('canvas');
+  const octx = off.getContext('2d');
+  off.width = W; off.height = H;
+
+  // 自動找最大可容納字級
+  let fontSize = Math.min(W / Math.max(text.length, 1) * 0.92, H * 0.5);
+  octx.font = `900 ${fontSize}px "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif`;
+  while (octx.measureText(text).width > W * 0.88 && fontSize > 10) {
+    fontSize *= 0.94;
+    octx.font = `900 ${fontSize}px "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif`;
+  }
+  octx.textAlign = 'center';
+  octx.textBaseline = 'middle';
+  octx.fillStyle = '#fff';
+  octx.fillText(text, W / 2, H / 2 - 20);
+
+  const img = octx.getImageData(0, 0, W, H).data;
+  const pts = [];
+  const gap = Math.max(3, Math.floor(fontSize / 46));
+  for (let y = 0; y < H; y += gap) {
+    for (let x = 0; x < W; x += gap) {
+      if (img[(y * W + x) * 4 + 3] > 128) {
+        pts.push([x + (Math.random() - .5) * gap, y + (Math.random() - .5) * gap]);
+      }
+    }
+  }
+  return pts;
+}
+
+function morphTo(text) {
+  currentText = text;
+  const pts = sampleText(text);
+  if (!pts.length) return scatter();
+  // 洗牌讓凝聚過程更有機
+  for (let i = pts.length - 1; i > 0; i--) {
+    const j = (Math.random() * (i + 1)) | 0;
+    [pts[i], pts[j]] = [pts[j], pts[i]];
+  }
+  particles.forEach((p, i) => {
+    const [tx, ty] = pts[i % pts.length];
+    p.tx = tx; p.ty = ty;
+    // 先給一個爆發力，視覺上像炸開再聚合
+    const a = Math.random() * Math.PI * 2;
+    const f = 6 + Math.random() * 14;
+    p.vx += Math.cos(a) * f;
+    p.vy += Math.sin(a) * f;
+  });
+}
+
+function scatter() {
+  currentText = '';
+  particles.forEach(p => {
+    p.tx = Math.random() * W;
+    p.ty = Math.random() * H;
+  });
+}
+
+// ---- 互動 ----
+const mouse = { x: 0, y: 0, active: false };
+window.addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true; });
+window.addEventListener('pointerleave', () => mouse.active = false);
+
+const input = document.getElementById('text');
+const go = document.getElementById('go');
+function submit() {
+  const t = input.value.trim();
+  if (t) morphTo(t); else scatter();
+}
+go.addEventListener('click', submit);
+input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+window.addEventListener('keydown', e => {
+  if (e.code === 'Space' && document.activeElement !== input) {
+    e.preventDefault();
+    paletteIdx = (paletteIdx + 1) % palettes.length;
+    document.body.style.background = palettes[paletteIdx].bg;
+    particles.forEach(p => p.assignColor());
+  }
+});
+
+// ---- 主迴圈 ----
+function tick() {
+  // 半透明覆蓋產生拖尾
+  ctx.fillStyle = 'rgba(6,7,13,0.28)';
+  ctx.fillRect(0, 0, W, H);
+  ctx.globalCompositeOperation = 'lighter';
+  for (const p of particles) { p.update(mouse); p.draw(ctx); }
+  ctx.globalCompositeOperation = 'source-over';
+  requestAnimationFrame(tick);
+}
+tick();
+
+// 開場動畫：自動展示
+setTimeout(() => morphTo('你好'), 600);
+</script>
+</body>
+</html>
