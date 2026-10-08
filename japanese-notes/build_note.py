@@ -666,13 +666,37 @@ def block_note(doc, b, acc):
     r = p.add_run("＊　" + b["text"]); set_font(r, FONT_ZH, SZ_ZH, ORANGE)
 
 
+RISK_ORDER = {"高": 0, "中": 1, "低": 2}
+
+
+def pending_entry(line):
+    """待確認清單的一條 → (風險等級, 內容)。
+    line 可為 dict(level, item, basis, action) 或字串；字串可用「【高】…」開頭標等級。
+    未標等級的當「中」並提出警告（規則：每一條都要標風險等級與依據）。"""
+    if isinstance(line, dict):
+        level = line.get("level", "中")
+        text = "｜".join(x for x in (line.get("item"), line.get("basis"), line.get("action")) if x)
+    else:
+        m = re.match(r"【([高中低])】\s*", line)
+        level, text = (m.group(1), line[m.end():]) if m else ("中", line)
+        if not m:
+            print(f"警告：待確認項目未標風險等級，暫列為中：{line[:30]}…", file=sys.stderr)
+    if level not in RISK_ORDER:
+        raise ValueError(f"未知的風險等級：{level}")
+    return level, text
+
+
 def block_pending(doc, b, acc):
+    """待確認清單：所有項目都保留，依風險 高→中→低 排序（同等級維持原順序），高風險先審。"""
     p = doc.add_paragraph(); p.add_run().add_break(WD_BREAK.PAGE)
     p = doc.add_paragraph(); tight(p)
     r = p.add_run(b["title"]); set_font(r, FONT_JP, 12, GRAY, bold=True)
-    for line in b["lines"]:
+    r = p.add_run("　依風險排序：高 → 中 → 低"); set_font(r, FONT_JP, 9, GRAY)
+    entries = sorted((pending_entry(x) for x in b["lines"]), key=lambda e: RISK_ORDER[e[0]])
+    for level, text in entries:
         p = doc.add_paragraph(); tight(p); p.paragraph_format.space_after = Pt(3)
-        r = p.add_run("・" + line); set_font(r, FONT_JP, 10, GRAY)
+        r = p.add_run(f"【{level}】"); set_font(r, FONT_JP, 10, ORANGE if level == "高" else GRAY, bold=level == "高")
+        r = p.add_run(text); set_font(r, FONT_JP, 10, GRAY)
 
 
 BLOCKS = {"cards": block_cards, "bullets": block_bullets, "grid": block_grid,

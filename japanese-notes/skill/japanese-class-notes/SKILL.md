@@ -39,13 +39,19 @@ description: 把日語課的帶時間戳逐字稿（.srt，中文為主夾日文
 - 同一個主題的零散片段要併成一張表。
 - 課堂上的操作（兩兩對話、換算遊戲）不收，只收句子本身。
 
-不確定的內容一律放在文末待確認清單，正文保持乾淨。使用者會根據這份清單回頭聽錄音、補資料。
+不確定的內容一律放在文末待確認清單，正文保持乾淨。使用者會根據這份清單回頭聽錄音、補資料。清單依風險分流：所有項目都保留，每條標【高／中／低】和依據來源，高風險排最前面先審。規則見 `references/writing-rules.md`。
 
 ## 聲調
 
-逐字稿沒有聲調資料，目前所有詞一律畫成 0 號音（平板）。待確認清單的第一條一定要註明這一點。
+聲調資料來自使用者的 JAPANESE UP 聲調 MCP。使用前先確認同意狀態，少量查詢，原始 JSON 照實保留，不要自行補齊未知的聲調。
 
-之後聲調會由使用者的 MCP 依 schema 提供，人工審閱流程還在設計中。要判讀原版講義上的紅線時，用 `japanese-pitch-reader` skill。標記方式和拆句規則見 `references/pitch.md`。
+- 單字的結果可以直接用；句子目前還有片語層級的缺口（助詞、複合詞），詳見 `references/pitch.md`。
+- 拿到 MCP 結果後，用 `scripts/mcp_pending.py` 依 MCP 的品質欄位產生待確認項目。只依 needsReview、warnings、accent、status 判斷，不要自己判斷。
+- 沒有警告不代表正確，要保留抽樣比對範本的步驟。
+- 審閱後的修正要經使用者逐筆同意，才能送回 MCP。
+- 還沒取得聲調的詞，畫成 0 號音，並列一條【高】。
+
+要判讀原版講義上的紅線時，用 `japanese-pitch-reader` skill。
 
 ## 參考檔（需要時再讀）
 
@@ -53,4 +59,4 @@ description: 把日語課的帶時間戳逐字稿（.srt，中文為主夾日文
 - `references/layout.md`：版面規格、每頁密度標準、ルビ（JIS X 4051／W3C JLReq）與紅線的做法、版面陷阱。
 - `references/note-json.md`：note.json 的日文行寫法與各種區塊。
 - `references/illustrations.md`：插圖來源、規約、搜尋與下載方法。
-- `references/pitch.md`：聲調標記、拆句規則與對照資料。
+- `references/pitch.md`：聲調標記、拆句規則、對照資料，以及 MCP 的欄位、轉換方式、檢查與回饋流程。
