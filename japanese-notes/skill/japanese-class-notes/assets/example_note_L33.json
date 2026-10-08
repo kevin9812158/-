@@ -1,0 +1,170 @@
+{
+  "header": {
+    "left": "L33 單字",
+    "right": "2026.10.07"
+  },
+  "accent_default": 0,
+  "blocks": [
+    {"type": "title", "text": "課外補充"},
+    {"type": "tag", "text": "單字"},
+    {
+      "type": "cards",
+      "cards": [
+        {
+          "jp": "セール",
+          "zh": "特價、拍賣",
+          "illust": {
+            "source": "いらすとや",
+            "title": "ショッピングのイラスト「セールで買い物」",
+            "url": "https://www.irasutoya.com/2013/04/blog-post_3878.html",
+            "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxNcgwHoJT7wm_h5g52fo1K33H1IerI_dKzwZ2VzY5gZ-D7T8uTqdHbhCQxE2DdJrKTx71n_hl8hohHBIY4n_bmZFbt7RSmU90eF2jmjxwJADnc_lQlYDI62d195JCNgnlxi3clW0oF14/s1600/shopping_sale.png"
+          }
+        },
+        {
+          "jp": "ディスカウント",
+          "zh": "折扣",
+          "illust": {
+            "source": "いらすとや",
+            "title": "「Price Down!」のイラスト文字",
+            "url": "https://www.irasutoya.com/2015/08/price-down.html",
+            "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRgXsTlSXZW_67-BL91a3g-FVNIu2hXTAEzKRKpPM8SVp64wW9_pEsWx_8TgyLElSn6qR02MH7V76Y1X0nt8c4N2IbejEd5xauqU3utZryCOn5OUwEXZ3wrg_w2agwXbO6CuRbdTgfIzo/s800/pop_pricedown.png"
+          }
+        },
+        {
+          "jp": "パーセントオフ",
+          "zh": "％off、打折",
+          "illust": {
+            "source": "いらすとや",
+            "title": "割引シールのイラスト「5～90パーセントオフ」",
+            "url": "https://www.irasutoya.com/2013/05/590.html",
+            "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDFSuIQBsOYdIWE86nVypFrBXBkbbYVw4KCNpUju42PSgD-zZlGECfDCJAObvq0KNFhYJkN4EP93ciUI0SQBqlDS-Ye1ShU2eojuI3gtPnBZSk0WRRLrpKRZ8hrb09vYHXVpx-M41S8Ewz/s1600/percent_30.png"
+          }
+        }
+      ]
+    },
+    {
+      "type": "defs",
+      "header": "「打折」的說法",
+      "rows": [
+        {
+          "term_jp": "セール",
+          "term_sub": "特價",
+          "arrow": "偏期間、時間的感覺",
+          "examples": [
+            {"jp": "{今|いま}／セール{中|ちゅう}+です+か／!？", "zh": "現在在特價嗎？"},
+            {"jp": "{大|だい}セール", "zh": "大特價"},
+            {"jp": "セール{中|ちゅう}", "zh": "特價中"}
+          ]
+        },
+        {
+          "term_jp": "{割|わり}{引|びき}",
+          "term_sub": "打折",
+          "examples": [
+            {"jp": "{今|いま}／{割|わり}{引|びき}して／います+か／!？", "zh": "現在有打折嗎？"},
+            {"jp": "{何|なん}{割|わり}{引|び}き／です+か／!？", "zh": "打幾折？"},
+            {"jp": "{大|だい}{割|わり}{引|びき}", "zh": "大打折"}
+          ]
+        },
+        {
+          "term_jp": "{特|とく}{売|ばい}",
+          "term_sub": "特賣",
+          "examples": [
+            {"jp": "{大|だい}{特|とく}{売|ばい}", "zh": "大特賣"}
+          ]
+        },
+        {
+          "term_jp": "ディスカウント",
+          "term_sub": "折扣",
+          "arrow": "英文說法，較時髦",
+          "examples": [
+            {"jp": "その／カバン+は=わ／ディスカウントして／います+か／!？", "zh": "那個包包有打折嗎？"}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "header": "「幾折」的說法",
+      "columns": ["台灣", "割引き", "パーセントオフ"],
+      "widths": [1, 2, 2],
+      "rows": [
+        ["九折", {"jp": "{一|いち}{割|わり}{引|び}き"}, {"jp": "{10|じゅっ}パーセントオフ"}],
+        ["八折", {"jp": "{二|に}{割|わり}{引|び}き"}, {"jp": "{20|にじゅっ}パーセントオフ"}],
+        ["七折", {"jp": "{三|さん}{割|わり}{引|び}き"}, {"jp": "{30|さんじゅっ}パーセントオフ"}],
+        ["七五折", {"jp": "{二|に}{割|わり}{五|ご}{分|ぶ}{引|び}き"}, {"jp": "{25|にじゅうご}パーセントオフ"}],
+        ["四折", {"jp": "{六|ろく}{割|わり}{引|び}き"}, {"jp": "{60|ろくじゅっ}パーセントオフ"}]
+      ]
+    },
+    {"type": "note", "text": "台灣說的是付幾成，日本說的是折掉幾成：九折＝一割引き。"},
+    {"type": "note", "text": "二割五分引き 在日本很少聽到，說 25パーセントオフ 也可以。"},
+    {
+      "type": "sentences",
+      "header": "短句練習",
+      "practice": true,
+      "rows": [
+        {"jp": "すみません／!、／{今|いま}／{割|わり}{引|びき}して／います+か／!？", "zh": "請問現在有打折嗎？"},
+        {"jp": "はい／!、／{割|わり}{引|びき}して／います／!。", "zh": "有，現在有打折。"},
+        {"jp": "{何|なん}{割|わり}{引|び}き／です+か／!？", "zh": "打幾折？", "arrow": "說 何パーセントオフですか 也可以"},
+        {"jp": "{二|に}{割|わり}{引|び}き／です／!。", "zh": "打八折。"},
+        {"jp": "{三|さん}{十|じゅっ}パーセントオフ／です／!。", "zh": "打七折。"},
+        {"jp": "はい／!、／ディスカウントして／います+よ／!。", "zh": "有喔，有打折。"}
+      ]
+    },
+
+    {"type": "title", "text": "大家的日本語 L33"},
+    {"type": "tag", "text": "單字"},
+    {
+      "type": "cards",
+      "per_row": 2,
+      "cards": [
+        {
+          "jp": "{割|わり}{引|びき}",
+          "zh": "折扣",
+          "illust": {
+            "source": "いらすとや",
+            "title": "割引シールのイラスト「1～9割引き」",
+            "url": "https://www.irasutoya.com/2013/05/19.html",
+            "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrJFTN4puGpZzkmLP_jafZuN8yvRgV4hk6v-BYJ2vsSqtRPoEmyBnW9KyATHFOcc2IP2f5XDn_-MZ-M-6jsISGdipUqJuaLWwJK7vZ8__DxtiEpDmx9yjto7cfhhvYYefn4uQYGlTFOBXg/s1600/waribiki.png"
+          }
+        },
+        {
+          "label": "補",
+          "jp": "{始|はじ}まる／!・／{始|はじ}まります",
+          "zh": "開始（自動詞）",
+          "illust": null
+        }
+      ]
+    },
+    {"type": "note", "text": "「引」接在「割」後面變濁音，念び（わりびき），不是ひき。"},
+    {
+      "type": "bullets",
+      "rows": [
+        {"jp": "すみません／!、／{割|わり}{引|びき}+は=わ／{何|なん}{時|じ}+から／です+か／!。", "zh": "請問幾點開始打折？"},
+        {"jp": "{割|わり}{引|びき}+は=わ／{五|ご}{時|じ}+から／{始|はじ}まります／!。", "zh": "五點開始打折。"},
+        {"jp": "{割|わり}{引|びき}+は=わ／{八|はち}{時|じ}+から／{始|はじ}まります／!。", "zh": "八點開始打折。"},
+        {"jp": "{割|わり}{引|びき}+は=わ／{八|はち}{時|じ}+まで／です／!。", "zh": "到八點為止。"}
+      ]
+    },
+
+    {
+      "type": "pending",
+      "title": "待確認清單",
+      "lines": [
+        "聲調：本份所有紅線暫以 0 號音（平板）繪製，不是實際聲調；取得聲調資料後重新產生。",
+        "割引 的課本編號｜老師說課本有輕輕帶過，但不知道是第幾號，目前未標編號｜請補充。",
+        "始まる｜課本單字或老師補充？目前標「補」｜請確認。",
+        "00:26:01–00:28:27｜辨識為「瓦利迪基」「瓦里比比」等｜依上下文還原為 割引（わりびき），請核對。",
+        "00:27:58｜辨識「八時までます」｜更正為「八時までです」，請核對。",
+        "00:27:00｜割引 的書寫提醒（送り仮名）｜辨識不清，未收錄，請補充。",
+        "00:29:28–00:30:26｜特売、割引 的語感說明辨識不清｜表格只有 セール 加了語感，請補充。",
+        "00:34:47–00:35:45｜辨識為「尼德戈瓦利米」｜依上下文還原為 二割五分引き（にわりごぶびき），請核對。",
+        "00:32:54–00:34:47｜老師提醒 パーセントオフ 的聲調，辨識不清｜未收錄，請補充。",
+        "「幾折」表的數字讀音（じゅっ、にじゅっ…）是依一般讀法寫的，老師沒有逐一念過｜請核對。",
+        "00:31:55｜「これは何割引きですか」，老師說要「再委婉一點」，委婉的說法辨識不清｜未收錄，請補充。",
+        "00:41:25–00:45:51｜ディスカウント「較時髦」是依「fashion」「喜歡講英文的朋友」推斷的｜請核對。",
+        "00:43:23｜辨識為「そのカバンは」，寫成「包包」｜請核對。",
+        "插圖：ディスカウント 在いらすとや查不到同名插圖，暫用「Price Down!」のイラスト文字 https://www.irasutoya.com/2015/08/price-down.html ；其餘皆為いらすとや。"
+      ]
+    }
+  ]
+}
