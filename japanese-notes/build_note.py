@@ -11,6 +11,9 @@
   #n          該片段的聲調號數（省略時用 accent_default，null 表示待確認、不畫線）。
   !、 !。     標點（不畫線）。
   @A：        標籤（不畫線）。
+
+區塊：title、tag、cards、bullets、defs、grid、sentences、note、pending，
+欄位說明見 00_先讀我_知識總覽.md 第 7 節。
 """
 import hashlib, json, os, re, sys, urllib.request
 from docx import Document
@@ -33,6 +36,7 @@ PITCH_RED = "FF7D80"
 BORDER_GRAY = "E8E6E6"
 HEAD_FILL = "DEEAF6"
 TAG_FILL = "FFE699"
+PRACTICE_FILL = "E7E6E6"  # 短句練習表頭（灰）
 CONTENT_W = 487  # pt，A4 扣左右邊界 54pt
 ILLUST_W = 84    # pt，詞卡插圖寬（詞卡寬約 162pt）
 IMG_CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
@@ -116,6 +120,10 @@ def fixed_layout(table, widths_pt, cell_margin_pt=None):
             el.set(qn("w:w"), str(int(cell_margin_pt.get(side, 0) * 20))); el.set(qn("w:type"), "dxa")
             mar.append(el)
         tblPr.append(mar)
+    tw = tblPr.find(qn("w:tblW"))  # 明確指定總寬，避免 LibreOffice 依內容縮放
+    if tw is None:
+        tw = OxmlElement("w:tblW"); tblPr.append(tw)
+    tw.set(qn("w:type"), "dxa"); tw.set(qn("w:w"), str(int(sum(widths_pt) * 20)))
     grid = table._tbl.tblGrid
     for gc, w in zip(grid.findall(qn("w:gridCol")), widths_pt):
         gc.set(qn("w:w"), str(int(w * 20)))
@@ -230,19 +238,35 @@ def line_columns(items):
     return cols
 
 
-def add_jp_line(container, line, accent_default, bullet=False, trailing_zh=None):
-    """在 cell 或 document 中加入一行帶讀音與聲調線的日文（嵌套表格）。"""
+def zh_runs(p, zh, arrow=None):
+    """藍色中文；arrow 為橘色的語感補充（例：「→口語：朋友間常用」）。"""
+    if zh:
+        r = p.add_run(zh); set_font(r, FONT_ZH, SZ_ZH, BLUE)
+    if arrow:
+        r = p.add_run(("　" if zh else "") + "→ " + arrow); set_font(r, FONT_ZH, SZ_ZH, ORANGE)
+
+
+def add_jp_line(container, line, accent_default, bullet=False, trailing_zh=None, arrow=None, avail_w=None):
+    """在 cell 或 document 中加入一行帶讀音與聲調線的日文（嵌套表格）。
+    trailing_zh 預設接在日文後面；若給 avail_w 且放不下，就改放到下一行。
+    bullet 為 True（•）或字串標籤（例 "2."、"A："）；"補" 會加框。
+    在 cell 中會順便處理表格後的空段落（中文放下一行時用它，否則縮到最小）。"""
     items = parse_line(line, accent_default)
     cols = line_columns(items)
+    bw = 0
     if bullet:
         btxt = bullet if isinstance(bullet, str) else "•"
-        cols.insert(0, dict(ruby="", base=btxt, high=False, drop=False, group=-1, w=14 * len(btxt) + 8))
-    if trailing_zh:
+        bw = 14 * len(btxt) + 8
+        cols.insert(0, dict(ruby="", base=btxt, high=False, drop=False, group=-1, w=bw, boxed=btxt == "補"))
+    zh_w = (SZ_ZH * (len(trailing_zh or "") + (len(arrow) + 3 if arrow else 0)) + 18) if (trailing_zh or arrow) else 0
+    zh_below = bool(zh_w) and avail_w is not None and sum(c["w"] for c in cols) + zh_w > avail_w
+    if zh_w and not zh_below:
         cols.append(dict(ruby="", base=trailing_zh, high=False, drop=False, group=-2,
-                         w=SZ_ZH * len(trailing_zh) + 18, zh=True))
+                         w=zh_w, zh=True, arrow=arrow))
     t = container.add_table(rows=2, cols=len(cols))
+    in_cell = hasattr(container, "_tc")
     # 儲存格開頭若只有一個空段落，移除它，讓日文行貼齊上緣
-    if hasattr(container, "_tc"):
+    if in_cell:
         first = container._tc.find(qn("w:p"))
         if first is not None and first.getnext() is t._tbl and not first.xpath(".//w:t"):
             container._tc.remove(first)
@@ -277,11 +301,28 @@ def add_jp_line(container, line, accent_default, bullet=False, trailing_zh=None)
         if c.get("zh"):
             p.alignment = WD_ALIGN_PARAGRAPH.LEFT
             p.paragraph_format.left_indent = Pt(14)
-            r = p.add_run(c["base"]); set_font(r, FONT_ZH, SZ_ZH, BLUE)
+            zh_runs(p, c["base"], c.get("arrow"))
         else:
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
             r = p.add_run(c["base"]); set_font(r, FONT_JP, SZ_JP)
+            if c.get("boxed"):
+                bdr = OxmlElement("w:bdr")
+                for a, v in (("w:val", "single"), ("w:sz", "4"), ("w:space", "0"), ("w:color", "000000")):
+                    bdr.set(qn(a), v)
+                r._element.get_or_add_rPr().append(bdr)
         j = k + 1
+    # 表格後的段落
+    if zh_below:
+        p = container.paragraphs[-1] if in_cell else container.add_paragraph()
+        tight(p); p.paragraph_format.left_indent = Pt(bw)
+        p.paragraph_format.space_after = Pt(3)
+        zh_runs(p, trailing_zh, arrow)
+    elif in_cell:
+        shrink_trailing(container)
+    else:  # 頁面上相鄰的表格會被合併成一張，中間要隔一個極小的段落
+        p = container.add_paragraph(); tight(p)
+        r = p.add_run(""); set_font(r, FONT_JP, 1)
+        p.paragraph_format.line_spacing = Pt(1)
     return t
 
 
@@ -312,9 +353,9 @@ def outer_table(doc, rows, widths):
     return t
 
 
-def header_row(t, text, zh_part=None):
+def header_row(t, text, fill=HEAD_FILL):
     cell = t.cell(0, 0).merge(t.cell(0, len(t.columns) - 1))
-    shade(cell, HEAD_FILL)
+    shade(cell, fill)
     p = first_par(cell); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r = p.add_run(text); set_font(r, FONT_JP, 12)
 
@@ -325,15 +366,27 @@ def spacer(doc, pt=8):
 
 
 def block_cards(doc, b, acc):
-    n = len(b["cards"])
-    w = CONTENT_W / 3
-    t = outer_table(doc, 1, [w] * n)
-    for j, card in enumerate(b["cards"]):
-        cell = t.cell(0, j)
+    """詞卡：每列 per_row 格（預設 3；動詞等較長的詞用 2）。
+    card 可帶 label（課本編號 "2." 或 "補"），中文放不下時自動換到下一行。"""
+    per_row = b.get("per_row", 3)
+    w = CONTENT_W / per_row
+    cards = b["cards"]
+    nrows = (len(cards) + per_row - 1) // per_row
+    t = outer_table(doc, nrows, [w] * per_row)
+    for idx, card in enumerate(cards):
+        cell = t.cell(idx // per_row, idx % per_row)
         first_par(cell)
-        add_jp_line(cell, card["jp"], acc, trailing_zh=card["zh"])
-        shrink_trailing(cell)
+        add_jp_line(cell, card["jp"], acc, bullet=card.get("label") or False,
+                    trailing_zh=card.get("zh"), arrow=card.get("arrow"), avail_w=w - 10)
         add_illust(cell, card.get("illust"))
+    spacer(doc)
+
+
+def block_bullets(doc, b, acc):
+    """表格外的例句（範本：詞卡下方的 • 例句）。"""
+    for row in b["rows"]:
+        add_jp_line(doc, row["jp"], acc, bullet=row.get("bullet", True),
+                    trailing_zh=row.get("zh"), arrow=row.get("arrow"), avail_w=CONTENT_W)
     spacer(doc)
 
 
@@ -406,40 +459,108 @@ def block_sentences(doc, b, acc):
     left = CONTENT_W * 0.72
     rows = b["rows"]
     t = outer_table(doc, len(rows) + 1, [left, CONTENT_W - left])
-    header_row(t, b["header"])
+    header_row(t, b["header"], PRACTICE_FILL if b.get("practice") else HEAD_FILL)
     for i, row in enumerate(rows, start=1):
         lc, rc = t.cell(i, 0), t.cell(i, 1)
         first_par(lc)
         add_jp_line(lc, row["jp"], acc, bullet=row.get("bullet", True))
-        shrink_trailing(lc)
         rc.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
-        p = first_par(rc)
-        r = p.add_run(row["zh"]); set_font(r, FONT_ZH, SZ_ZH, BLUE)
+        zh_runs(first_par(rc), row["zh"], row.get("arrow"))
     spacer(doc)
 
 
+def defs_term(lc, row, acc):
+    """主題表左欄：詞（或中文詞名）＋下方中文與語感。"""
+    shade(lc, HEAD_FILL)
+    first_par(lc)
+    if "term_jp" in row:
+        add_jp_line(lc, row["term_jp"], acc)
+    else:
+        p = lc.paragraphs[0]; r = p.add_run(row["term_zh"]); set_font(r, FONT_JP, 12)
+    if row.get("term_sub"):
+        p = lc.add_paragraph(); tight(p); zh_runs(p, row["term_sub"])
+    if row.get("arrow"):
+        p = lc.add_paragraph(); tight(p); zh_runs(p, None, row["arrow"])
+
+
 def block_defs(doc, b, acc):
-    left = CONTENT_W * 0.28
+    """主題表。row 有 examples（[{jp, zh, arrow}]）時用三欄：詞｜例句｜中文，
+    每個例句一列、左欄跨列合併、同一詞內不畫橫線（範本：擬聲擬態語）；
+    否則用兩欄：詞｜中文（zh）或日文清單（jp_list）。"""
     rows = b["rows"]
+    if any("examples" in r for r in rows):
+        left, right = CONTENT_W * 0.26, CONTENT_W * 0.24
+        mid = CONTENT_W - left - right
+        n = sum(max(1, len(r.get("examples", []))) for r in rows)
+        t = outer_table(doc, n + 1, [left, mid, right])
+        header_row(t, b["header"])
+        i = 1
+        for row in rows:
+            exs = row.get("examples") or [{}]
+            lc = t.cell(i, 0)
+            if len(exs) > 1:
+                lc = lc.merge(t.cell(i + len(exs) - 1, 0))
+            lc.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+            defs_term(lc, row, acc)
+            for k, ex in enumerate(exs):
+                mc, rc = t.cell(i + k, 1), t.cell(i + k, 2)
+                cell_borders(mc, right=None); cell_borders(rc, left=None)
+                if k > 0:
+                    cell_borders(mc, top=None); cell_borders(rc, top=None)
+                if k < len(exs) - 1:
+                    cell_borders(mc, bottom=None); cell_borders(rc, bottom=None)
+                if not ex:
+                    continue
+                w = sum(c["w"] for c in line_columns(parse_line(ex["jp"], acc))) + 22
+                first_par(mc)
+                if w > mid - 10:  # 例句太長：例句跨到中文欄，中文放下一行
+                    mc = mc.merge(rc)
+                    add_jp_line(mc, ex["jp"], acc, bullet=True, trailing_zh=ex.get("zh"),
+                                arrow=ex.get("arrow"), avail_w=0)
+                else:
+                    add_jp_line(mc, ex["jp"], acc, bullet=True)
+                    rc.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+                    zh_runs(first_par(rc), ex.get("zh"), ex.get("arrow"))
+            i += len(exs)
+        spacer(doc)
+        return
+    left = CONTENT_W * 0.28
     t = outer_table(doc, len(rows) + 1, [left, CONTENT_W - left])
     header_row(t, b["header"])
     for i, row in enumerate(rows, start=1):
         lc, rc = t.cell(i, 0), t.cell(i, 1)
-        shade(lc, HEAD_FILL)
-        first_par(lc)
-        if "term_jp" in row:
-            add_jp_line(lc, row["term_jp"], acc)
-            shrink_trailing(lc)
-        else:
-            p = lc.paragraphs[0]; r = p.add_run(row["term_zh"]); set_font(r, FONT_JP, 12)
+        defs_term(lc, row, acc)
         if "zh" in row:
             rc.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
-            p = first_par(rc); r = p.add_run(row["zh"]); set_font(r, FONT_ZH, SZ_ZH, BLUE)
+            zh_runs(first_par(rc), row["zh"])
         if "jp_list" in row:
             first_par(rc)
             for line in row["jp_list"]:
                 add_jp_line(rc, line, acc, bullet=True)
-                shrink_trailing(rc)
+    spacer(doc)
+
+
+def block_grid(doc, b, acc):
+    """對照表：表頭＋欄名列＋資料列。儲存格可為 {"jp": ...}、{"zh": ...} 或字串（當中文）。"""
+    ncol = len(b["columns"])
+    ratio = b.get("widths") or [1] * ncol
+    widths = [CONTENT_W * r / sum(ratio) for r in ratio]
+    t = outer_table(doc, len(b["rows"]) + 2, widths)
+    header_row(t, b["header"])
+    for j, name in enumerate(b["columns"]):
+        c = t.cell(1, j); shade(c, HEAD_FILL)
+        p = first_par(c); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r = p.add_run(name); set_font(r, FONT_JP, 12)
+    for i, row in enumerate(b["rows"], start=2):
+        for j, val in enumerate(row):
+            c = t.cell(i, j); c.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+            first_par(c)
+            if isinstance(val, dict) and "jp" in val:
+                add_jp_line(c, val["jp"], acc, avail_w=widths[j] - 10)
+            else:
+                text = val["zh"] if isinstance(val, dict) else val
+                p = c.paragraphs[0]; p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                zh_runs(p, text)
     spacer(doc)
 
 
@@ -458,7 +579,8 @@ def block_pending(doc, b, acc):
         r = p.add_run("・" + line); set_font(r, FONT_JP, 10, GRAY)
 
 
-BLOCKS = {"cards": block_cards, "sentences": block_sentences, "defs": block_defs,
+BLOCKS = {"cards": block_cards, "bullets": block_bullets, "grid": block_grid,
+          "sentences": block_sentences, "defs": block_defs,
           "note": block_note, "pending": block_pending,
           "title": lambda d, b, a: add_title(d, b["text"]),
           "tag": lambda d, b, a: add_tag(d, b["text"])}
