@@ -1,12 +1,15 @@
 """日文課堂筆記 Word 產生器（實驗版）
 
 讀取 note.json，產生仿原版講義版面的 .docx。
-聲調線用「每拍一格」的表格做：上方小列放讀音並承載紅線，
-高音拍畫上緣紅線，下降拍再畫右緣紅線；全部是 Word 原生表格框線，可編輯。
+讀音用 Word 內建ルビ（w:ruby），照 JIS X 4051／W3C JLReq：熟語ルビ逐字對應、
+ルビ字級＝親字 1/2、置中；日文段落開禁則處理。
+聲調紅線和原版一樣是另外畫的線條圖形（DrawingML），位置由程式依字寬算出：
+Yu Gothic UI 全形字 1.026em、數字 0.601em（取自原版 PDF）。在 Word 裡改字後線不會跟著動，
+要改內容請改 note.json 重新產生。--preview 會換成本環境的 IPAGothic，只供 LibreOffice 預覽。
 
 日文行的寫法（字串）：
   片段之間用「／」分隔。
-  {漢字|讀音}  有讀音的漢字；其他假名直接寫。
+  {漢字|讀音}  有讀音的漢字；熟語逐字寫（{割|わり}{引|びき}），熟字訓才整組寫（{今日|きょう}）。
   +助詞       接續文字（例：{割引|わりびき}+は），讀音不同時寫成 +は=わ。
   #n          該片段的聲調號數（省略時用 accent_default，null 表示待確認、不畫線）。
   !、 !。     標點（不畫線）。
@@ -28,7 +31,7 @@ FONT_JP = "Yu Gothic UI"          # 原版：黑體 UI（日本語）
 FONT_TITLE = "源石黑體 M"
 FONT_ZH = "清松手寫體1"
 FONT_HEAD = "Calibri"
-SZ_JP, SZ_RUBY, SZ_ZH, SZ_HEAD = 14, 8, 12, 10
+SZ_JP, SZ_RUBY, SZ_ZH, SZ_HEAD = 14, 7, 12, 10  # ルビ＝親字 1/2（JLReq）
 BLUE = RGBColor(0x00, 0x70, 0xC0)
 GRAY = RGBColor(0x76, 0x71, 0x71)
 ORANGE = RGBColor(0xC5, 0x5A, 0x11)
@@ -138,14 +141,6 @@ def first_par(cell):
     return p
 
 
-def shrink_trailing(cell):
-    """cell.add_table 會在表格後補一個空段落，把它縮到最小。"""
-    p = cell.paragraphs[-1]
-    tight(p)
-    r = p.add_run(""); set_font(r, FONT_JP, 1)
-    p.paragraph_format.line_spacing = Pt(1)
-
-
 # ---------- 日文行解析與聲調 ----------
 def split_mora(kana):
     out = []
@@ -204,38 +199,171 @@ def pitch_marks(n_body, n_gap, accent):
     return body, [(gap_high, False)] * n_gap
 
 
-def line_columns(items):
-    """展開成欄位：每欄 = dict(ruby, base, high, drop, group)。group 相同的 base 會合併。"""
-    cols, gid = [], 0
-    for it in items:
-        gid += 1
+# ---------- 字寬（取自原版 PDF 嵌入的 Yu Gothic UI：全形 1.026em、數字 0.601em） ----------
+METRICS = {"cjk": 1.026, "digit": 0.601, "ascii": 0.6}
+PREVIEW_FONT = "IPAGothic"  # --preview：換成此環境有的等寬字型，讓 LibreOffice 預覽的線位對得上
+PREVIEW_METRICS = {"cjk": 1.0, "digit": 0.5, "ascii": 0.5}
+TAB_X = 18        # pt，• 或標籤後的日文起點（用定位點固定，不受 • 字寬影響）
+LINE_H = 32       # pt，日文行固定行高（含ルビ），讓紅線的垂直位置可預測
+PITCH_Y = 5.8     # pt，紅線距行頂（ルビ上緣再往上一點）
+PITCH_DROP = 6.5  # pt，下降處往下的長度（到ルビ底）
+PITCH_W = 0.75    # pt，紅線粗細
+_shape_id = [1000]
+
+
+def char_w(ch, size):
+    if ch.isascii():
+        return size * (METRICS["digit"] if ch.isdigit() else 0.3 if ch == " " else METRICS["ascii"])
+    return size * METRICS["cjk"]
+
+
+def text_w(s, size):
+    return sum(char_w(c, size) for c in s)
+
+
+def layout_line(items, x0):
+    """依字寬排出整行：回傳 runs（("text", s) 或 ("ruby", base, ruby)）、
+    morae（每拍 (片段序號, x1, x2, high, drop)，x 為ルビ或假名本身的位置）與行尾 x。
+    ルビ照 JLReq：モノルビ／熟語ルビ置中；ルビ比親字長時，親字兩側加空（ルビ從片段起點開始）。"""
+    x, runs, morae = x0, [], []
+    for k, it in enumerate(items):
         if it["kind"] in ("punct", "label"):
-            cols.append(dict(ruby="", base=it["text"], high=False, drop=False, group=gid,
-                             w=SZ_JP * len(it["text"])))
+            runs.append(("text", it["text"])); x += text_w(it["text"], SZ_JP)
             continue
-        morae = []  # (ruby_text, base_text, group)
+        seq = []
         for base, ruby in it["parts"]:
             if ruby:
-                gid += 1
-                rm = split_mora(ruby)
-                for k, mo in enumerate(rm):
-                    morae.append((mo, base, gid, len(rm), len(base)))
+                bw, rw = text_w(base, SZ_JP), text_w(ruby, SZ_RUBY)
+                rx = x + (max(bw, rw) - rw) / 2
+                for mo in split_mora(ruby):
+                    w = text_w(mo, SZ_RUBY); seq.append((rx, rx + w)); rx += w
+                runs.append(("ruby", base, ruby)); x += max(bw, rw)
             else:
-                gid += 1
-                morae.append(("", base, gid, 1, len(base)))
-        gap_m = []
-        for shown, said in it["gaps"]:
+                w = text_w(base, SZ_JP); seq.append((x, x + w)); runs.append(("text", base)); x += w
+        n_body = len(seq)
+        for shown, _said in it["gaps"]:
             for mo in split_mora(shown):
-                gid += 1
-                gap_m.append(("", mo, gid, 1, len(mo)))
-        bm, gmk = pitch_marks(len(morae), len(gap_m), it["accent"])
-        for (ruby, base, g, span, nbase), (hi, dr) in zip(morae + gap_m, bm + gmk):
-            # 欄寬：讀音寬與本文寬取大；合併群組的本文寬平均分攤
-            w_ruby = SZ_RUBY * len(ruby) + 2 if ruby else 0
-            w_base = (SZ_JP * nbase + 1) / span
-            cols.append(dict(ruby=ruby, base=base, high=hi, drop=dr, group=g,
-                             w=max(w_ruby, w_base, SZ_JP * 0.9)))
-    return cols
+                w = text_w(mo, SZ_JP); seq.append((x, x + w)); runs.append(("text", mo)); x += w
+        bm, gm = pitch_marks(n_body, len(seq) - n_body, it["accent"])
+        for (x1, x2), (hi, dr) in zip(seq, bm + gm):
+            morae.append((k, x1, x2, hi, dr))
+    return runs, morae, x
+
+
+def pitch_segments(morae):
+    """把同一片段內連續的高音拍連成一條線；回傳 (x1, x2, drop)。"""
+    segs, cur = [], None
+    for k, x1, x2, hi, dr in morae:
+        if hi and cur and cur[0] == k and not cur[3]:
+            cur = [k, cur[1], x2, dr]
+        else:
+            if cur:
+                segs.append(tuple(cur[1:]))
+            cur = [k, x1, x2, dr] if hi else None
+    if cur:
+        segs.append(tuple(cur[1:]))
+    return segs
+
+
+def measure_line(line, accent_default, bullet=False):
+    """日文行的寬度（pt），不含中文。"""
+    return layout_line(parse_line(line, accent_default), TAB_X if bullet else 0)[2]
+
+
+NS_DRAW = ('xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" '
+           'xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" '
+           'xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape"')
+
+
+def pitch_shape(x1, x2, drop):
+    """一條聲調紅線（DrawingML 圖形），水平位置相對於行首字元、垂直位置相對於行頂。"""
+    from docx.oxml import parse_xml
+    E = 12700
+    _shape_id[0] += 1
+    sid = _shape_id[0]
+    w, h = int((x2 - x1) * E), int(PITCH_DROP * E) if drop else 0
+    if drop:
+        geom = (f'<a:custGeom><a:avLst/><a:gdLst/><a:ahLst/><a:cxnLst/><a:rect l="0" t="0" r="r" b="b"/>'
+                f'<a:pathLst><a:path w="{w}" h="{h}" fill="none"><a:moveTo><a:pt x="0" y="0"/></a:moveTo>'
+                f'<a:lnTo><a:pt x="{w}" y="0"/></a:lnTo><a:lnTo><a:pt x="{w}" y="{h}"/></a:lnTo>'
+                f'</a:path></a:pathLst></a:custGeom>')
+    else:
+        geom = '<a:prstGeom prst="line"><a:avLst/></a:prstGeom>'
+    xml = (f'<w:drawing {NS_DRAW} xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+           f'<wp:anchor distT="0" distB="0" distL="0" distR="0" simplePos="0" relativeHeight="{sid}" '
+           f'behindDoc="0" locked="0" layoutInCell="1" allowOverlap="1">'
+           f'<wp:simplePos x="0" y="0"/>'
+           f'<wp:positionH relativeFrom="character"><wp:posOffset>{int(x1 * E)}</wp:posOffset></wp:positionH>'
+           f'<wp:positionV relativeFrom="line"><wp:posOffset>{int(PITCH_Y * E)}</wp:posOffset></wp:positionV>'
+           f'<wp:extent cx="{w}" cy="{h}"/><wp:effectExtent l="0" t="0" r="0" b="0"/><wp:wrapNone/>'
+           f'<wp:docPr id="{sid}" name="pitch {sid}"/><wp:cNvGraphicFramePr/>'
+           f'<a:graphic><a:graphicData uri="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">'
+           f'<wps:wsp><wps:cNvSpPr/><wps:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="{w}" cy="{h}"/></a:xfrm>'
+           f'{geom}<a:noFill/><a:ln w="{int(PITCH_W * E)}"><a:solidFill><a:srgbClr val="{PITCH_RED}"/></a:solidFill></a:ln>'
+           f'</wps:spPr><wps:bodyPr/></wps:wsp></a:graphicData></a:graphic></wp:anchor></w:drawing>')
+    return parse_xml(xml)
+
+
+PPR_ORDER = ["pStyle", "keepNext", "keepLines", "pageBreakBefore", "framePr", "widowControl", "numPr",
+             "suppressLineNumbers", "pBdr", "shd", "tabs", "suppressAutoHyphens", "kinsoku", "wordWrap",
+             "overflowPunct", "topLinePunct", "autoSpaceDE", "autoSpaceDN", "bidi", "adjustRightInd",
+             "snapToGrid", "spacing", "ind", "contextualSpacing", "mirrorIndents", "suppressOverlap", "jc"]
+
+
+def ppr_set(p, tag, val=None):
+    """依 schema 順序在 pPr 插入（或覆寫）一個開關元素。"""
+    pPr = p._p.get_or_add_pPr()
+    old = pPr.find(qn(f"w:{tag}"))
+    if old is not None:
+        pPr.remove(old)
+    el = OxmlElement(f"w:{tag}")
+    if val is not None:
+        el.set(qn("w:val"), val)
+    later = PPR_ORDER[PPR_ORDER.index(tag) + 1:]
+    for child in pPr:
+        if child.tag.split("}")[1] in later:
+            child.addprevious(el); return
+    pPr.append(el)
+
+
+def ja_paragraph(p):
+    """日文段落設定：禁則處理開、取消中日／英數間自動加空（讓字位可預測）、不對齊格線、固定行高。"""
+    from docx.enum.text import WD_LINE_SPACING
+    tight(p)
+    p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.EXACTLY
+    p.paragraph_format.line_spacing = Pt(LINE_H)
+    ppr_set(p, "kinsoku")
+    ppr_set(p, "autoSpaceDE", "0")
+    ppr_set(p, "autoSpaceDN", "0")
+    ppr_set(p, "snapToGrid", "0")
+
+
+def ruby_run(p, base, ruby):
+    """Word 內建ルビ：ルビ字級＝親字 1/2，置中（JLReq モノルビ／熟語ルビ）。"""
+    from docx.text.run import Run
+    r = OxmlElement("w:r")
+    rb = OxmlElement("w:ruby")
+    pr = OxmlElement("w:rubyPr")
+    for tag, val in (("rubyAlign", "center"), ("hps", str(SZ_RUBY * 2)), ("hpsRaise", str(SZ_JP * 2 - 2)),
+                     ("hpsBaseText", str(SZ_JP * 2)), ("lid", "ja-JP")):
+        el = OxmlElement(f"w:{tag}"); el.set(qn("w:val"), val); pr.append(el)
+    rb.append(pr)
+    for holder, text, size in (("w:rt", ruby, SZ_RUBY), ("w:rubyBase", base, SZ_JP)):
+        h = OxmlElement(holder)
+        inner = OxmlElement("w:r"); h.append(inner)
+        run = Run(inner, p); run.text = text; set_font(run, FONT_JP, size)
+        rb.append(h)
+    r.append(rb)
+    p._p.append(r)
+
+
+def target_par(container):
+    """cell 中若最後一段是空的就沿用，否則新增段落。"""
+    if hasattr(container, "_tc"):
+        last = container.paragraphs[-1]
+        if not last._p.xpath("./w:r|./w:hyperlink"):
+            return last
+    return container.add_paragraph()
 
 
 def zh_runs(p, zh, arrow=None):
@@ -247,83 +375,44 @@ def zh_runs(p, zh, arrow=None):
 
 
 def add_jp_line(container, line, accent_default, bullet=False, trailing_zh=None, arrow=None, avail_w=None):
-    """在 cell 或 document 中加入一行帶讀音與聲調線的日文（嵌套表格）。
-    trailing_zh 預設接在日文後面；若給 avail_w 且放不下，就改放到下一行。
-    bullet 為 True（•）或字串標籤（例 "2."、"A："）；"補" 會加框。
-    在 cell 中會順便處理表格後的空段落（中文放下一行時用它，否則縮到最小）。"""
+    """加入一行日文：Word 內建ルビ＋DrawingML 聲調紅線。
+    bullet 為 True（•）或字串標籤（"2."、"A："，"補" 會加框）；日文從定位點 TAB_X 開始。
+    trailing_zh 接在日文後（定位點）；給 avail_w 且放不下時改放下一行。"""
     items = parse_line(line, accent_default)
-    cols = line_columns(items)
-    bw = 0
+    x0 = TAB_X if bullet else 0
+    runs, morae, x_end = layout_line(items, x0)
+    p = target_par(container)
+    ja_paragraph(p)
+    anchor = p.add_run()
+    for x1, x2, drop in pitch_segments(morae):
+        anchor._r.append(pitch_shape(x1, x2, drop))
     if bullet:
         btxt = bullet if isinstance(bullet, str) else "•"
-        bw = 14 * len(btxt) + 8
-        cols.insert(0, dict(ruby="", base=btxt, high=False, drop=False, group=-1, w=bw, boxed=btxt == "補"))
-    zh_w = (SZ_ZH * (len(trailing_zh or "") + (len(arrow) + 3 if arrow else 0)) + 18) if (trailing_zh or arrow) else 0
-    zh_below = bool(zh_w) and avail_w is not None and sum(c["w"] for c in cols) + zh_w > avail_w
-    if zh_w and not zh_below:
-        cols.append(dict(ruby="", base=trailing_zh, high=False, drop=False, group=-2,
-                         w=zh_w, zh=True, arrow=arrow))
-    t = container.add_table(rows=2, cols=len(cols))
-    in_cell = hasattr(container, "_tc")
-    # 儲存格開頭若只有一個空段落，移除它，讓日文行貼齊上緣
-    if in_cell:
-        first = container._tc.find(qn("w:p"))
-        if first is not None and first.getnext() is t._tbl and not first.xpath(".//w:t"):
-            container._tc.remove(first)
-    table_borders(t, None)
-    fixed_layout(t, [c["w"] for c in cols], {"left": 0, "right": 0, "top": 0, "bottom": 0})
-    t.rows[0].height = Pt(11); t.rows[0].height_rule = WD_ROW_HEIGHT_RULE.EXACTLY
-    t.rows[1].height = Pt(20); t.rows[1].height_rule = WD_ROW_HEIGHT_RULE.AT_LEAST
-    # 讀音列 + 聲調線
-    for j, c in enumerate(cols):
-        rc = t.cell(0, j)
-        rc.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.BOTTOM
-        p = first_par(rc); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        if c["ruby"]:
-            r = p.add_run(c["ruby"]); set_font(r, FONT_JP, SZ_RUBY)
-        sides = {}
-        if c["high"]:
-            sides["top"] = (PITCH_RED, 6)
-        if c["drop"]:
-            sides["right"] = (PITCH_RED, 6)
-        if sides:
-            cell_borders(rc, **sides)
-    # 本文列：同一 group 合併
-    j = 0
-    while j < len(cols):
-        k = j
-        while k + 1 < len(cols) and cols[k + 1]["group"] == cols[j]["group"]:
-            k += 1
-        cell = t.cell(1, j) if k == j else t.cell(1, j).merge(t.cell(1, k))
-        cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
-        p = first_par(cell)
-        c = cols[j]
-        if c.get("zh"):
-            p.alignment = WD_ALIGN_PARAGRAPH.LEFT
-            p.paragraph_format.left_indent = Pt(14)
-            zh_runs(p, c["base"], c.get("arrow"))
+        r = p.add_run(btxt); set_font(r, FONT_JP, SZ_JP)
+        if btxt == "補":
+            bdr = OxmlElement("w:bdr")
+            for a_, v in (("w:val", "single"), ("w:sz", "4"), ("w:space", "0"), ("w:color", "000000")):
+                bdr.set(qn(a_), v)
+            r._element.get_or_add_rPr().append(bdr)
+        p.paragraph_format.tab_stops.add_tab_stop(Pt(TAB_X))
+        r = p.add_run("\t"); set_font(r, FONT_JP, SZ_JP)
+    for kind, *rest in runs:
+        if kind == "ruby":
+            ruby_run(p, *rest)
         else:
-            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            r = p.add_run(c["base"]); set_font(r, FONT_JP, SZ_JP)
-            if c.get("boxed"):
-                bdr = OxmlElement("w:bdr")
-                for a, v in (("w:val", "single"), ("w:sz", "4"), ("w:space", "0"), ("w:color", "000000")):
-                    bdr.set(qn(a), v)
-                r._element.get_or_add_rPr().append(bdr)
-        j = k + 1
-    # 表格後的段落
-    if zh_below:
-        p = container.paragraphs[-1] if in_cell else container.add_paragraph()
-        tight(p); p.paragraph_format.left_indent = Pt(bw)
-        p.paragraph_format.space_after = Pt(3)
-        zh_runs(p, trailing_zh, arrow)
-    elif in_cell:
-        shrink_trailing(container)
-    else:  # 頁面上相鄰的表格會被合併成一張，中間要隔一個極小的段落
-        p = container.add_paragraph(); tight(p)
-        r = p.add_run(""); set_font(r, FONT_JP, 1)
-        p.paragraph_format.line_spacing = Pt(1)
-    return t
+            r = p.add_run(rest[0]); set_font(r, FONT_JP, SZ_JP)
+    if trailing_zh or arrow:
+        zh_w = SZ_ZH * (len(trailing_zh or "") + (len(arrow) + 3 if arrow else 0))
+        if avail_w is not None and x_end + 14 + zh_w > avail_w:
+            q = container.add_paragraph(); tight(q)
+            q.paragraph_format.left_indent = Pt(x0)
+            q.paragraph_format.space_after = Pt(3)
+            zh_runs(q, trailing_zh, arrow)
+        else:
+            p.paragraph_format.tab_stops.add_tab_stop(Pt(x_end + 14))
+            r = p.add_run("\t"); set_font(r, FONT_JP, SZ_JP)
+            zh_runs(p, trailing_zh, arrow)
+    return p
 
 
 # ---------- 區塊 ----------
@@ -511,7 +600,7 @@ def block_defs(doc, b, acc):
                     cell_borders(mc, bottom=None); cell_borders(rc, bottom=None)
                 if not ex:
                     continue
-                w = sum(c["w"] for c in line_columns(parse_line(ex["jp"], acc))) + 22
+                w = measure_line(ex["jp"], acc, bullet=True)
                 first_par(mc)
                 if w > mid - 10:  # 例句太長：例句跨到中文欄，中文放下一行
                     mc = mc.merge(rc)
@@ -622,4 +711,7 @@ def build(src, dst):
 
 
 if __name__ == "__main__":
-    build(sys.argv[1], sys.argv[2])
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if "--preview" in sys.argv:  # 只給 LibreOffice 預覽用：換成此環境有的字型與其字寬
+        FONT_JP = PREVIEW_FONT; METRICS.update(PREVIEW_METRICS)
+    build(args[0], args[1])
