@@ -41,7 +41,7 @@ HEAD_FILL = "DEEAF6"
 TAG_FILL = "FFE699"
 PRACTICE_FILL = "E7E6E6"  # 短句練習表頭（灰）
 CONTENT_W = 487  # pt，A4 扣左右邊界 54pt
-ILLUST_W = 84    # pt，詞卡插圖寬（詞卡寬約 162pt）
+ILLUST_BOX = (100, 92)  # pt，詞卡插圖最大寬高（範本約 100pt，詞卡寬約 162pt）
 IMG_CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
 
 SMALL = set("ゃゅょぁぃぅぇぉゎャュョァィゥェォヮ")
@@ -204,8 +204,8 @@ METRICS = {"cjk": 1.026, "digit": 0.601, "ascii": 0.6}
 PREVIEW_FONT = "IPAGothic"  # --preview：換成此環境有的等寬字型，讓 LibreOffice 預覽的線位對得上
 PREVIEW_METRICS = {"cjk": 1.0, "digit": 0.5, "ascii": 0.5}
 TAB_X = 18        # pt，• 或標籤後的日文起點（用定位點固定，不受 • 字寬影響）
-LINE_H = 32       # pt，日文行固定行高（含ルビ），讓紅線的垂直位置可預測
-PITCH_Y = 5.8     # pt，紅線距行頂（ルビ上緣再往上一點）
+LINE_H = 25       # pt，日文行固定行高（含ルビ），讓紅線的垂直位置可預測
+PITCH_Y = 1.0     # pt，紅線距行頂（ルビ上緣再往上一點）
 PITCH_DROP = 6.5  # pt，下降處往下的長度（到ルビ底）
 PITCH_W = 0.75    # pt，紅線粗細
 _shape_id = [1000]
@@ -434,12 +434,20 @@ def add_tag(doc, text):
 def outer_table(doc, rows, widths):
     t = doc.add_table(rows=rows, cols=len(widths))
     table_borders(t, BORDER_GRAY, 12)
-    fixed_layout(t, widths, {"left": 5, "right": 5, "top": 3, "bottom": 3})
+    fixed_layout(t, widths, {"left": 5, "right": 5, "top": 1, "bottom": 1})
     t.alignment = WD_TABLE_ALIGNMENT.LEFT
     for row in t.rows:  # 列不跨頁拆開
         trPr = row._tr.get_or_add_trPr()
         cs = OxmlElement("w:cantSplit"); trPr.append(cs)
     return t
+
+
+def keep_rows_together(t, upto):
+    """第 0..upto-1 列的段落設 keepNext，讓這些列和下一列留在同一頁。"""
+    for row in t.rows[:upto]:
+        for c in row.cells:
+            for p in c.paragraphs:
+                p.paragraph_format.keep_with_next = True
 
 
 def header_row(t, text, fill=HEAD_FILL):
@@ -521,27 +529,23 @@ def fetch_image(src):
 def add_illust(cell, ill):
     """插圖。ill 可為：None（不放圖）、字串（只有關鍵字）、
     dict(source, title, url[, image])：已選定的圖。有 image（網址或本機路徑）時嵌入圖片，
-    下方放來源與可點的連結；沒有 image 或下載失敗時退回文字佔位框。"""
+    依 ILLUST_BOX 等比縮放置中；不放出處（使用者指定，いらすとや 規約也不要求）。
+    沒有 image 或下載失敗時，放灰色的圖名佔位。"""
     if not ill:
         return
     p = cell.add_paragraph(); tight(p, WD_ALIGN_PARAGRAPH.CENTER)
-    p.paragraph_format.space_before = Pt(24)
-    if isinstance(ill, str):
-        r = p.add_run(f"[插圖：{ill}]"); set_font(r, FONT_JP, 9, GRAY)
-        p.paragraph_format.space_after = Pt(24)
-        return
-    img = fetch_image(ill["image"]) if ill.get("image") else None
+    p.paragraph_format.space_before = Pt(4); p.paragraph_format.space_after = Pt(4)
+    img = fetch_image(ill["image"]) if isinstance(ill, dict) and ill.get("image") else None
     if img:
-        p.paragraph_format.space_before = Pt(6)
-        p.add_run().add_picture(img, width=Pt(ILLUST_W))
-        p2 = cell.add_paragraph(); tight(p2, WD_ALIGN_PARAGRAPH.CENTER)
-        add_hyperlink(p2, ill["url"], ill["source"], 7)
-        p2.paragraph_format.space_after = Pt(6)
+        from PIL import Image
+        with Image.open(img) as im:
+            w, h = im.size
+        k = min(ILLUST_BOX[0] / w, ILLUST_BOX[1] / h)
+        p.add_run().add_picture(img, width=Pt(w * k), height=Pt(h * k))
         return
-    r = p.add_run(f"[插圖｜{ill['source']}]"); set_font(r, FONT_JP, 9, GRAY)
-    p2 = cell.add_paragraph(); tight(p2, WD_ALIGN_PARAGRAPH.CENTER)
-    add_hyperlink(p2, ill["url"], ill["title"], 8)
-    p2.paragraph_format.space_after = Pt(24)
+    name = ill if isinstance(ill, str) else ill.get("title", "")
+    p.paragraph_format.space_before = Pt(36); p.paragraph_format.space_after = Pt(36)
+    r = p.add_run(f"[插圖：{name}]"); set_font(r, FONT_JP, 9, GRAY)
 
 
 def block_sentences(doc, b, acc):
@@ -555,6 +559,7 @@ def block_sentences(doc, b, acc):
         add_jp_line(lc, row["jp"], acc, bullet=row.get("bullet", True))
         rc.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
         zh_runs(first_par(rc), row["zh"], row.get("arrow"))
+    keep_rows_together(t, 1)
     spacer(doc)
 
 
@@ -611,6 +616,7 @@ def block_defs(doc, b, acc):
                     rc.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
                     zh_runs(first_par(rc), ex.get("zh"), ex.get("arrow"))
             i += len(exs)
+        keep_rows_together(t, 1)
         spacer(doc)
         return
     left = CONTENT_W * 0.28
@@ -650,6 +656,7 @@ def block_grid(doc, b, acc):
                 text = val["zh"] if isinstance(val, dict) else val
                 p = c.paragraphs[0]; p.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 zh_runs(p, text)
+    keep_rows_together(t, len(t.rows) - 1)  # 對照表整張不拆頁
     spacer(doc)
 
 
