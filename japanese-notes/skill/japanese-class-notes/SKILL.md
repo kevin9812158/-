@@ -46,6 +46,7 @@ description: 把日語課的帶時間戳逐字稿（.srt，中文為主夾日文
 聲調資料來自使用者的 JAPANESE UP 聲調 MCP。使用前先確認同意狀態，少量查詢，原始 JSON 照實保留，不要自行補齊未知的聲調。
 
 - 單字的結果可以直接用；句子目前還有片語層級的缺口（助詞、複合詞），詳見 `references/pitch.md`。
+- 用 `scripts/mcp_apply.py` 把 MCP 的逐拍 marks 寫進 note.json（`#m:`）。讀音和 MCP 對不上的行維持 0 號音，並列【高】。
 - 拿到 MCP 結果後，用 `scripts/mcp_pending.py` 依 MCP 的品質欄位產生待確認項目。只依 needsReview、warnings、accent、status 判斷，不要自己判斷。
 - 沒有警告不代表正確，要保留抽樣比對範本的步驟。
 - 審閱後的修正要經使用者逐筆同意，才能送回 MCP。

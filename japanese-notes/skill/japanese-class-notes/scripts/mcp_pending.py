@@ -8,7 +8,7 @@
 輸出：note.json pending.lines 可直接使用的項目陣列 [{level, item, basis, action}]。
 
 分流依據只用 MCP 回傳的欄位（needsReview、warnings、accent、status、reviewStatus）與對照資料：
-- 高：有 warnings、accent 為 null、needsReview 為 true；與範本或已知資料不一致；同一詞在不同查詢的 marks 不一致。
+- 高：有 warnings、accent 為 null、needsReview 為 true；與範本或已知資料不一致；同一詞（含漢字或片假名）在不同查詢的 marks 不一致。
 - 低：沒有警告且 needsReview 為 false。伺服器有把握，但仍是預測（predicted／unreviewed），照樣列出。
 依規則補上的部分（例如句中助詞的高低）由撰寫者另外列為高風險，不在此判斷。
 """
@@ -60,7 +60,8 @@ def analyze(results, ref):
                           "basis": f"MCP 無警告、needsReview: false，仍是預測（{fmt_tokens(res)}；{state}）",
                           "action": "抽樣核對"})
         for t in words:
-            seen.setdefault(t["surface"], []).append((text, t["marks"]))
+            if not all("ぁ" <= c <= "ゖ" for c in t["surface"]):  # 只比對含漢字／片假名的詞，助詞與詞尾本來就隨前後文變
+                seen.setdefault(t["surface"], []).append((text, t["marks"]))
     for surface, uses in seen.items():
         if len({tuple(m) for _, m in uses}) > 1:
             detail = "；".join(f"{src} {m}" for src, m in uses)

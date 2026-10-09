@@ -162,7 +162,11 @@ def parse_line(line, accent_default):
             items.append({"kind": "punct", "text": raw[1:]}); continue
         if raw.startswith("@"):
             items.append({"kind": "label", "text": raw[1:]}); continue
-        accent = accent_default
+        accent, marks = accent_default, None
+        m = re.search(r"#m:([012]+)$", raw)  # 逐拍高低（MCP marks：0 低、1 高、2 高且為最後高拍）
+        if m:
+            marks = [int(c) for c in m.group(1)]
+            raw = raw[: m.start()]
         m = re.search(r"#(null|\d+)$", raw)
         if m:
             accent = None if m.group(1) == "null" else int(m.group(1))
@@ -179,8 +183,18 @@ def parse_line(line, accent_default):
         for g in gaps:
             shown, _, said = g.partition("=")
             gap_parts.append((shown, said or shown))
-        items.append({"kind": "seg", "parts": parts, "gaps": gap_parts, "accent": accent})
+        items.append({"kind": "seg", "parts": parts, "gaps": gap_parts, "accent": accent, "marks": marks})
     return items
+
+
+def marks_to_pitch(marks):
+    """MCP 逐拍 marks → 每拍 (high, drop)。下降角只畫在「2 且同片段下一拍是 0」的地方：
+    片段最後一拍的 2（例：平板詞單獨念）後面沒有低拍，不畫下降。"""
+    out = []
+    for i, m in enumerate(marks):
+        nxt = marks[i + 1] if i + 1 < len(marks) else None
+        out.append((m >= 1, m == 2 and nxt == 0))
+    return out
 
 
 def pitch_marks(n_body, n_gap, accent):
@@ -244,8 +258,14 @@ def layout_line(items, x0):
         for shown, _said in it["gaps"]:
             for mo in split_mora(shown):
                 w = text_w(mo, SZ_JP); seq.append((x, x + w)); runs.append(("text", mo)); x += w
-        bm, gm = pitch_marks(n_body, len(seq) - n_body, it["accent"])
-        for (x1, x2), (hi, dr) in zip(seq, bm + gm):
+        if it.get("marks") is not None and len(it["marks"]) == len(seq):
+            hl = marks_to_pitch(it["marks"])
+        else:
+            if it.get("marks") is not None:
+                print(f"警告：#m: 拍數 {len(it['marks'])} 和讀音拍數 {len(seq)} 不符，改用號數", file=sys.stderr)
+            bm, gm = pitch_marks(n_body, len(seq) - n_body, it["accent"])
+            hl = bm + gm
+        for (x1, x2), (hi, dr) in zip(seq, hl):
             morae.append((k, x1, x2, hi, dr))
     return runs, morae, x
 
