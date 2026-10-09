@@ -73,7 +73,6 @@ details.help p, details.help li { color: var(--muted); font-size: .9rem; }
   border-right: 3px solid transparent; background: none; color: var(--ink); cursor: pointer; border-radius: 0; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
 .mora:hover { background: var(--chip); }
 .mora:active { background: var(--pitch-soft); }
-.sep.plus { color: var(--edit); font-weight: 700; }
 .mora.sel { background: color-mix(in srgb, var(--edit) 28%, transparent); }
 .pitch { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; touch-action: pan-y; }
 .mora.h { border-top-color: var(--pitch); }
@@ -133,9 +132,9 @@ details.help p, details.help li { color: var(--muted); font-size: .9rem; }
   <details class="help" id="help">
     <summary>怎麼用</summary>
     <ul>
-      <li>紅色上線＝高音，右側往下的角＝這拍念完後下降。「｜」是片段分界，「＋」後面是 GAP（接續文字，灰色虛底線）。[N] 是每個片段的號數，[－] 表示沒有線（全低）。</li>
+      <li>紅色上線＝高音，右側往下的角＝這拍念完後下降。「｜」是片段分界，灰色的拍是 GAP（接續文字）。[N] 是每個片段的號數，[－] 表示沒有線（全低）。</li>
       <li><b>點一拍</b>：這個片段改成「在這拍之後下降」，其他拍自動跟著設好。再點同一拍，改回平板 [0]。點最後一拍是尾高。</li>
-      <li><b>右鍵點一拍</b>（電腦）：整個片段設為 GAP，再按一次取消。GAP 片段一樣用左鍵設定聲調，同一拍一直點：在這拍下降 → 平板 → 沒有線（全低）。</li>
+      <li><b>右鍵點一拍</b>（電腦）：整個片段設為 GAP（變灰色），再按一次取消。GAP 片段一樣用左鍵設定聲調，同一拍一直點：在這拍下降 → 平板 → 沒有線（全低）。</li>
       <li><b>拖曳反白</b>（手機：長按一拍再滑）：選到的幾拍自成一個片段。例：いちわりびき 選 わり → いち｜わり｜びき。選跨過分界就是合併。</li>
       <li>沒問題就按「正確」。字、讀音或翻譯錯了，按「其他問題」寫下來，Claude 會處理。審完回對話說「審好了」。</li>
     </ul>
@@ -229,7 +228,7 @@ function selectSplit(line, a, b) {
   });
 }
 function nhk(line) {
-  return line.map((x, i) => (i && x.br ? (x.p || (x.gap ? "＋" : "｜")) : "") + x.k + (dropAt(line, i) ? "＼" : "")).join("");
+  return line.map((x, i) => (i && x.br ? (x.p || (x.gap ? "" : "｜")) : "") + x.k + (dropAt(line, i) ? "＼" : "")).join("");
 }
 function notation(line) {
   return segsOf(line).map(seg => "[" + segNumber(line, seg) + "]").join(" ") + "　" + nhk(line);
@@ -248,7 +247,7 @@ function statusOf(it) {
 /* ---------- 畫面 ---------- */
 function pitchHTML(it, line) {
   return line.map((x, i) => {
-    const sep = i && x.br ? `<span class="sep${x.gap ? " plus" : ""}">${x.p ? esc(x.p) : x.gap ? "＋" : "｜"}</span>` : "";
+    const sep = i && x.br && (x.p || !x.gap) ? `<span class="sep">${x.p ? esc(x.p) : "｜"}</span>` : "";   // GAP 片段只用灰色表示，不放分隔符號
     return sep + `<button type="button" class="mora${x.m ? " h" : ""}${dropAt(line, i) ? " d" : ""}${x.gap ? " g" : ""}" data-act="mora" data-i="${i}" aria-label="${x.k}${x.gap ? "（GAP）" : ""}：點一下在這拍之後下降，右鍵切換 GAP">${x.k}</button>`;
   }).join("");
 }
