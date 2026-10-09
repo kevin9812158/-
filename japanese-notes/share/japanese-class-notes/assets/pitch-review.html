@@ -1,0 +1,440 @@
+<title>聲調審閱台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* 版面：單欄卡片清單（手機優先），頂部固定進度與篩選；每張卡＝一條待審項目，紅線直接畫在讀音上 */
+:root {
+  --bg: #f4f6f9; --card: #ffffff; --ink: #1c2330; --muted: #5d6878; --line: #dbe0e7;
+  --pitch: #e0474f; --pitch-soft: #f3b5b8; --zh: #0b6fb8;
+  --risk: #b4441a; --risk-bg: #fbe9e1; --low: #5d6878; --low-bg: #eceff3;
+  --ok: #1d7f55; --ok-bg: #e2f3ea; --edit: #6d43b8; --edit-bg: #eee7fa;
+  --chip: #eef1f5; --chip-on: #1c2330; --chip-on-ink: #ffffff;
+  --f-jp: "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  --f-ui: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11151b; --card: #1a2029; --ink: #e6e9ef; --muted: #9aa4b3; --line: #2c343f;
+  --pitch: #ff7d80; --pitch-soft: #6b3a3d; --zh: #6cb5f0;
+  --risk: #f39a6e; --risk-bg: #3a2419; --low: #9aa4b3; --low-bg: #242b35;
+  --ok: #52c993; --ok-bg: #173126; --edit: #b99cf5; --edit-bg: #2a2340;
+  --chip: #242b35; --chip-on: #e6e9ef; --chip-on-ink: #11151b; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #11151b; --card: #1a2029; --ink: #e6e9ef; --muted: #9aa4b3; --line: #2c343f;
+  --pitch: #ff7d80; --pitch-soft: #6b3a3d; --zh: #6cb5f0;
+  --risk: #f39a6e; --risk-bg: #3a2419; --low: #9aa4b3; --low-bg: #242b35;
+  --ok: #52c993; --ok-bg: #173126; --edit: #b99cf5; --edit-bg: #2a2340;
+  --chip: #242b35; --chip-on: #e6e9ef; --chip-on-ink: #11151b; color-scheme: dark; }
+
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--f-ui); }
+.wrap { max-width: 760px; margin: 0 auto; padding-inline: 16px; padding-block: 0 48px; }
+
+header.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  padding-block: 12px 10px; border-bottom: 1px solid var(--line); display: grid; gap: 8px; }
+.titlerow { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+h1 { margin: 0; font: 700 1.25rem/1.2 var(--f-ui); letter-spacing: .02em; }
+select { font: inherit; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; max-width: 100%; }
+.progress { display: flex; align-items: center; gap: 10px; font-variant-numeric: tabular-nums; color: var(--muted); font-size: .85rem; }
+.meter { flex: 1; height: 6px; background: var(--chip); border-radius: 3px; overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: var(--ok); transition: width .3s; }
+.filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.filters button, .chips button, .actions button, .tools button {
+  font: 500 .85rem var(--f-ui); color: var(--ink); background: var(--chip); border: 1px solid transparent;
+  border-radius: 999px; padding: 5px 12px; cursor: pointer; min-height: 32px; }
+.filters button[aria-pressed="true"] { background: var(--chip-on); color: var(--chip-on-ink); }
+button:focus-visible, input:focus-visible, select:focus-visible, .mora:focus-visible { outline: 2px solid var(--zh); outline-offset: 2px; }
+
+details.help { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+details.help summary { cursor: pointer; font-weight: 500; }
+details.help p, details.help li { color: var(--muted); font-size: .9rem; }
+.notice { margin-top: 12px; padding: 10px 14px; border-radius: 10px; background: var(--risk-bg); color: var(--risk); font-size: .9rem; }
+
+.list { display: grid; gap: 12px; margin-top: 14px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 10px; min-width: 0; }
+.card.st-ok { border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+.card.st-edit { border-color: color-mix(in srgb, var(--edit) 55%, var(--line)); }
+.head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.num { font: 700 .95rem var(--f-ui); color: var(--muted); font-variant-numeric: tabular-nums; min-width: 2.2em; }
+.pill { font-size: .75rem; font-weight: 700; border-radius: 6px; padding: 2px 8px; letter-spacing: .04em; }
+.pill.hi { background: var(--risk-bg); color: var(--risk); }
+.pill.lo { background: var(--low-bg); color: var(--low); }
+.pill.todo { background: var(--chip); color: var(--muted); }
+.pill.ok { background: var(--ok-bg); color: var(--ok); }
+.pill.edit { background: var(--edit-bg); color: var(--edit); }
+.jp { font: 500 1.15rem/1.4 var(--f-jp); word-break: break-word; }
+.jp .zh { font: 400 .95rem var(--f-ui); }
+.zh { color: var(--zh); }
+.basis { color: var(--muted); font-size: .82rem; }
+
+.pitch { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 6px 0; padding: 4px 0; }
+.seg { display: inline-flex; align-items: flex-end; }
+.sep { color: var(--muted); min-width: 10px; font: 1.1rem var(--f-jp); align-self: center; text-align: center; }
+.mora { font: 1.45rem/1 var(--f-jp); padding: 10px 4px 8px; min-width: 2.1rem; min-height: 48px; border: 0; border-top: 3px solid transparent;
+  border-right: 3px solid transparent; background: none; color: var(--ink); cursor: pointer; border-radius: 0; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+.mora:hover { background: var(--chip); }
+.mora:active { background: var(--pitch-soft); }
+.mora.sel { background: color-mix(in srgb, var(--edit) 28%, transparent); }
+.pitch { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; touch-action: pan-y; }
+.mora.h { border-top-color: var(--pitch); }
+.mora.d { border-right-color: var(--pitch); }
+.editing .mora { cursor: pointer; border-bottom: 1px dashed var(--line); }
+.mora.g { color: var(--muted); text-decoration: underline dotted; text-underline-offset: 4px; }
+.cut { font: 1rem var(--f-jp); color: var(--muted); background: none; border: 1px dashed var(--line); border-radius: 4px;
+  padding: 0 3px; margin: 0 1px; cursor: pointer; min-height: 28px; align-self: center; }
+.cut.join { color: var(--edit); border-color: var(--edit); }
+.modes { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.modes .hint { color: var(--muted); font-size: .8rem; }
+.modes button { font: 500 .85rem var(--f-ui); color: var(--ink); background: var(--chip); border: 1px solid transparent; border-radius: 999px; padding: 5px 12px; cursor: pointer; min-height: 32px; }
+.modes button[aria-pressed="true"] { background: var(--edit); color: #fff; }
+.instr { display: grid; gap: 2px; font-size: .8rem; color: var(--muted); }
+.instr textarea { font: .95rem var(--f-jp); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; min-height: 56px; resize: vertical; }
+.pill.ask { background: var(--risk-bg); color: var(--risk); }
+.was { color: var(--muted); font-size: .82rem; }
+.was s { text-decoration-color: var(--pitch-soft); }
+.nota { font: .95rem var(--f-jp); color: var(--muted); font-variant-numeric: tabular-nums; }
+.nota b { color: var(--ink); font-weight: 500; }
+
+.editor { display: grid; gap: 8px; border-top: 1px dashed var(--line); padding-top: 10px; }
+.segrow { display: grid; gap: 4px; }
+.seglabel { font: .85rem var(--f-jp); color: var(--muted); }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chips button { min-width: 40px; font-variant-numeric: tabular-nums; }
+.chips button[aria-pressed="true"] { background: var(--chip-on); color: var(--chip-on-ink); }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.fields label { display: grid; gap: 2px; font-size: .8rem; color: var(--muted); min-width: 0; }
+.fields input { font: .95rem var(--f-jp); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; min-width: 0; }
+@media (max-width: 480px) { .fields { grid-template-columns: 1fr; } }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.actions .okbtn { background: var(--ok-bg); color: var(--ok); }
+.actions .saved { color: var(--muted); font-size: .8rem; margin-left: auto; }
+.empty { color: var(--muted); text-align: center; padding: 40px 0; }
+
+.tools { margin-top: 18px; display: grid; gap: 8px; }
+.tools textarea { width: 100%; min-height: 120px; font: .9rem var(--f-jp); color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px; box-sizing: border-box; }
+@media (prefers-reduced-motion: reduce) { .meter i { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="bar">
+    <div class="titlerow">
+      <h1>聲調審閱台</h1>
+      <select id="batch" aria-label="選擇批次"></select>
+    </div>
+    <div class="progress"><span id="count">0 / 0 已審</span><div class="meter"><i id="meterbar"></i></div></div>
+    <div class="filters" role="group" aria-label="篩選">
+      <button id="f-todo" data-f="todo" aria-pressed="true">未審</button>
+      <button id="f-hi" data-f="hi" aria-pressed="false">高風險</button>
+      <button id="f-edit" data-f="edit" aria-pressed="false">已修改</button>
+      <button id="f-all" data-f="all" aria-pressed="false">全部</button>
+    </div>
+  </header>
+
+  <details class="help" id="help">
+    <summary>怎麼用</summary>
+    <ul>
+      <li>紅色上線＝高音，右側往下的角＝這拍念完後下降。「｜」是片段分界，後面的 [N] 是每個片段的號數。</li>
+      <li><b>點一拍</b>：這個片段改成「在這拍之後下降」，其他拍自動跟著設好。再點同一拍，改回平板 [0]。點最後一拍是尾高。</li>
+      <li><b>拖曳反白</b>（手機：長按一拍再滑）：選到的幾拍自成一個片段。例：いちわりびき 選 わり → いち｜わり｜びき。選跨過「｜」就是合併。</li>
+      <li>沒問題就按「正確」。字、讀音或翻譯錯了，按「其他問題」寫下來，Claude 會處理。審完回對話說「審好了」。</li>
+    </ul>
+  </details>
+  <div class="notice" id="notice" hidden></div>
+
+  <div class="list" id="list"><p class="empty">正在讀取審閱項目…</p></div>
+
+  <section class="tools" id="tools">
+    <button id="copybtn" type="button">複製回覆文字（存檔無法使用時，貼到對話裡）</button>
+    <textarea id="copytext" readonly aria-label="回覆文字" hidden></textarea>
+  </section>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const state = { db: null, batch: null, items: [], reviews: {}, local: {}, filter: "todo", open: {}, keep: {}, unsubs: [], timers: {} };
+const esc = t => String(t || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+/* ---------- 每條項目攤平成「拍」：k 假名、unit 所屬單位、m 高低(0/1)、gap 接續文字、br 前面是片段分界、p 分界上的標點 ---------- */
+function flat(it) {
+  const out = [];
+  it.segs.forEach((s, si) => {
+    const units = s.units && s.units.length ? s.units : s.kana.map(k => ({ n: 1, gap: false }));
+    let mi = 0;
+    units.forEach((u, ui) => {
+      for (let j = 0; j < u.n; j++) {
+        out.push({ k: s.kana[mi], unit: si + "." + ui, m: s.marks[mi] >= 1 ? 1 : 0, gap: !!u.gap,
+                   br: si > 0 && mi === 0, p: si > 0 && mi === 0 ? (it.segs[si - 1].after || "") : "" });
+        mi++;
+      }
+    });
+  });
+  return out;
+}
+function lineOf(it) {
+  const base = flat(it), r = current(it);
+  if (r && Array.isArray(r.line) && r.line.length === base.length)
+    return base.map((x, i) => ({ ...x, m: r.line[i].m, gap: !!r.line[i].gap, br: !!r.line[i].br }));
+  return base;
+}
+
+/* ---------- 聲調工具（依「音調紅線閱讀規則」） ----------
+   m：0 低、1 高、2 高且這拍之後下降（用在片段最後一拍＝尾高）。下降角只在同一片段內判斷。 */
+const segsOf = line => line.reduce((acc, x, i) => { if (i === 0 || x.br) acc.push([]); acc[acc.length - 1].push(i); return acc; }, []);
+const dropAt = (line, i) => line[i].m === 2 || (line[i].m === 1 && i + 1 < line.length && !line[i + 1].br && line[i + 1].m === 0);
+/** 片段號數：下降角在第幾拍之後；沒有下降角＝0（平板）；全低＝?。 */
+function segNumber(line, seg) {
+  if (!seg.some(i => line[i].m >= 1)) return seg.length === 1 ? 0 : "?";   // 一拍的平板詞本來就念低
+  for (let j = 0; j < seg.length; j++) if (dropAt(line, seg[j])) return j + 1;
+  return 0;
+}
+/** 依號數設定整個片段：0 平板（首拍低、其餘高）；1 頭高；n 中高／尾高（首拍低、2..n 高、之後低；n＝拍數時最後一拍記 2）。 */
+function setNumber(line, seg, n) {
+  seg.forEach((i, j) => {
+    let v;
+    if (n === 0) v = seg.length === 1 ? 0 : (j === 0 ? 0 : 1);
+    else if (n === 1) v = j === 0 ? 1 : 0;
+    else v = j === 0 ? 0 : j < n ? 1 : 0;
+    line[i].m = v;
+  });
+  if (n >= 1 && n === seg.length) line[seg[n - 1]].m = 2;
+}
+/** 點某一拍：在這拍之後下降；這拍本來就是下降處，就改回平板。 */
+function tapMora(line, i) {
+  const seg = segsOf(line).find(sg => sg.includes(i)), k = seg.indexOf(i) + 1;
+  setNumber(line, seg, segNumber(line, seg) === k ? 0 : k);
+}
+/** 反白 a..b：這幾拍自成一個片段（前後切開，中間合併）；有標點的分界保留。各片段沿用原本的高低。 */
+function selectSplit(line, a, b) {
+  const key = seg => seg[0] + "-" + seg[seg.length - 1];
+  const before = new Set(segsOf(line).map(key));
+  if (a > 0) line[a].br = true;
+  if (b + 1 < line.length) line[b + 1].br = true;
+  for (let i = a + 1; i <= b; i++) if (!line[i].p) line[i].br = false;
+  // 切分或合併後有變動的片段，依它的號數照規則重設每一拍（判斷不出號數就當平板）
+  segsOf(line).forEach(seg => {
+    if (before.has(key(seg))) return;
+    const n = segNumber(line, seg);
+    setNumber(line, seg, n === "?" ? 0 : n);
+  });
+}
+function nhk(line) {
+  return line.map((x, i) => (i && x.br ? (x.p || "｜") : "") + x.k + (dropAt(line, i) ? "＼" : "")).join("");
+}
+function notation(line) {
+  return segsOf(line).map(seg => "[" + segNumber(line, seg) + "]").join(" ") + "　" + nhk(line);
+}
+const sameLine = (a, b) => a.length === b.length && a.every((x, i) => x.m === b[i].m && x.br === b[i].br);
+
+/* ---------- 狀態（本機編輯 > 已存 > 原始） ---------- */
+function current(it) { const key = String(it.order); return key in state.local ? state.local[key] : (state.reviews[key] || null); }
+function statusOf(it) {
+  const r = current(it);
+  if (!r) return "todo";
+  if (r.instruction) return "ask";
+  return sameLine(lineOf(it), flat(it)) ? r.status : "edit";
+}
+
+/* ---------- 畫面 ---------- */
+function pitchHTML(it, line) {
+  return line.map((x, i) => {
+    const sep = i && x.br ? `<span class="sep">${x.p ? esc(x.p) : "｜"}</span>` : "";
+    return sep + `<button type="button" class="mora${x.m ? " h" : ""}${dropAt(line, i) ? " d" : ""}" data-act="mora" data-i="${i}" aria-label="${x.k}：點一下在這拍之後下降">${x.k}</button>`;
+  }).join("");
+}
+function cardHTML(it) {
+  const st = statusOf(it), r = current(it) || {}, line = lineOf(it), orig = flat(it);
+  const changed = !sameLine(line, orig);
+  const stPill = { todo: ["todo", "未審"], ok: ["ok", "正確"], edit: ["edit", "已修改"], ask: ["ask", "請 Claude 處理"] }[st] || ["todo", "未審"];
+  const showNote = state.open[it.order] || r.instruction;
+  return `<article class="card st-${st === "ok" ? "ok" : st === "todo" ? "todo" : "edit"}" data-order="${it.order}">
+    <div class="head"><span class="num">#${it.order}</span>
+      <span class="pill ${it.risk === "高" ? "hi" : "lo"}">${it.risk}風險</span>
+      <span class="pill ${stPill[0]}">${stPill[1]}</span>
+      <span class="basis">${esc(it.basis)}</span></div>
+    <div class="jp" lang="ja">${esc(it.jp)}<span class="zh">　${esc(it.zh)}</span></div>
+    <div class="pitch" lang="ja">${pitchHTML(it, line)}</div>
+    <div class="nota" lang="ja">${esc(notation(line))}</div>
+    ${changed ? `<div class="was" lang="ja">原本：<s>${esc(notation(orig))}</s></div>` : ""}
+    ${showNote ? `<label class="instr" for="in-${it.order}">其他問題（字、讀音、翻譯寫錯…），Claude 會處理
+        <textarea id="in-${it.order}" data-act="instruction" placeholder="例：何 要讀 なん；翻譯改成「打幾折呢？」">${esc(r.instruction)}</textarea></label>` : ""}
+    <div class="actions">
+      <button type="button" class="okbtn" data-act="ok">${st === "ok" ? "✓ 正確" : "正確"}</button>
+      ${showNote ? "" : `<button type="button" data-act="note">其他問題</button>`}
+      ${st !== "todo" ? `<button type="button" data-act="reset">還原</button>` : ""}
+      <span class="saved" id="sv-${it.order}"></span>
+    </div>
+  </article>`;
+}
+function visible(it) {
+  if (state.keep[it.order]) return true;
+  const st = statusOf(it);
+  if (state.filter === "todo") return st === "todo";
+  if (state.filter === "hi") return it.risk === "高";
+  if (state.filter === "edit") return st === "edit" || st === "ask";
+  return true;
+}
+function progress() {
+  const done = state.items.filter(it => statusOf(it) !== "todo").length;
+  $("#count").textContent = `${done} / ${state.items.length} 已審`;
+  $("#meterbar").style.width = state.items.length ? (100 * done / state.items.length) + "%" : "0";
+}
+function render() {
+  progress();
+  const shown = state.items.filter(visible);
+  $("#list").innerHTML = shown.length ? shown.map(cardHTML).join("")
+    : `<p class="empty">${state.items.length ? (state.filter === "todo" ? "這一批都審完了。回到對話跟 Claude 說「審好了」。" : "這個篩選沒有項目。") : "這一批還沒有審閱項目。請 Claude 寫入項目後再打開。"}</p>`;
+}
+function rerenderCard(order) {
+  const el = document.querySelector(`.card[data-order="${order}"]`), it = state.items.find(x => x.order === order);
+  if (!el || !it) return render();
+  const tmp = document.createElement("div"); tmp.innerHTML = cardHTML(it);
+  el.replaceWith(tmp.firstElementChild);
+  progress();
+}
+
+/* ---------- 編輯與存檔 ---------- */
+function edit(it, fn) {
+  const key = String(it.order), r = current(it) || {};
+  const next = { status: r.status === "ok" ? "ok" : "edit", instruction: r.instruction || "",
+                 line: lineOf(it).map(x => ({ m: x.m, gap: x.gap, br: x.br })) };
+  fn(next);
+  state.local[key] = next;
+  state.keep[it.order] = true;               // 正在改的卡片留在畫面上，換篩選或重新整理才收起
+  rerenderCard(it.order);
+  save(it);
+}
+function save(it) {
+  const key = String(it.order);
+  clearTimeout(state.timers[key]);
+  const mark = $(`#sv-${it.order}`); if (mark) mark.textContent = state.db ? "儲存中…" : "未存檔（請用下方複製）";
+  if (!state.db) return;
+  state.timers[key] = setTimeout(async () => {
+    const body = state.local[key];
+    try {
+      const ref = state.db.doc(`batches/${state.batch}/reviews/${key}`);
+      if (body) await ref.set({ ...body, order: it.order, jp: it.jp, updatedAt: new Date().toISOString() });
+      else await ref.delete();
+      delete state.local[key];
+      const m = $(`#sv-${it.order}`); if (m) m.textContent = "已存檔";
+    } catch (e) {
+      const m = $(`#sv-${it.order}`); if (m) m.textContent = e && e.code === "quota_exceeded" ? "存檔失敗：空間已滿" : "存檔失敗，請再點一次或用下方複製";
+    }
+  }, 500);
+}
+
+function withLine(it, nx, fn) {
+  const line = lineOf(it).map((x, i) => ({ ...x, m: nx.line[i].m, br: nx.line[i].br }));
+  fn(line);
+  nx.line = line.map(x => ({ m: x.m, gap: x.gap, br: x.br }));
+}
+
+/* ---------- 點一下＝改下降位置；按住拖曳（手機：長按後拖）反白＝切成一個片段 ---------- */
+let sel = null;
+function markSel() {
+  document.querySelectorAll(".mora.sel").forEach(m => m.classList.remove("sel"));
+  if (!sel || !sel.active) return;
+  const lo = Math.min(sel.a, sel.b), hi = Math.max(sel.a, sel.b);
+  sel.card.querySelectorAll(".mora").forEach(m => { const i = Number(m.dataset.i); if (i >= lo && i <= hi) m.classList.add("sel"); });
+}
+document.addEventListener("pointerdown", e => {
+  const m = e.target.closest(".mora"); if (!m || e.button > 0) return;
+  const card = m.closest(".card"), i = Number(m.dataset.i);
+  sel = { card, order: Number(card.dataset.order), a: i, b: i, x: e.clientX, y: e.clientY, active: false, moved: false, touch: e.pointerType !== "mouse" };
+  if (sel.touch) sel.timer = setTimeout(() => { if (sel && !sel.moved) { sel.active = true; markSel(); if (navigator.vibrate) navigator.vibrate(10); } }, 380);
+});
+document.addEventListener("pointermove", e => {
+  if (!sel) return;
+  const far = Math.abs(e.clientX - sel.x) + Math.abs(e.clientY - sel.y) > 8;
+  if (!sel.active) {
+    if (sel.touch) { if (far) { sel.moved = true; clearTimeout(sel.timer); } return; }  // 手機沒長按就是捲動
+    if (!far) return;
+    sel.active = true;
+  }
+  e.preventDefault();
+  const el = document.elementFromPoint(e.clientX, e.clientY), m = el && el.closest(".mora");
+  if (m && m.closest(".card") === sel.card) { sel.b = Number(m.dataset.i); markSel(); }
+});
+document.addEventListener("pointerup", () => {
+  if (!sel) return;
+  const s0 = sel; sel = null; clearTimeout(s0.timer); markSel();
+  const it = state.items.find(x => x.order === s0.order); if (!it) return;
+  if (s0.active) {
+    const lo = Math.min(s0.a, s0.b), hi = Math.max(s0.a, s0.b);
+    edit(it, nx => withLine(it, nx, line => selectSplit(line, lo, hi)));
+  } else if (!s0.moved) edit(it, nx => withLine(it, nx, line => tapMora(line, s0.a)));
+});
+document.addEventListener("pointercancel", () => { if (sel) { clearTimeout(sel.timer); sel = null; markSel(); } });
+document.addEventListener("contextmenu", e => { if (e.target.closest(".mora")) e.preventDefault(); });
+
+document.addEventListener("click", e => {
+  const f = e.target.closest(".filters button");
+  if (f) { state.filter = f.dataset.f; state.keep = {}; document.querySelectorAll(".filters button").forEach(b => b.setAttribute("aria-pressed", String(b === f))); render(); return; }
+  const card = e.target.closest(".card"); if (!card) return;
+  const it = state.items.find(x => x.order === Number(card.dataset.order)); if (!it) return;
+  const btn = e.target.closest("[data-act]"); if (!btn) return;
+  const act = btn.dataset.act;
+  if (act === "mora") { if (e.detail === 0) { const i = Number(btn.dataset.i); edit(it, nx => withLine(it, nx, line => tapMora(line, i))); } }
+  else if (act === "ok") { edit(it, nx => { nx.status = "ok"; }); }
+  else if (act === "note") { state.open[it.order] = true; state.keep[it.order] = true; rerenderCard(it.order); const t = $(`#in-${it.order}`); if (t) t.focus(); }
+  else if (act === "reset") { state.local[String(it.order)] = null; delete state.open[it.order]; rerenderCard(it.order); save(it); }
+});
+document.addEventListener("change", e => {
+  const inp = e.target.closest("[data-act='instruction']"); if (!inp) return;
+  const it = state.items.find(x => x.order === Number(inp.closest(".card").dataset.order));
+  edit(it, nx => { nx.instruction = inp.value.trim(); });
+});
+
+/* ---------- 回覆文字（存檔無法使用時的備援） ---------- */
+function replyText() {
+  const lines = [];
+  for (const it of state.items) {
+    const r = current(it); if (!r) continue;
+    const st = statusOf(it);
+    if (st === "ok") { lines.push(`#${it.order} OK`); continue; }
+    let s = `#${it.order} ${notation(lineOf(it))}`;
+    if (r.instruction) s += `　其他：${r.instruction}`;
+    lines.push(s);
+  }
+  return lines.length ? `聲調審閱（${state.batch}）\n` + lines.join("\n") : "還沒有任何審閱結果。";
+}
+$("#copybtn").addEventListener("click", async () => {
+  const t = replyText(), ta = $("#copytext"); ta.value = t; ta.hidden = false;
+  try { await navigator.clipboard.writeText(t); $("#copybtn").textContent = "已複製，貼到對話裡即可"; }
+  catch { ta.focus(); ta.select(); $("#copybtn").textContent = "請手動複製下方文字"; }
+});
+
+/* ---------- 讀取 ---------- */
+function subscribe(batch) {
+  state.unsubs.forEach(u => u()); state.unsubs = [];
+  state.batch = batch; state.items = []; state.reviews = {}; state.local = {}; state.open = {}; state.keep = {};
+  render();
+  const err = () => { $("#notice").hidden = false; $("#notice").textContent = "讀取中斷了，請重新整理頁面。"; };
+  state.unsubs.push(state.db.collection(`batches/${batch}/items`).orderBy("order").onSnapshot(s => {
+    state.items = s.docs.map(d => d.data()); render();
+  }, err));
+  state.unsubs.push(state.db.collection(`batches/${batch}/reviews`).onSnapshot(s => {
+    const map = {}; s.docs.forEach(d => { map[d.id] = d.data(); }); state.reviews = map;
+    const focused = document.activeElement && document.activeElement.closest(".card");
+    if (!focused) render();
+  }, err));
+}
+(async () => {
+  const db = window.claude ? await window.claude.use("db") : null;
+  if (!db) {
+    $("#notice").hidden = false;
+    $("#notice").textContent = "這個畫面目前無法讀取或存檔審閱資料。請在 Claude App 裡用你的帳號打開這個頁面。";
+    $("#list").innerHTML = '<p class="empty">沒有可顯示的審閱項目。</p>';
+    return;
+  }
+  state.db = db;
+  try {
+    const bs = await db.collection("batches").orderBy("createdAt", "desc").get();
+    const sel = $("#batch");
+    sel.innerHTML = bs.docs.map(d => `<option value="${esc(d.id)}">${esc((d.data() || {}).title || d.id)}</option>`).join("");
+    if (!bs.docs.length) { $("#list").innerHTML = '<p class="empty">還沒有審閱批次。請 Claude 先寫入這一課的審閱項目。</p>'; return; }
+    sel.addEventListener("change", () => subscribe(sel.value));
+    subscribe(bs.docs[0].id);
+  } catch {
+    $("#notice").hidden = false; $("#notice").textContent = "讀取審閱批次失敗，請重新整理頁面。";
+  }
+})();
+</script>
