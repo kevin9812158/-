@@ -103,7 +103,7 @@
   3. 請使用者打開頁面。
 - 使用者說審好了：
   1. 用 ArtifactData 讀 `batches/<批次>/reviews`。
-  2. 依 line 重建 note.json 那一行：照 br 重新分段（用 units 的字面與ルビ；切在漢字讀音中間時，改寫ルビ的切法），高低寫成各片段的 `#m:`（1 後面接 0 的位置與 m＝2 都寫成 2）。
+  2. 執行 `python3 scripts/review_apply.py note.json items.json reviews資料夾 輸出note.json`（reviews 用 ArtifactData list 加 out_dir 存下來）。每個審閱台片段寫成一個語音片段，各自畫線，和頁面顯示一致；GAP 片段也獨立成段，不併進前一段，避免多畫下降角；切在數字讀音中間時逐字拆開重配讀音。殘留的不合規則高低（例如下降後又有一拍高），照該片段號數整理，並告訴使用者。
   3. 執行 instruction（字、讀音、翻譯的更正）。
   4. 重新產生 Word，列出改了哪些條目。
   5. 要回報給 MCP 的修正，逐筆經使用者同意。
