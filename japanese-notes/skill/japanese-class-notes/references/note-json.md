@@ -45,4 +45,4 @@
   - 沒有 examples 時排成兩欄：`zh`，或 `jp_list`。
 - `grid`：對照表，例如「「幾折」的說法」。欄位有 `header`、`columns`、`widths`（比例）、`rows`。儲存格可以寫 `{"jp": ...}`、`{"zh": ...}`，或直接寫字串（當中文處理）。整張表不拆頁。
 - `sentences`：兩欄句子表。`practice: true` 時用灰色表頭（短句練習）。row 可以帶 `bullet`（例如 `"A："`）和 `arrow`。
-- `pending`：待確認清單，固定放在文末。`{"type": "pending", "title": "待確認清單", "lines": [...]}`，前面會自動換頁。
+- 待確認清單**不是區塊**：寫在 note.json 最上層的 `"pending": [...]`（字串或 `{level, item, basis, action}`），產生器不會印出，交付時在對話中列給使用者。舊的 `{"type": "pending"}` 區塊仍可用，但不要再用（使用者指定 Word／PDF 不放清單）。
