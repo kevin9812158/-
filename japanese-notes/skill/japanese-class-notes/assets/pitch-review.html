@@ -182,7 +182,7 @@ const segsOf = line => line.reduce((acc, x, i) => { if (i === 0 || x.br) acc.pus
 const dropAt = (line, i) => line[i].m === 2 || (line[i].m === 1 && i + 1 < line.length && !line[i + 1].br && line[i + 1].m === 0);
 /** 片段號數：下降角在第幾拍之後；沒有下降角＝0（平板）；全低＝?。 */
 function segNumber(line, seg) {
-  if (!seg.some(i => line[i].m >= 1)) return "?";
+  if (!seg.some(i => line[i].m >= 1)) return seg.length === 1 ? 0 : "?";   // 一拍的平板詞本來就念低
   for (let j = 0; j < seg.length; j++) if (dropAt(line, seg[j])) return j + 1;
   return 0;
 }
@@ -204,10 +204,17 @@ function tapMora(line, i) {
 }
 /** 反白 a..b：這幾拍自成一個片段（前後切開，中間合併）；有標點的分界保留。各片段沿用原本的高低。 */
 function selectSplit(line, a, b) {
+  const key = seg => seg[0] + "-" + seg[seg.length - 1];
+  const before = new Set(segsOf(line).map(key));
   if (a > 0) line[a].br = true;
   if (b + 1 < line.length) line[b + 1].br = true;
   for (let i = a + 1; i <= b; i++) if (!line[i].p) line[i].br = false;
-  segsOf(line).forEach(seg => { const last = seg[seg.length - 1]; if (line[last].m === 2 && seg.length > 1 && line[seg[seg.length - 2]].m === 0) line[last].m = 1; });
+  // 切分或合併後有變動的片段，依它的號數照規則重設每一拍（判斷不出號數就當平板）
+  segsOf(line).forEach(seg => {
+    if (before.has(key(seg))) return;
+    const n = segNumber(line, seg);
+    setNumber(line, seg, n === "?" ? 0 : n);
+  });
 }
 function nhk(line) {
   return line.map((x, i) => (i && x.br ? (x.p || "｜") : "") + x.k + (dropAt(line, i) ? "＼" : "")).join("");
