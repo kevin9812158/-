@@ -73,6 +73,17 @@ details.help p, details.help li { color: var(--muted); font-size: .9rem; }
 .mora.h { border-top-color: var(--pitch); }
 .mora.d { border-right-color: var(--pitch); }
 .editing .mora { cursor: pointer; border-bottom: 1px dashed var(--line); }
+.mora.g { color: var(--muted); text-decoration: underline dotted; text-underline-offset: 4px; }
+.cut { font: 1rem var(--f-jp); color: var(--muted); background: none; border: 1px dashed var(--line); border-radius: 4px;
+  padding: 0 3px; margin: 0 1px; cursor: pointer; min-height: 28px; align-self: center; }
+.cut.join { color: var(--edit); border-color: var(--edit); }
+.modes { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.modes .hint { color: var(--muted); font-size: .8rem; }
+.modes button { font: 500 .85rem var(--f-ui); color: var(--ink); background: var(--chip); border: 1px solid transparent; border-radius: 999px; padding: 5px 12px; cursor: pointer; min-height: 32px; }
+.modes button[aria-pressed="true"] { background: var(--edit); color: #fff; }
+.instr { display: grid; gap: 2px; font-size: .8rem; color: var(--muted); }
+.instr textarea { font: .95rem var(--f-jp); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; min-height: 56px; resize: vertical; }
+.pill.ask { background: var(--risk-bg); color: var(--risk); }
 .was { color: var(--muted); font-size: .82rem; }
 .was s { text-decoration-color: var(--pitch-soft); }
 .nota { font: .95rem var(--f-jp); color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -84,7 +95,6 @@ details.help p, details.help li { color: var(--muted); font-size: .9rem; }
 .chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .chips button { min-width: 40px; font-variant-numeric: tabular-nums; }
 .chips button[aria-pressed="true"] { background: var(--chip-on); color: var(--chip-on-ink); }
-.chips .tap[aria-pressed="true"] { background: var(--edit); color: #fff; }
 .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .fields label { display: grid; gap: 2px; font-size: .8rem; color: var(--muted); min-width: 0; }
 .fields input { font: .95rem var(--f-jp); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; min-width: 0; }
@@ -117,9 +127,11 @@ details.help p, details.help li { color: var(--muted); font-size: .9rem; }
   <details class="help" id="help">
     <summary>怎麼用</summary>
     <ul>
-      <li>紅色上線＝高音，右側往下的線＝下一拍下降。讀音用「｜」分成語音片段。</li>
-      <li>對的話按「正確」。要改就按「修改」：每個片段點號數 [0]、[1]、[2]…，或點「逐拍」後直接點某一拍切換高低。</li>
-      <li>讀音錯了，填在「讀音更正」（例：おおわりびき）；其他想說的寫在「備註」。</li>
+      <li>紅色上線＝高音，右側往下的線＝下一拍下降。「｜」是語音片段的分界，灰色虛底線的拍是接續文字（GAP，助詞等）。</li>
+      <li>對的話按「正確」。要改就按「修改」：每個片段點號數 [0]、[1]、[2]…，接續文字的高低會自動跟著前一段（平板後高、有下降後低）。</li>
+      <li>「逐拍」：點某一拍切換高低。「切分」：點拍與拍之間的 ✂ 切開，點「｜」合併。「接續」：點某一拍，從這拍到段尾變成接續文字；點接續文字則改回一般。</li>
+      <li>日文、讀音或中文翻譯寫錯了，填在對應的「更正」欄。</li>
+      <li>同一個漢字的讀音不能從中間切。介面做不到的改法，寫在「給 Claude 的指示」，由 Claude 代勞。</li>
       <li>改完會自動存檔，回到對話跟 Claude 說「審好了」即可。</li>
     </ul>
   </details>
@@ -136,80 +148,153 @@ details.help p, details.help li { color: var(--muted); font-size: .9rem; }
 <script>
 const $ = s => document.querySelector(s);
 const state = { db: null, batch: null, items: [], reviews: {}, local: {}, filter: "todo", open: {}, unsubs: [], timers: {} };
+const esc = t => String(t || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+/* ---------- 每條項目攤平成「拍」：k 假名、unit 所屬單位、m 高低(0/1)、gap 接續文字、br 前面是片段分界、p 分界上的標點 ---------- */
+function flat(it) {
+  const out = [];
+  it.segs.forEach((s, si) => {
+    const units = s.units && s.units.length ? s.units : s.kana.map(k => ({ n: 1, gap: false }));
+    let mi = 0;
+    units.forEach((u, ui) => {
+      for (let j = 0; j < u.n; j++) {
+        out.push({ k: s.kana[mi], unit: si + "." + ui, m: s.marks[mi] >= 1 ? 1 : 0, gap: !!u.gap,
+                   br: si > 0 && mi === 0, p: si > 0 && mi === 0 ? (it.segs[si - 1].after || "") : "" });
+        mi++;
+      }
+    });
+  });
+  return out;
+}
+function lineOf(it) {
+  const base = flat(it), r = current(it);
+  if (r && Array.isArray(r.line) && r.line.length === base.length)
+    return base.map((x, i) => ({ ...x, m: r.line[i].m, gap: !!r.line[i].gap, br: !!r.line[i].br }));
+  return base;
+}
+const segsOf = line => line.reduce((acc, x, i) => { if (i === 0 || x.br) acc.push([]); acc[acc.length - 1].push(i); return acc; }, []);
 
 /* ---------- 聲調工具 ---------- */
-const drops = m => m.map((v, i) => v >= 1 && i + 1 < m.length && m[i + 1] === 0);
-const norm = m => m.map(v => (v >= 1 ? 1 : 0));
-function segNumber(m) {
-  if (!m.some(v => v >= 1)) return "?";
-  for (let i = 0; i < m.length; i++) if (m[i] >= 1 && i + 1 < m.length && m[i + 1] === 0) return i + 1;
+function dropAt(line, seg, j) { const i = seg[j], n = seg[j + 1]; return line[i].m === 1 && n !== undefined && line[n].m === 0; }
+function segNumber(line, seg) {
+  const body = seg.filter(i => !line[i].gap), gap = seg.filter(i => line[i].gap);
+  const b = body.map(i => line[i].m);
+  if (!b.some(v => v === 1)) return "?";
+  for (let i = 0; i < b.length - 1; i++) if (b[i] === 1 && b[i + 1] === 0) return i + 1;
+  if (b[b.length - 1] === 1 && gap.length && line[gap[0]].m === 0) return b.length;
   return 0;
 }
-function fromNumber(n, len) {
-  return Array.from({ length: len }, (_, i) => (n === 0 ? (i === 0 ? 0 : 1) : n === 1 ? (i === 0 ? 1 : 0) : (i === 0 ? 0 : i < n ? 1 : 0)));
+function setNumber(line, seg, n) {
+  const body = seg.filter(i => !line[i].gap), gap = seg.filter(i => line[i].gap);
+  body.forEach((i, j) => { line[i].m = n === 0 ? (j === 0 ? 0 : 1) : n === 1 ? (j === 0 ? 1 : 0) : (j === 0 ? 0 : j < n ? 1 : 0); });
+  if (body.length === 1 && n === 0) line[body[0]].m = 0;
+  gap.forEach(i => { line[i].m = n === 0 ? 1 : 0; });
 }
-const nhk = (kana, m) => kana.map((k, i) => k + (drops(m)[i] ? "＼" : "")).join("");
-const sameMarks = (a, b) => JSON.stringify(norm(a)) === JSON.stringify(norm(b));
+/** 結構改變後整理：接續文字只能在片段結尾、每段至少一拍非接續；接續文字的高低跟著前面（平板後高、有下降後低）。 */
+function normalize(line) {
+  segsOf(line).forEach(seg => {
+    const first = seg.findIndex(i => line[i].gap);
+    if (first === 0) seg.forEach(i => { line[i].gap = false; });
+    else if (first > 0) seg.slice(first).forEach(i => { line[i].gap = true; });
+    const body = seg.filter(i => !line[i].gap), gap = seg.filter(i => line[i].gap);
+    if (!gap.length) return;
+    const b = body.map(i => line[i].m);
+    let dropped = false;
+    for (let i = 0; i < b.length - 1; i++) if (b[i] === 1 && b[i + 1] === 0) dropped = true;
+    const follow = !dropped && b[b.length - 1] === 1 ? 1 : 0;
+    gap.forEach(i => { line[i].m = follow; });
+  });
+}
+function nhkSeg(line, seg) {
+  let out = "";
+  seg.forEach((i, j) => {
+    if (line[i].gap && (j === 0 || !line[seg[j - 1]].gap)) out += "＋";
+    out += line[i].k + (dropAt(line, seg, j) ? "＼" : "");
+  });
+  return out;
+}
+const sepText = (line, i) => (line[i].p ? line[i].p : "｜");
+function notation(line) {
+  const segs = segsOf(line);
+  return `<b>${segs.map(seg => "[" + segNumber(line, seg) + "]").join(" ")}</b>　${segs.map((seg, k) => (k ? sepText(line, seg[0]) : "") + nhkSeg(line, seg)).join("")}`;
+}
+const sameLine = (a, b) => a.length === b.length && a.every((x, i) => x.m === b[i].m && x.gap === b[i].gap && x.br === b[i].br);
 
-/* ---------- 每條的目前狀態（本機編輯 > 已存 > 原始） ---------- */
-function current(it) {
-  const key = String(it.order);
-  return state.local[key] || state.reviews[key] || null;
-}
-function marksOf(it) {
-  const r = current(it);
-  return it.segs.map((s, i) => (r && r.segs && r.segs[i] ? r.segs[i] : norm(s.marks)));
-}
+/* ---------- 狀態（本機編輯 > 已存 > 原始） ---------- */
+function current(it) { const key = String(it.order); return key in state.local ? state.local[key] : (state.reviews[key] || null); }
 function statusOf(it) {
   const r = current(it);
   if (!r) return "todo";
-  const orig = it.segs.map(s => norm(s.marks));
-  const changed = (r.segs || []).some((m, i) => !sameMarks(m, orig[i])) || !!r.reading;
+  if (r.instruction) return "ask";
+  const changed = !sameLine(lineOf(it), flat(it)) || !!(r.reading || r.jpFix || r.zhFix);
   return changed ? "edit" : r.status;
 }
 
 /* ---------- 畫面 ---------- */
-function pitchHTML(it, marks, editing) {
-  return it.segs.map((s, si) => {
-    const m = marks[si], d = drops(m);
-    const mor = s.kana.map((k, i) =>
-      `<span class="mora${m[i] >= 1 ? " h" : ""}${d[i] ? " d" : ""}"${editing ? ` role="button" tabindex="0" data-seg="${si}" data-i="${i}" aria-label="${k}：${m[i] >= 1 ? "高" : "低"}，點一下切換"` : ""}>${k}</span>`).join("");
-    return `<span class="seg">${mor}</span>`;
-  }).join('<span class="sep">｜</span>');
-}
-function notation(it, marks) {
-  return `<b>${it.segs.map((s, i) => "[" + segNumber(marks[i]) + "]").join(" ")}</b>　${it.segs.map((s, i) => nhk(s.kana, marks[i])).join("｜")}`;
+function pitchHTML(it, line, mode) {
+  const segs = segsOf(line);
+  return segs.map((seg, k) => {
+    let html = "";
+    if (k) {
+      const i = seg[0], label = sepText(line, i);
+      html += mode === "cut" && !line[i].p
+        ? `<button type="button" class="cut join" data-act="join" data-i="${i}" aria-label="和前一段合併">｜</button>`
+        : `<span class="sep">${esc(label)}</span>`;
+    }
+    html += '<span class="seg">';
+    seg.forEach((i, j) => {
+      if (mode === "cut" && j > 0 && line[i].unit !== line[seg[j - 1]].unit)
+        html += `<button type="button" class="cut" data-act="split" data-i="${i}" aria-label="從這裡切開">✂</button>`;
+      const x = line[i], cls = `mora${x.m ? " h" : ""}${dropAt(line, seg, j) ? " d" : ""}${x.gap ? " g" : ""}`;
+      const tappable = mode === "tap" || mode === "gap";
+      html += `<span class="${cls}"${tappable ? ` role="button" tabindex="0" data-act="mora" data-i="${i}" aria-label="${x.k}：${x.m ? "高" : "低"}${x.gap ? "，接續文字" : ""}"` : ""}>${x.k}</span>`;
+    });
+    return html + "</span>";
+  }).join("");
 }
 function cardHTML(it) {
-  const st = statusOf(it), r = current(it) || {}, marks = marksOf(it);
-  const editing = !!state.open[it.order];
-  const orig = it.segs.map(s => norm(s.marks));
-  const changed = !marks.every((m, i) => sameMarks(m, orig[i]));
-  const stPill = { todo: ["todo", "未審"], ok: ["ok", "正確"], edit: ["edit", "已修改"] }[st] || ["todo", "未審"];
+  const st = statusOf(it), r = current(it) || {}, line = lineOf(it), orig = flat(it);
+  const open = state.open[it.order], mode = open ? open.mode : null, editing = !!open;
+  const changed = !sameLine(line, orig);
+  const stPill = { todo: ["todo", "未審"], ok: ["ok", "正確"], edit: ["edit", "已修改"], ask: ["ask", "請 Claude 處理"] }[st] || ["todo", "未審"];
+  const segs = segsOf(line);
   const editor = editing ? `
     <div class="editor">
-      ${it.segs.map((s, si) => {
-        const n = segNumber(marks[si]), tap = !!(state.open[it.order] && state.open[it.order].tap === si);
-        const btns = Array.from({ length: s.kana.length + 1 }, (_, k) => `<button type="button" data-act="num" data-seg="${si}" data-n="${k}" aria-pressed="${n === k}">${k}</button>`).join("");
-        return `<div class="segrow"><span class="seglabel">片段 ${si + 1}：${s.kana.join("")}</span>
-          <div class="chips">${btns}<button type="button" class="tap" data-act="tap" data-seg="${si}" aria-pressed="${tap}">逐拍</button></div></div>`;
+      <div class="modes" role="group" aria-label="編輯模式">
+        <button type="button" data-act="mode" data-mode="tap" aria-pressed="${mode === "tap"}">逐拍</button>
+        <button type="button" data-act="mode" data-mode="cut" aria-pressed="${mode === "cut"}">切分</button>
+        <button type="button" data-act="mode" data-mode="gap" aria-pressed="${mode === "gap"}">接續</button>
+        <span class="hint">${{ tap: "點一拍切換高低", cut: "點 ✂ 切開、點｜合併", gap: "點一拍：從這拍到段尾變接續文字" }[mode] || "選一種模式，或直接點號數"}</span>
+      </div>
+      ${segs.map((seg, k) => {
+        const body = seg.filter(i => !line[i].gap), n = segNumber(line, seg);
+        const label = nhkSeg(line, seg).replace(/＼/g, "");
+        const btns = Array.from({ length: body.length + 1 }, (_, v) => `<button type="button" data-act="num" data-seg="${k}" data-n="${v}" aria-pressed="${n === v}">${v}</button>`).join("");
+        return `<div class="segrow"><span class="seglabel">片段 ${k + 1}：${esc(label)}</span><div class="chips">${btns}</div></div>`;
       }).join("")}
       <div class="fields">
-        <label for="rd-${it.order}">讀音更正<input id="rd-${it.order}" data-act="reading" value="${(r.reading || "").replace(/"/g, "&quot;")}" placeholder="${it.mcpReading ? "MCP：" + it.mcpReading : "例：おおわりびき"}"></label>
-        <label for="nt-${it.order}">備註<input id="nt-${it.order}" data-act="note" value="${(r.note || "").replace(/"/g, "&quot;")}" placeholder="想補充的事"></label>
+        <label for="jf-${it.order}">日文更正（單字或句子寫錯時）<input id="jf-${it.order}" data-act="jpFix" value="${esc(r.jpFix)}" placeholder="正確的日文，例：二割引きです。"></label>
+        <label for="rd-${it.order}">讀音更正<input id="rd-${it.order}" data-act="reading" value="${esc(r.reading)}" placeholder="${it.mcpReading ? "MCP：" + esc(it.mcpReading) : "例：おおわりびき"}"></label>
+        <label for="zf-${it.order}">中文更正（翻譯不對時）<input id="zf-${it.order}" data-act="zhFix" value="${esc(r.zhFix)}" placeholder="正確的中文"></label>
+        <label for="nt-${it.order}">備註<input id="nt-${it.order}" data-act="note" value="${esc(r.note)}" placeholder="想補充的事"></label>
       </div>
+      <label class="instr" for="in-${it.order}">給 Claude 的指示（介面做不到的切分或改法，寫在這裡由 Claude 代勞）
+        <textarea id="in-${it.order}" data-act="instruction" placeholder="例：かばんは 拆成 かばん＋は；ぱーせんと 和 おふ 分成兩段，各自 [3] [1]">${esc(r.instruction)}</textarea></label>
     </div>` : "";
-  return `<article class="card st-${st === "ok" ? "ok" : st === "edit" ? "edit" : "todo"}" data-order="${it.order}">
+  return `<article class="card st-${st === "ok" ? "ok" : st === "todo" ? "todo" : "edit"}" data-order="${it.order}">
     <div class="head"><span class="num">#${it.order}</span>
       <span class="pill ${it.risk === "高" ? "hi" : "lo"}">${it.risk}風險</span>
       <span class="pill ${stPill[0]}">${stPill[1]}</span></div>
-    <div class="jp" lang="ja">${it.jp}</div>
-    <div class="zh">${it.zh || ""}</div>
-    <div class="basis">${it.basis}</div>
-    <div class="pitch${editing ? " editing" : ""}" lang="ja">${pitchHTML(it, marks, editing)}</div>
-    <div class="nota" lang="ja">${notation(it, marks)}</div>
-    ${changed ? `<div class="was" lang="ja">原本：<s>${notation(it, orig).replace(/<\/?b>/g, "")}</s></div>` : ""}
-    ${r.reading ? `<div class="was">讀音更正：${r.reading}</div>` : ""}
+    <div class="jp" lang="ja">${esc(it.jp)}</div>
+    <div class="zh">${esc(it.zh)}</div>
+    <div class="basis">${esc(it.basis)}</div>
+    <div class="pitch${editing ? " editing" : ""}" lang="ja">${pitchHTML(it, line, mode)}</div>
+    <div class="nota" lang="ja">${notation(line)}</div>
+    ${changed ? `<div class="was" lang="ja">原本：<s>${notation(orig).replace(/<\/?b>/g, "")}</s></div>` : ""}
+    ${r.jpFix ? `<div class="was">日文更正：${esc(r.jpFix)}</div>` : ""}
+    ${r.reading ? `<div class="was">讀音更正：${esc(r.reading)}</div>` : ""}
+    ${r.zhFix ? `<div class="was">中文更正：${esc(r.zhFix)}</div>` : ""}
+    ${r.instruction && !editing ? `<div class="was">給 Claude：${esc(r.instruction)}</div>` : ""}
     ${editor}
     <div class="actions">
       <button type="button" class="okbtn" data-act="ok">${st === "ok" ? "✓ 正確" : "正確"}</button>
@@ -221,43 +306,45 @@ function cardHTML(it) {
 }
 function visible(it) {
   const st = statusOf(it);
+  if (state.open[it.order]) return true;
   if (state.filter === "todo") return st === "todo";
   if (state.filter === "hi") return it.risk === "高";
-  if (state.filter === "edit") return st === "edit";
+  if (state.filter === "edit") return st === "edit" || st === "ask";
   return true;
 }
-function render() {
+function progress() {
   const done = state.items.filter(it => statusOf(it) !== "todo").length;
   $("#count").textContent = `${done} / ${state.items.length} 已審`;
   $("#meterbar").style.width = state.items.length ? (100 * done / state.items.length) + "%" : "0";
+}
+function render() {
+  progress();
   const shown = state.items.filter(visible);
   $("#list").innerHTML = shown.length ? shown.map(cardHTML).join("")
     : `<p class="empty">${state.items.length ? (state.filter === "todo" ? "這一批都審完了。回到對話跟 Claude 說「審好了」。" : "這個篩選沒有項目。") : "這一批還沒有審閱項目。請 Claude 寫入項目後再打開。"}</p>`;
 }
 function rerenderCard(order) {
-  const el = document.querySelector(`.card[data-order="${order}"]`);
-  const it = state.items.find(x => x.order === order);
+  const el = document.querySelector(`.card[data-order="${order}"]`), it = state.items.find(x => x.order === order);
   if (!el || !it) return render();
   const tmp = document.createElement("div"); tmp.innerHTML = cardHTML(it);
   el.replaceWith(tmp.firstElementChild);
-  const done = state.items.filter(x => statusOf(x) !== "todo").length;
-  $("#count").textContent = `${done} / ${state.items.length} 已審`;
-  $("#meterbar").style.width = (100 * done / state.items.length) + "%";
+  progress();
 }
 
 /* ---------- 編輯與存檔 ---------- */
 function edit(it, fn) {
-  const key = String(it.order);
-  const base = current(it) || { status: "edit", segs: marksOf(it), reading: "", note: "" };
-  const next = JSON.parse(JSON.stringify(base));
-  if (!next.segs) next.segs = marksOf(it);
+  const key = String(it.order), r = current(it) || {};
+  const next = { status: r.status === "ok" ? "ok" : "edit", jpFix: r.jpFix || "", reading: r.reading || "", zhFix: r.zhFix || "", note: r.note || "", instruction: r.instruction || "",
+                 line: lineOf(it).map(x => ({ m: x.m, gap: x.gap, br: x.br })) };
   fn(next);
-  const orig = it.segs.map(s => norm(s.marks));
-  const changed = !next.segs.every((m, i) => sameMarks(m, orig[i])) || next.reading || next.note;
-  next.status = changed ? "edit" : (next.status === "ok" ? "ok" : "edit");
   state.local[key] = next;
   rerenderCard(it.order);
   save(it);
+}
+function withLine(it, next, fn) {
+  const line = lineOf(it).map((x, i) => ({ ...x, ...next.line[i] }));
+  fn(line);
+  next.line = line.map(x => ({ m: x.m, gap: x.gap, br: x.br }));
 }
 function save(it) {
   const key = String(it.order);
@@ -273,7 +360,7 @@ function save(it) {
       delete state.local[key];
       const m = $(`#sv-${it.order}`); if (m) m.textContent = "已存檔";
     } catch (e) {
-      const m = $(`#sv-${it.order}`); if (m) m.textContent = "存檔失敗：" + (e && e.code === "quota_exceeded" ? "空間已滿" : "請稍後再按一次");
+      const m = $(`#sv-${it.order}`); if (m) m.textContent = e && e.code === "quota_exceeded" ? "存檔失敗：空間已滿" : "存檔失敗，請再改一次或用下方複製";
     }
   }, 500);
 }
@@ -283,39 +370,54 @@ document.addEventListener("click", e => {
   if (f) { state.filter = f.dataset.f; document.querySelectorAll(".filters button").forEach(b => b.setAttribute("aria-pressed", String(b === f))); render(); return; }
   const card = e.target.closest(".card"); if (!card) return;
   const it = state.items.find(x => x.order === Number(card.dataset.order)); if (!it) return;
-  const btn = e.target.closest("[data-act]"), mora = e.target.closest(".mora[data-seg]");
-  if (mora && state.open[it.order] && state.open[it.order].tap === Number(mora.dataset.seg)) {
-    const si = Number(mora.dataset.seg), i = Number(mora.dataset.i);
-    edit(it, r => { r.segs[si][i] = r.segs[si][i] >= 1 ? 0 : 1; }); return;
-  }
-  if (!btn) return;
-  const act = btn.dataset.act;
-  if (act === "ok") { const key = String(it.order); state.local[key] = { status: "ok", segs: marksOf(it), reading: (current(it) || {}).reading || "", note: (current(it) || {}).note || "" }; delete state.open[it.order]; rerenderCard(it.order); save(it); }
-  else if (act === "toggle") { state.open[it.order] = state.open[it.order] ? null : { tap: null }; rerenderCard(it.order); }
-  else if (act === "reset") { state.local[String(it.order)] = null; delete state.reviews[String(it.order)]; delete state.open[it.order]; rerenderCard(it.order); save(it); }
-  else if (act === "num") { const si = Number(btn.dataset.seg), n = Number(btn.dataset.n); edit(it, r => { r.segs[si] = fromNumber(n, it.segs[si].kana.length); }); }
-  else if (act === "tap") { const si = Number(btn.dataset.seg); state.open[it.order] = { tap: state.open[it.order] && state.open[it.order].tap === si ? null : si }; rerenderCard(it.order); }
+  const btn = e.target.closest("[data-act]"); if (!btn) return;
+  const act = btn.dataset.act, open = state.open[it.order], i = Number(btn.dataset.i);
+  if (act === "ok") {
+    const r = current(it) || {};
+    state.local[String(it.order)] = { status: "ok", jpFix: r.jpFix || "", reading: r.reading || "", zhFix: r.zhFix || "", note: r.note || "", instruction: r.instruction || "", line: lineOf(it).map(x => ({ m: x.m, gap: x.gap, br: x.br })) };
+    delete state.open[it.order]; rerenderCard(it.order); save(it);
+  } else if (act === "toggle") { state.open[it.order] = open ? null : { mode: null }; if (!state.open[it.order]) delete state.open[it.order]; rerenderCard(it.order); }
+  else if (act === "reset") { state.local[String(it.order)] = null; delete state.open[it.order]; rerenderCard(it.order); save(it); }
+  else if (act === "mode") { state.open[it.order] = { mode: open && open.mode === btn.dataset.mode ? null : btn.dataset.mode }; rerenderCard(it.order); }
+  else if (act === "num") edit(it, nx => withLine(it, nx, line => { setNumber(line, segsOf(line)[Number(btn.dataset.seg)], Number(btn.dataset.n)); }));
+  else if (act === "split") edit(it, nx => withLine(it, nx, line => { line[i].br = true; normalize(line); }));
+  else if (act === "join") edit(it, nx => withLine(it, nx, line => {
+    const seg = segsOf(line).find(sg => sg.includes(i - 1)); seg.forEach(j => { line[j].gap = false; });
+    line[i].br = false; normalize(line); }));
+  else if (act === "mora" && open && open.mode === "tap") edit(it, nx => withLine(it, nx, line => { line[i].m = line[i].m ? 0 : 1; }));
+  else if (act === "mora" && open && open.mode === "gap") edit(it, nx => withLine(it, nx, line => {
+    const seg = segsOf(line).find(sg => sg.includes(i)), pos = seg.indexOf(i);
+    if (line[i].gap) { seg.slice(0, pos + 1).forEach(j => { line[j].gap = false; }); }
+    else {
+      let start = pos; while (start > 0 && line[seg[start - 1]].unit === line[i].unit) start--;  // 從所屬單位的開頭算起
+      if (start === 0) return;                                                                 // 整段不能都是接續文字
+      seg.slice(start).forEach(j => { line[j].gap = true; });
+    }
+    normalize(line); }));
 });
 document.addEventListener("keydown", e => {
-  if ((e.key === "Enter" || e.key === " ") && e.target.matches(".mora[data-seg]")) { e.preventDefault(); e.target.click(); }
+  if ((e.key === "Enter" || e.key === " ") && e.target.matches(".mora[data-act]")) { e.preventDefault(); e.target.click(); }
 });
 document.addEventListener("change", e => {
-  const inp = e.target.closest("input[data-act]"); if (!inp) return;
-  const card = inp.closest(".card"); const it = state.items.find(x => x.order === Number(card.dataset.order));
+  const inp = e.target.closest("[data-act='jpFix'],[data-act='reading'],[data-act='zhFix'],[data-act='note'],[data-act='instruction']"); if (!inp) return;
+  const it = state.items.find(x => x.order === Number(inp.closest(".card").dataset.order));
   const field = inp.dataset.act, val = inp.value.trim();
-  edit(it, r => { r[field] = val; });
+  edit(it, nx => { nx[field] = val; });
 });
 
-/* ---------- 回覆文字（備援） ---------- */
+/* ---------- 回覆文字（存檔無法使用時的備援） ---------- */
 function replyText() {
   const lines = [];
   for (const it of state.items) {
     const r = current(it); if (!r) continue;
-    if (r.status === "ok") { lines.push(`#${it.order} OK`); continue; }
-    const m = marksOf(it);
-    let s = `#${it.order} ${it.segs.map((x, i) => "[" + segNumber(m[i]) + "]").join("")}　${it.segs.map((x, i) => nhk(x.kana, m[i])).join("｜")}`;
+    const st = statusOf(it);
+    if (st === "ok") { lines.push(`#${it.order} OK`); continue; }
+    let s = `#${it.order} ${notation(lineOf(it)).replace(/<\/?b>/g, "")}`;
+    if (r.jpFix) s += `　日文：${r.jpFix}`;
     if (r.reading) s += `　讀音：${r.reading}`;
+    if (r.zhFix) s += `　中文：${r.zhFix}`;
     if (r.note) s += `　備註：${r.note}`;
+    if (r.instruction) s += `　指示：${r.instruction}`;
     lines.push(s);
   }
   return lines.length ? `聲調審閱（${state.batch}）\n` + lines.join("\n") : "還沒有任何審閱結果。";
@@ -336,7 +438,9 @@ function subscribe(batch) {
     state.items = s.docs.map(d => d.data()); render();
   }, err));
   state.unsubs.push(state.db.collection(`batches/${batch}/reviews`).onSnapshot(s => {
-    const map = {}; s.docs.forEach(d => { map[d.id] = d.data(); }); state.reviews = map; render();
+    const map = {}; s.docs.forEach(d => { map[d.id] = d.data(); }); state.reviews = map;
+    const focused = document.activeElement && document.activeElement.closest(".card");
+    if (!focused) render();
   }, err));
 }
 (async () => {
@@ -351,7 +455,7 @@ function subscribe(batch) {
   try {
     const bs = await db.collection("batches").orderBy("createdAt", "desc").get();
     const sel = $("#batch");
-    sel.innerHTML = bs.docs.map(d => `<option value="${d.id}">${(d.data() || {}).title || d.id}</option>`).join("");
+    sel.innerHTML = bs.docs.map(d => `<option value="${esc(d.id)}">${esc((d.data() || {}).title || d.id)}</option>`).join("");
     if (!bs.docs.length) { $("#list").innerHTML = '<p class="empty">還沒有審閱批次。請 Claude 先寫入這一課的審閱項目。</p>'; return; }
     sel.addEventListener("change", () => subscribe(sel.value));
     subscribe(bs.docs[0].id);

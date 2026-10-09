@@ -90,15 +90,27 @@
 
 **審閱台（建議的方式）**
 - 「聲調審閱台」頁面：https://claude.ai/artifact/UuMk1djmuvtzX29fJPatfs ，原始碼在 `assets/pitch-review.html`。
-- 每條項目一張卡片，依風險排序，顯示日文、中文、依據，以及畫在讀音上的紅線和 [N]／NHK 式標記。
-- 使用者可以：按「正確」；按「修改」後，每個片段點號數，或點「逐拍」逐拍切換高低；填讀音更正和備註。
-- 結果自動存到頁面的資料庫，存在 `batches/<批次>/reviews/<編號>`，內容是 {status, segs（0/1 陣列）, reading, note}。
+- 每條項目一張卡片，依風險排序，顯示日文、中文、依據，以及畫在讀音上的紅線和 [N]／NHK 式標記。標記中「｜」是語音片段分界，「＋」後面是接續文字（GAP）。
+- 使用者可以做的修改：
+  - 按「正確」。
+  - 改號數：每個片段點 [0]、[1]…，接續文字的高低會自動跟著前一段。
+  - 「逐拍」：逐拍切換高低。
+  - 「切分」：點 ✂ 切開片段，點「｜」合併。不能切在同一個漢字的讀音中間；有標點的分界不能合併。
+  - 「接續」：點某一拍，從這拍到段尾變成接續文字。
+  - 填更正：日文更正、讀音更正、中文更正、備註。
+  - 「給 Claude 的指示」：介面做不到的切分或改法，用自然語言寫，由 Claude 代勞；狀態會顯示「請 Claude 處理」。
+- 結果存在 `batches/<批次>/reviews/<編號>`，內容是 {status, line:[{m 高低 0/1, gap, br 前面是否為片段分界}], jpFix, reading, zhFix, note, instruction}。line 和項目攤平後的拍一一對應。
 - 新的一課：
-  1. `python3 scripts/review_export.py note.json mcp結果.json > items.json`。
+  1. `python3 scripts/review_export.py note.json mcp結果.json > items.json`。每條帶 source（note.json 原行）、units（同一個漢字的ルビ是一個單位）、after（片段後的標點）。
   2. 用 ArtifactData 的 batch 寫入 `batches/<批次>`（{title, createdAt}）和 `batches/<批次>/items/<編號>`。
   3. 請使用者打開頁面。
-- 使用者說審好了，就用 ArtifactData 讀 `batches/<批次>/reviews`，把 segs 轉成 `#m:`（1 後面接 0 的位置寫成 2）、讀音更正寫回 note.json，重新產生 Word，並列出改了哪些條目。
-- 存檔不能用時，頁面底下有「複製回覆文字」，貼到對話即可。格式和下面的對話式審閱相同。
+- 使用者說審好了：
+  1. 用 ArtifactData 讀 `batches/<批次>/reviews`。
+  2. 依 line 重建 note.json 那一行：用 units 的字面和ルビ、gap 寫成 `+`、br 分段；高低寫成 `#m:`，1 後面接 0 的位置寫成 2。
+  3. 套用日文、讀音、中文的更正，執行指示。
+  4. 重新產生 Word，列出改了哪些條目。
+  5. 要回報給 MCP 的修正，逐筆經使用者同意。
+- 存檔不能用時，頁面底下有「複製回覆文字」，貼到對話即可。
 
 **審閱流程（在對話中進行，不放在 Word 裡）**（審閱台不能用時的備案）
 1. 執行 `python3 scripts/review_list.py note.json mcp結果.json`，產生風險分流對照表，**直接貼在對話裡**讓使用者選填。

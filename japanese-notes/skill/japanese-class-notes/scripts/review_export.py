@@ -1,13 +1,31 @@
 """把審閱項目匯出成「聲調審閱台」頁面的資料（每條一筆），供寫入 Artifact 的 db。
 
 用法：python3 scripts/review_export.py note.json mcp結果.json > items.json
-每筆：{order, risk, jp, zh, basis, mcpReading, segs:[{kana:[拍...], marks:[0/1/2...], fromMcp}]}
+每筆：{order, risk, jp, zh, basis, mcpReading, source（note.json 原行）, segs:[{kana, marks, fromMcp, units, after（片段後的標點）}]}
 """
 import json
 import sys
 
 from mcp_apply import hira, line_morae, plain
 from review_list import collect, seg_marks
+from build_note import parse_line, split_mora
+
+
+def seg_units(line):
+    """每個語音片段的組成單位（同一個漢字的ルビ是一個單位，不能從中間切）與片段後面的標點。
+    單位：{n: 拍數, base: 字面, ruby: 讀音或 null, gap: 是否為接續文字}。"""
+    units, afters = [], []
+    for it in parse_line(line, 0):
+        if it["kind"] != "seg":
+            if afters:
+                afters[-1] += it["text"]
+            continue
+        us = [{"n": len(split_mora(r)) if r else 1, "base": b, "ruby": r, "gap": False} for b, r in it["parts"]]
+        us += [{"n": len(split_mora(shown)), "base": shown, "ruby": said if said != shown else None, "gap": True}
+               for shown, said in it["gaps"]]
+        units.append(us)
+        afters.append("")
+    return units, afters
 
 
 def export(note_p, mcp_p):
@@ -34,9 +52,11 @@ def export(note_p, mcp_p):
                 rank, basis = 1, "；".join(bits) or "needsReview"
             else:
                 rank, basis = 2, "MCP 無警告（仍是預測）"
+        units, afters = seg_units(jp)
         items.append({"rank": rank, "risk": "低" if rank == 2 else "高", "jp": text, "zh": zh, "basis": basis,
-                      "mcpReading": theirs,
-                      "segs": [{"kana": k, "marks": m, "fromMcp": ok} for k, (m, ok) in zip(segs, sm)]})
+                      "mcpReading": theirs, "source": jp,
+                      "segs": [{"kana": k, "marks": m, "fromMcp": ok, "units": u, "after": a}
+                               for k, (m, ok), u, a in zip(segs, sm, units, afters)]})
     items.sort(key=lambda x: x["rank"])
     for i, it in enumerate(items, 1):
         it["order"] = i
