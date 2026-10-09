@@ -1,7 +1,7 @@
 """把 JAPANESE UP 聲調 MCP 的逐拍 marks 套進 note.json 的日文行。
 
 用法：
-  python3 scripts/mcp_apply.py note.json mcp結果.json 輸出note.json 不一致清單.json
+  python3 mcp_apply.py note.json mcp結果.json 輸出note.json 不一致清單.json
 
 - mcp結果.json：analyzeJapanesePronunciation 的原始回傳陣列（每行一筆，text 為該行的純文字）。
 - 只在「筆記讀音和 MCP 讀音逐拍一致」時套用，寫成每個語音片段的 #m:0112；

@@ -63,7 +63,7 @@ note.json 裡可以寫成字串（開頭加「【高】」），也可以寫成 
 | **中** | 逐字稿辨識錯字、依上下文還原的內容；辨識不清而沒收錄的內容；課本編號未知、是否為補充詞這類內容判斷 |
 | **低**（最後看，照樣列出） | MCP 沒有警告、needsReview 為 false 的結果（伺服器有把握，但仍只是預測）；插圖暫代這類不影響正確性的項目 |
 
-MCP 相關的項目不要自己判斷等級，用 `scripts/mcp_pending.py` 依 MCP 原始 JSON 產生（見 `references/pitch.md`）。
+聲調的逐條審閱不放在 Word 裡，而是在對話中用風險分流對照表進行（`scripts/review_list.py`，見 `references/pitch.md`）。Word 的待確認清單只留一條聲調總說明，加上內容類的項目。
 
 ## 曾經犯過、不要再犯的錯
 

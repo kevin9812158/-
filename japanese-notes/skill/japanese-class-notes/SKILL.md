@@ -49,6 +49,7 @@ description: 把日語課的帶時間戳逐字稿（.srt，中文為主夾日文
 - 用 `scripts/mcp_apply.py` 把 MCP 的逐拍 marks 寫進 note.json（`#m:`）。讀音和 MCP 對不上的行維持 0 號音，並列【高】。
 - 拿到 MCP 結果後，用 `scripts/mcp_pending.py` 依 MCP 的品質欄位產生待確認項目。只依 needsReview、warnings、accent、status 判斷，不要自己判斷。
 - 沒有警告不代表正確，要保留抽樣比對範本的步驟。
+- 聲調的審閱在對話中進行：用 `scripts/review_list.py` 產生風險分流對照表（日文、讀音、中文、目前聲調、依據），貼給使用者選填。使用者可以回覆「第幾條的哪個片段改幾號」、[N]，或 NHK 辭典式標記。
 - 審閱後的修正要經使用者逐筆同意，才能送回 MCP。
 - 還沒取得聲調的詞，畫成 0 號音，並列一條【高】。
 
