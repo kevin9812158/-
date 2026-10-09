@@ -88,7 +88,19 @@
    - 不自行補齊：助詞等 MCP 回傳 0 的拍照實畫成低。
 4. 不一致清單的每一行列【高】，並和同一行的 MCP 項目合成一條。
 
-**審閱流程（在對話中進行，不放在 Word 裡）**
+**審閱台（建議的方式）**
+- 「聲調審閱台」頁面：https://claude.ai/artifact/UuMk1djmuvtzX29fJPatfs ，原始碼在 `assets/pitch-review.html`。
+- 每條項目一張卡片，依風險排序，顯示日文、中文、依據，以及畫在讀音上的紅線和 [N]／NHK 式標記。
+- 使用者可以：按「正確」；按「修改」後，每個片段點號數，或點「逐拍」逐拍切換高低；填讀音更正和備註。
+- 結果自動存到頁面的資料庫，存在 `batches/<批次>/reviews/<編號>`，內容是 {status, segs（0/1 陣列）, reading, note}。
+- 新的一課：
+  1. `python3 scripts/review_export.py note.json mcp結果.json > items.json`。
+  2. 用 ArtifactData 的 batch 寫入 `batches/<批次>`（{title, createdAt}）和 `batches/<批次>/items/<編號>`。
+  3. 請使用者打開頁面。
+- 使用者說審好了，就用 ArtifactData 讀 `batches/<批次>/reviews`，把 segs 轉成 `#m:`（1 後面接 0 的位置寫成 2）、讀音更正寫回 note.json，重新產生 Word，並列出改了哪些條目。
+- 存檔不能用時，頁面底下有「複製回覆文字」，貼到對話即可。格式和下面的對話式審閱相同。
+
+**審閱流程（在對話中進行，不放在 Word 裡）**（審閱台不能用時的備案）
 1. 執行 `python3 scripts/review_list.py note.json mcp結果.json`，產生風險分流對照表，**直接貼在對話裡**讓使用者選填。
    - 每一條有：編號、風險、日文、讀音（依語音片段，用｜分隔）、中文、目前聲調、依據。
    - 目前聲調同時給兩種寫法：每個片段的 [N] 號數，以及 NHK 辭典式的下降標記（＼ 寫在下降前那一拍的後面）。
