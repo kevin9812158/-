@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "足元", "zh": "腳下", "basis": "MCP 無警告（仍是預測）", "mcpReading": "あしもと", "source": "{足|あし}{元|もと}#m:0120", "segs": [{"kana": ["あ", "し", "も", "と"], "marks": [0, 1, 2, 0], "fromMcp": true, "units": [{"n": 2, "base": "足", "ruby": "あし", "gap": false}, {"n": 2, "base": "元", "ruby": "もと", "gap": false}], "after": ""}], "order": 206}

@@ -1,0 +1,25 @@
+{
+ "text": "どうしたのって聞いたら、わけわかんないみたいでした。",
+ "needsReview": true,
+ "warnings": [],
+ "reviewStatus": "unreviewed",
+ "queryId": "c1eda312-6e3a-4b77-889f-58cda3f72f78",
+ "draftId": "23485530-06bc-41ee-bbc0-dfd24d9e0182",
+ "tokens": [
+  {"surface": "どう", "kind": "word", "reading": "どう", "moras": ["ど", "う"], "marks": [2, 0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "し", "kind": "word", "reading": "し", "moras": ["し"], "marks": [0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "た", "kind": "word", "reading": "た", "moras": ["た"], "marks": [0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "の", "kind": "word", "reading": "の", "moras": ["の"], "marks": [0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "って", "kind": "word", "reading": "って", "moras": ["っ", "て"], "marks": [0, 0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "聞い", "kind": "word", "reading": "きい", "moras": ["き", "い"], "marks": [0, 1], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "たら", "kind": "word", "reading": "たら", "moras": ["た", "ら"], "marks": [2, 0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "、", "kind": "punctuation", "reading": "", "moras": [], "marks": [], "accent": null, "status": "predicted", "warnings": []},
+  {"surface": "わけ", "kind": "word", "reading": "わけ", "moras": ["わ", "け"], "marks": [2, 0], "accent": 1, "status": "predicted", "warnings": []},
+  {"surface": "わかん", "kind": "word", "reading": "わかん", "moras": ["わ", "か", "ん"], "marks": [0, 2, 0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "ない", "kind": "word", "reading": "ない", "moras": ["な", "い"], "marks": [0, 0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "みたい", "kind": "word", "reading": "みたい", "moras": ["み", "た", "い"], "marks": [0, 0, 0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "でし", "kind": "word", "reading": "でし", "moras": ["で", "し"], "marks": [0, 0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "た", "kind": "word", "reading": "た", "moras": ["た"], "marks": [0], "accent": null, "status": "predicted", "warnings": ["phrase_accent_unresolved"]},
+  {"surface": "。", "kind": "punctuation", "reading": "", "moras": [], "marks": [], "accent": null, "status": "predicted", "warnings": []}
+ ]
+}

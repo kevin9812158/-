@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "プラグ", "zh": "插頭", "basis": "MCP 無警告（仍是預測）", "mcpReading": "ぷらぐ", "source": "プラグ#m:200", "segs": [{"kana": ["ぷ", "ら", "ぐ"], "marks": [2, 0, 0], "fromMcp": true, "units": [{"n": 1, "base": "プ", "ruby": null, "gap": false}, {"n": 1, "base": "ラ", "ruby": null, "gap": false}, {"n": 1, "base": "グ", "ruby": null, "gap": false}], "after": ""}], "order": 199}

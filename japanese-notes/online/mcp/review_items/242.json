@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "一言", "zh": "一句話", "basis": "MCP 無警告（仍是預測）", "mcpReading": "ひとこと", "source": "{一|ひと}{言|こと}#m:0200", "segs": [{"kana": ["ひ", "と", "こ", "と"], "marks": [0, 2, 0, 0], "fromMcp": true, "units": [{"n": 2, "base": "一", "ruby": "ひと", "gap": false}, {"n": 2, "base": "言", "ruby": "こと", "gap": false}], "after": ""}], "order": 242}

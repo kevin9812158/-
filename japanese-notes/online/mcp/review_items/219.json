@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "来る", "zh": "カ變動詞", "basis": "MCP 無警告（仍是預測）", "mcpReading": "くる", "source": "{来|く}る#m:20", "segs": [{"kana": ["く", "る"], "marks": [2, 0], "fromMcp": true, "units": [{"n": 1, "base": "来", "ruby": "く", "gap": false}, {"n": 1, "base": "る", "ruby": null, "gap": false}], "after": ""}], "order": 219}

@@ -1,0 +1,9217 @@
+{
+ "text": "コピーされる\n使う\n使える\n使われる\n笑う\n笑える\n笑われる\n言う\n言える\n言われる\n割る\n割れる\n割られる\n汚す\n汚せる\n汚される\n引っ張る\n引っ張れる\n引っ張られる\nかける\nかけられる\n生き延びられた\n心から笑える\n先に登られた\nエンジンをかけられる\nカラーコーン\nブレーキを踏む\n軽自動車\n同乗者\n目撃者\n高齢者\n一言\n呆然\n道路脇\nなぎ倒す・なぎ倒します\n効く・効きます\n救急搬送する\n現れる・現れます\nぶつかる・ぶつかります\nぶつける・ぶつけます\n車を壁にぶつけました。\n車が壁にぶつかった。\nこの薬は効かなかった。\nカラーコーンをなぎ倒し、道路脇の壁に衝突。\n目撃者の車にもぶつかりました。\n最初、後ろで何か事故があったのかなというふうに思ってたところ、\n急に左側に車が現れたので、もう驚いたっていう、\nまさにその一言ですね。どこから来たんだっていう。\n警視庁によると、軽自動車の運転手は高齢者でした。\n様子を見に行った時には、なんかもう呆然というか、\nなんかわけわかんない状態だったみたいですね。\nどうしたのって聞いたら、いやブレーキ踏んだんだけど効かなかったっていうようなことを言ってたので。\n軽自動車の運転手と同乗者の2人は怪我をして救急搬送されていて、\n警視庁が詳しい状況を調べています。\n〜たところ\n事故があったのかなと思っていたところ、\n〜時\n様子を見に行った時には\n急に左側に車が現れた\n左側にスタバが見えます\n心配しないでください。きっといい人が現れるから。\n安心して、きっといい人が現れるから。\nもう驚いたっていう感じですね\nまさにその一言\nわけわかんない\n〜みたいです\n〜というか\n警視庁によると\n〜って聞いたら\nどうしたのって聞いたら、ブレーキを踏んだんだけど効かなかったとおじさんが言っていました。\nＡというＢ\n〜っていうようなこと\nＡさんという人\nボールがピンを次々となぎ倒した。\n強風で木々がなぎ倒された。\nクマが畑の作物をなぎ倒していった。\nブレーキを踏んだけど効かなかった。\n急に左側に車が現れた。\nきっといい人が現れるから。",
+ "needsReview": true,
+ "warnings": [
+  "worker_needs_review"
+ ],
+ "reviewStatus": "unreviewed",
+ "queryId": "cea5b4a3-25b1-406a-a597-a476d002ffe4",
+ "draftId": "eeaa835e-ac70-4c6b-b3c8-4e53d852c66d",
+ "tokens": [
+  {
+   "surface": "コピー",
+   "kind": "word",
+   "reading": "こぴー",
+   "moras": [
+    "こ",
+    "ぴ",
+    "ー"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "さ",
+   "kind": "word",
+   "reading": "さ",
+   "moras": [
+    "さ"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "れる",
+   "kind": "word",
+   "reading": "れる",
+   "moras": [
+    "れ",
+    "る"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "使う",
+   "kind": "word",
+   "reading": "つかう",
+   "moras": [
+    "つ",
+    "か",
+    "う"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "使える",
+   "kind": "word",
+   "reading": "つかえる",
+   "moras": [
+    "つ",
+    "か",
+    "え",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": 3,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "使わ",
+   "kind": "word",
+   "reading": "つかわ",
+   "moras": [
+    "つ",
+    "か",
+    "わ"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "れる",
+   "kind": "word",
+   "reading": "れる",
+   "moras": [
+    "れ",
+    "る"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "笑う",
+   "kind": "word",
+   "reading": "わらう",
+   "moras": [
+    "わ",
+    "ら",
+    "う"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "笑える",
+   "kind": "word",
+   "reading": "わらえる",
+   "moras": [
+    "わ",
+    "ら",
+    "え",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "笑わ",
+   "kind": "word",
+   "reading": "わらわ",
+   "moras": [
+    "わ",
+    "ら",
+    "わ"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "れる",
+   "kind": "word",
+   "reading": "れる",
+   "moras": [
+    "れ",
+    "る"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "言う",
+   "kind": "word",
+   "reading": "ゆう",
+   "moras": [
+    "ゆ",
+    "う"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "言える",
+   "kind": "word",
+   "reading": "いえる",
+   "moras": [
+    "い",
+    "え",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "言わ",
+   "kind": "word",
+   "reading": "いわ",
+   "moras": [
+    "い",
+    "わ"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "れる",
+   "kind": "word",
+   "reading": "れる",
+   "moras": [
+    "れ",
+    "る"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "割る",
+   "kind": "word",
+   "reading": "わる",
+   "moras": [
+    "わ",
+    "る"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "割れる",
+   "kind": "word",
+   "reading": "われる",
+   "moras": [
+    "わ",
+    "れ",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "割ら",
+   "kind": "word",
+   "reading": "わら",
+   "moras": [
+    "わ",
+    "ら"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "れる",
+   "kind": "word",
+   "reading": "れる",
+   "moras": [
+    "れ",
+    "る"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "汚す",
+   "kind": "word",
+   "reading": "よごす",
+   "moras": [
+    "よ",
+    "ご",
+    "す"
+   ],
+   "marks": [
+    0,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "汚せる",
+   "kind": "word",
+   "reading": "よごせる",
+   "moras": [
+    "よ",
+    "ご",
+    "せ",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved",
+    "worker_needs_review"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "汚さ",
+   "kind": "word",
+   "reading": "よごさ",
+   "moras": [
+    "よ",
+    "ご",
+    "さ"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "れる",
+   "kind": "word",
+   "reading": "れる",
+   "moras": [
+    "れ",
+    "る"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "引っ張る",
+   "kind": "word",
+   "reading": "ひっぱる",
+   "moras": [
+    "ひ",
+    "っ",
+    "ぱ",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": 3,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "引っ張れる",
+   "kind": "word",
+   "reading": "ひっぱれる",
+   "moras": [
+    "ひ",
+    "っ",
+    "ぱ",
+    "れ",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "accent": 4,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "引っ張ら",
+   "kind": "word",
+   "reading": "ひっぱら",
+   "moras": [
+    "ひ",
+    "っ",
+    "ぱ",
+    "ら"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "れる",
+   "kind": "word",
+   "reading": "れる",
+   "moras": [
+    "れ",
+    "る"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "かける",
+   "kind": "word",
+   "reading": "かける",
+   "moras": [
+    "か",
+    "け",
+    "る"
+   ],
+   "marks": [
+    0,
+    2,
+    0
+   ],
+   "accent": 2,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "かけ",
+   "kind": "word",
+   "reading": "かけ",
+   "moras": [
+    "か",
+    "け"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "られる",
+   "kind": "word",
+   "reading": "られる",
+   "moras": [
+    "ら",
+    "れ",
+    "る"
+   ],
+   "marks": [
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "生き延び",
+   "kind": "word",
+   "reading": "いきのび",
+   "moras": [
+    "い",
+    "き",
+    "の",
+    "び"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "られ",
+   "kind": "word",
+   "reading": "られ",
+   "moras": [
+    "ら",
+    "れ"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "心",
+   "kind": "word",
+   "reading": "こころ",
+   "moras": [
+    "こ",
+    "こ",
+    "ろ"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "から",
+   "kind": "word",
+   "reading": "から",
+   "moras": [
+    "か",
+    "ら"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "笑える",
+   "kind": "word",
+   "reading": "わらえる",
+   "moras": [
+    "わ",
+    "ら",
+    "え",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "先",
+   "kind": "word",
+   "reading": "さき",
+   "moras": [
+    "さ",
+    "き"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "登ら",
+   "kind": "word",
+   "reading": "のぼら",
+   "moras": [
+    "の",
+    "ぼ",
+    "ら"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "れ",
+   "kind": "word",
+   "reading": "れ",
+   "moras": [
+    "れ"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "エンジン",
+   "kind": "word",
+   "reading": "えんじん",
+   "moras": [
+    "え",
+    "ん",
+    "じ",
+    "ん"
+   ],
+   "marks": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "かけ",
+   "kind": "word",
+   "reading": "かけ",
+   "moras": [
+    "か",
+    "け"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "られる",
+   "kind": "word",
+   "reading": "られる",
+   "moras": [
+    "ら",
+    "れ",
+    "る"
+   ],
+   "marks": [
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "カラー",
+   "kind": "word",
+   "reading": "からー",
+   "moras": [
+    "か",
+    "ら",
+    "ー"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "コーン",
+   "kind": "word",
+   "reading": "こーん",
+   "moras": [
+    "こ",
+    "ー",
+    "ん"
+   ],
+   "marks": [
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "ブレーキ",
+   "kind": "word",
+   "reading": "ぶれーき",
+   "moras": [
+    "ぶ",
+    "れ",
+    "ー",
+    "き"
+   ],
+   "marks": [
+    0,
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "踏む",
+   "kind": "word",
+   "reading": "ふむ",
+   "moras": [
+    "ふ",
+    "む"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "軽",
+   "kind": "word",
+   "reading": "けい",
+   "moras": [
+    "け",
+    "い"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "自動",
+   "kind": "word",
+   "reading": "じどう",
+   "moras": [
+    "じ",
+    "ど",
+    "う"
+   ],
+   "marks": [
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "車",
+   "kind": "word",
+   "reading": "しゃ",
+   "moras": [
+    "しゃ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "同乗",
+   "kind": "word",
+   "reading": "どうじょう",
+   "moras": [
+    "ど",
+    "う",
+    "じょ",
+    "う"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "者",
+   "kind": "word",
+   "reading": "しゃ",
+   "moras": [
+    "しゃ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "目撃",
+   "kind": "word",
+   "reading": "もくげき",
+   "moras": [
+    "も",
+    "く",
+    "げ",
+    "き"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "者",
+   "kind": "word",
+   "reading": "しゃ",
+   "moras": [
+    "しゃ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "高齢",
+   "kind": "word",
+   "reading": "こうれい",
+   "moras": [
+    "こ",
+    "う",
+    "れ",
+    "い"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "者",
+   "kind": "word",
+   "reading": "しゃ",
+   "moras": [
+    "しゃ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "一言",
+   "kind": "word",
+   "reading": "ひとこと",
+   "moras": [
+    "ひ",
+    "と",
+    "こ",
+    "と"
+   ],
+   "marks": [
+    0,
+    2,
+    0,
+    0
+   ],
+   "accent": 2,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "呆然",
+   "kind": "word",
+   "reading": "ぼうぜん",
+   "moras": [
+    "ぼ",
+    "う",
+    "ぜ",
+    "ん"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "道路",
+   "kind": "word",
+   "reading": "どうろ",
+   "moras": [
+    "ど",
+    "う",
+    "ろ"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "脇",
+   "kind": "word",
+   "reading": "わき",
+   "moras": [
+    "わ",
+    "き"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "なぎ倒す",
+   "kind": "word",
+   "reading": "なぎたおす",
+   "moras": [
+    "な",
+    "ぎ",
+    "た",
+    "お",
+    "す"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "accent": 4,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "・",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "なぎ倒し",
+   "kind": "word",
+   "reading": "なぎたおし",
+   "moras": [
+    "な",
+    "ぎ",
+    "た",
+    "お",
+    "し"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ます",
+   "kind": "word",
+   "reading": "ます",
+   "moras": [
+    "ま",
+    "す"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "効く",
+   "kind": "word",
+   "reading": "きく",
+   "moras": [
+    "き",
+    "く"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "・",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "効き",
+   "kind": "word",
+   "reading": "きき",
+   "moras": [
+    "き",
+    "き"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ます",
+   "kind": "word",
+   "reading": "ます",
+   "moras": [
+    "ま",
+    "す"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "救急",
+   "kind": "word",
+   "reading": "きゅうきゅう",
+   "moras": [
+    "きゅ",
+    "う",
+    "きゅ",
+    "う"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "搬送",
+   "kind": "word",
+   "reading": "はんそう",
+   "moras": [
+    "は",
+    "ん",
+    "そ",
+    "う"
+   ],
+   "marks": [
+    2,
+    0,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "する",
+   "kind": "word",
+   "reading": "する",
+   "moras": [
+    "す",
+    "る"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "現れる",
+   "kind": "word",
+   "reading": "あらわれる",
+   "moras": [
+    "あ",
+    "ら",
+    "わ",
+    "れ",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "accent": 4,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "・",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "現れ",
+   "kind": "word",
+   "reading": "あらわれ",
+   "moras": [
+    "あ",
+    "ら",
+    "わ",
+    "れ"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ます",
+   "kind": "word",
+   "reading": "ます",
+   "moras": [
+    "ま",
+    "す"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "ぶつかる",
+   "kind": "word",
+   "reading": "ぶつかる",
+   "moras": [
+    "ぶ",
+    "つ",
+    "か",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "・",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "ぶつかり",
+   "kind": "word",
+   "reading": "ぶつかり",
+   "moras": [
+    "ぶ",
+    "つ",
+    "か",
+    "り"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ます",
+   "kind": "word",
+   "reading": "ます",
+   "moras": [
+    "ま",
+    "す"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "ぶつける",
+   "kind": "word",
+   "reading": "ぶつける",
+   "moras": [
+    "ぶ",
+    "つ",
+    "け",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "・",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "ぶつけ",
+   "kind": "word",
+   "reading": "ぶつけ",
+   "moras": [
+    "ぶ",
+    "つ",
+    "け"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ます",
+   "kind": "word",
+   "reading": "ます",
+   "moras": [
+    "ま",
+    "す"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "車",
+   "kind": "word",
+   "reading": "くるま",
+   "moras": [
+    "く",
+    "る",
+    "ま"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "壁",
+   "kind": "word",
+   "reading": "かべ",
+   "moras": [
+    "か",
+    "べ"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ぶつけ",
+   "kind": "word",
+   "reading": "ぶつけ",
+   "moras": [
+    "ぶ",
+    "つ",
+    "け"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "まし",
+   "kind": "word",
+   "reading": "まし",
+   "moras": [
+    "ま",
+    "し"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "車",
+   "kind": "word",
+   "reading": "くるま",
+   "moras": [
+    "く",
+    "る",
+    "ま"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "壁",
+   "kind": "word",
+   "reading": "かべ",
+   "moras": [
+    "か",
+    "べ"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ぶつかっ",
+   "kind": "word",
+   "reading": "ぶつかっ",
+   "moras": [
+    "ぶ",
+    "つ",
+    "か",
+    "っ"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "この",
+   "kind": "word",
+   "reading": "この",
+   "moras": [
+    "こ",
+    "の"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "薬",
+   "kind": "word",
+   "reading": "くすり",
+   "moras": [
+    "く",
+    "す",
+    "り"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "は",
+   "kind": "word",
+   "reading": "は",
+   "moras": [
+    "は"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "効か",
+   "kind": "word",
+   "reading": "きか",
+   "moras": [
+    "き",
+    "か"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "なかっ",
+   "kind": "word",
+   "reading": "なかっ",
+   "moras": [
+    "な",
+    "か",
+    "っ"
+   ],
+   "marks": [
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "カラー",
+   "kind": "word",
+   "reading": "からー",
+   "moras": [
+    "か",
+    "ら",
+    "ー"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "コーン",
+   "kind": "word",
+   "reading": "こーん",
+   "moras": [
+    "こ",
+    "ー",
+    "ん"
+   ],
+   "marks": [
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "なぎ倒し",
+   "kind": "word",
+   "reading": "なぎたおし",
+   "moras": [
+    "な",
+    "ぎ",
+    "た",
+    "お",
+    "し"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "accent": 4,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "道路",
+   "kind": "word",
+   "reading": "どうろ",
+   "moras": [
+    "ど",
+    "う",
+    "ろ"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "脇",
+   "kind": "word",
+   "reading": "わき",
+   "moras": [
+    "わ",
+    "き"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "壁",
+   "kind": "word",
+   "reading": "かべ",
+   "moras": [
+    "か",
+    "べ"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "衝突",
+   "kind": "word",
+   "reading": "しょうとつ",
+   "moras": [
+    "しょ",
+    "う",
+    "と",
+    "つ"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "目撃",
+   "kind": "word",
+   "reading": "もくげき",
+   "moras": [
+    "も",
+    "く",
+    "げ",
+    "き"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "者",
+   "kind": "word",
+   "reading": "しゃ",
+   "moras": [
+    "しゃ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "車",
+   "kind": "word",
+   "reading": "くるま",
+   "moras": [
+    "く",
+    "る",
+    "ま"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "も",
+   "kind": "word",
+   "reading": "も",
+   "moras": [
+    "も"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ぶつかり",
+   "kind": "word",
+   "reading": "ぶつかり",
+   "moras": [
+    "ぶ",
+    "つ",
+    "か",
+    "り"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "まし",
+   "kind": "word",
+   "reading": "まし",
+   "moras": [
+    "ま",
+    "し"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "最初",
+   "kind": "word",
+   "reading": "さいしょ",
+   "moras": [
+    "さ",
+    "い",
+    "しょ"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "後ろ",
+   "kind": "word",
+   "reading": "うしろ",
+   "moras": [
+    "う",
+    "し",
+    "ろ"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "で",
+   "kind": "word",
+   "reading": "で",
+   "moras": [
+    "で"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "何",
+   "kind": "word",
+   "reading": "なに",
+   "moras": [
+    "な",
+    "に"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "か",
+   "kind": "word",
+   "reading": "か",
+   "moras": [
+    "か"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "事故",
+   "kind": "word",
+   "reading": "じこ",
+   "moras": [
+    "じ",
+    "こ"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "あっ",
+   "kind": "word",
+   "reading": "あっ",
+   "moras": [
+    "あ",
+    "っ"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "か",
+   "kind": "word",
+   "reading": "か",
+   "moras": [
+    "か"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "な",
+   "kind": "word",
+   "reading": "な",
+   "moras": [
+    "な"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "いう",
+   "kind": "word",
+   "reading": "いう",
+   "moras": [
+    "い",
+    "う"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ふう",
+   "kind": "word",
+   "reading": "ふう",
+   "moras": [
+    "ふ",
+    "う"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "思っ",
+   "kind": "word",
+   "reading": "おもっ",
+   "moras": [
+    "お",
+    "も",
+    "っ"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "て",
+   "kind": "word",
+   "reading": "て",
+   "moras": [
+    "て"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ところ",
+   "kind": "word",
+   "reading": "ところ",
+   "moras": [
+    "と",
+    "こ",
+    "ろ"
+   ],
+   "marks": [
+    0,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "急",
+   "kind": "word",
+   "reading": "きゅう",
+   "moras": [
+    "きゅ",
+    "う"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "左側",
+   "kind": "word",
+   "reading": "ひだりがわ",
+   "moras": [
+    "ひ",
+    "だ",
+    "り",
+    "が",
+    "わ"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "車",
+   "kind": "word",
+   "reading": "くるま",
+   "moras": [
+    "く",
+    "る",
+    "ま"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "現れ",
+   "kind": "word",
+   "reading": "あらわれ",
+   "moras": [
+    "あ",
+    "ら",
+    "わ",
+    "れ"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "で",
+   "kind": "word",
+   "reading": "で",
+   "moras": [
+    "で"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "もう",
+   "kind": "word",
+   "reading": "もう",
+   "moras": [
+    "も",
+    "う"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "驚い",
+   "kind": "word",
+   "reading": "おどろい",
+   "moras": [
+    "お",
+    "ど",
+    "ろ",
+    "い"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "って",
+   "kind": "word",
+   "reading": "って",
+   "moras": [
+    "っ",
+    "て"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "いう",
+   "kind": "word",
+   "reading": "いう",
+   "moras": [
+    "い",
+    "う"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": 1,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "まさに",
+   "kind": "word",
+   "reading": "まさに",
+   "moras": [
+    "ま",
+    "さ",
+    "に"
+   ],
+   "marks": [
+    2,
+    0,
+    0
+   ],
+   "accent": 1,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "その",
+   "kind": "word",
+   "reading": "その",
+   "moras": [
+    "そ",
+    "の"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "一言",
+   "kind": "word",
+   "reading": "ひとこと",
+   "moras": [
+    "ひ",
+    "と",
+    "こ",
+    "と"
+   ],
+   "marks": [
+    0,
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "です",
+   "kind": "word",
+   "reading": "です",
+   "moras": [
+    "で",
+    "す"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ね",
+   "kind": "word",
+   "reading": "ね",
+   "moras": [
+    "ね"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "どこ",
+   "kind": "word",
+   "reading": "どこ",
+   "moras": [
+    "ど",
+    "こ"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "から",
+   "kind": "word",
+   "reading": "から",
+   "moras": [
+    "か",
+    "ら"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "来",
+   "kind": "word",
+   "reading": "き",
+   "moras": [
+    "き"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ん",
+   "kind": "word",
+   "reading": "ん",
+   "moras": [
+    "ん"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "だ",
+   "kind": "word",
+   "reading": "だ",
+   "moras": [
+    "だ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "って",
+   "kind": "word",
+   "reading": "って",
+   "moras": [
+    "っ",
+    "て"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "いう",
+   "kind": "word",
+   "reading": "いう",
+   "moras": [
+    "い",
+    "う"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "警視",
+   "kind": "word",
+   "reading": "けいし",
+   "moras": [
+    "け",
+    "い",
+    "し"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "庁",
+   "kind": "word",
+   "reading": "ちょう",
+   "moras": [
+    "ちょ",
+    "う"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "よる",
+   "kind": "word",
+   "reading": "よる",
+   "moras": [
+    "よ",
+    "る"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "軽",
+   "kind": "word",
+   "reading": "けい",
+   "moras": [
+    "け",
+    "い"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "自動",
+   "kind": "word",
+   "reading": "じどう",
+   "moras": [
+    "じ",
+    "ど",
+    "う"
+   ],
+   "marks": [
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "車",
+   "kind": "word",
+   "reading": "しゃ",
+   "moras": [
+    "しゃ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "運転",
+   "kind": "word",
+   "reading": "うんてん",
+   "moras": [
+    "う",
+    "ん",
+    "て",
+    "ん"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "手",
+   "kind": "word",
+   "reading": "しゅ",
+   "moras": [
+    "しゅ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "は",
+   "kind": "word",
+   "reading": "は",
+   "moras": [
+    "は"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "高齢",
+   "kind": "word",
+   "reading": "こうれい",
+   "moras": [
+    "こ",
+    "う",
+    "れ",
+    "い"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "者",
+   "kind": "word",
+   "reading": "しゃ",
+   "moras": [
+    "しゃ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "でし",
+   "kind": "word",
+   "reading": "でし",
+   "moras": [
+    "で",
+    "し"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "様子",
+   "kind": "word",
+   "reading": "ようす",
+   "moras": [
+    "よ",
+    "う",
+    "す"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "見",
+   "kind": "word",
+   "reading": "み",
+   "moras": [
+    "み"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "行っ",
+   "kind": "word",
+   "reading": "いっ",
+   "moras": [
+    "い",
+    "っ"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "時",
+   "kind": "word",
+   "reading": "とき",
+   "moras": [
+    "と",
+    "き"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "は",
+   "kind": "word",
+   "reading": "は",
+   "moras": [
+    "は"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "なん",
+   "kind": "word",
+   "reading": "なん",
+   "moras": [
+    "な",
+    "ん"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "か",
+   "kind": "word",
+   "reading": "か",
+   "moras": [
+    "か"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "もう",
+   "kind": "word",
+   "reading": "もう",
+   "moras": [
+    "も",
+    "う"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "呆然",
+   "kind": "word",
+   "reading": "ぼうぜん",
+   "moras": [
+    "ぼ",
+    "う",
+    "ぜ",
+    "ん"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "いう",
+   "kind": "word",
+   "reading": "いう",
+   "moras": [
+    "い",
+    "う"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "か",
+   "kind": "word",
+   "reading": "か",
+   "moras": [
+    "か"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "なん",
+   "kind": "word",
+   "reading": "なん",
+   "moras": [
+    "な",
+    "ん"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "か",
+   "kind": "word",
+   "reading": "か",
+   "moras": [
+    "か"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "わけ",
+   "kind": "word",
+   "reading": "わけ",
+   "moras": [
+    "わ",
+    "け"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "わかん",
+   "kind": "word",
+   "reading": "わかん",
+   "moras": [
+    "わ",
+    "か",
+    "ん"
+   ],
+   "marks": [
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ない",
+   "kind": "word",
+   "reading": "ない",
+   "moras": [
+    "な",
+    "い"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": 1,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "状態",
+   "kind": "word",
+   "reading": "じょうたい",
+   "moras": [
+    "じょ",
+    "う",
+    "た",
+    "い"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "だっ",
+   "kind": "word",
+   "reading": "だっ",
+   "moras": [
+    "だ",
+    "っ"
+   ],
+   "marks": [
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "みたい",
+   "kind": "word",
+   "reading": "みたい",
+   "moras": [
+    "み",
+    "た",
+    "い"
+   ],
+   "marks": [
+    0,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "です",
+   "kind": "word",
+   "reading": "です",
+   "moras": [
+    "で",
+    "す"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ね",
+   "kind": "word",
+   "reading": "ね",
+   "moras": [
+    "ね"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "どう",
+   "kind": "word",
+   "reading": "どう",
+   "moras": [
+    "ど",
+    "う"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "し",
+   "kind": "word",
+   "reading": "し",
+   "moras": [
+    "し"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "って",
+   "kind": "word",
+   "reading": "って",
+   "moras": [
+    "っ",
+    "て"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "聞い",
+   "kind": "word",
+   "reading": "きい",
+   "moras": [
+    "き",
+    "い"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "たら",
+   "kind": "word",
+   "reading": "たら",
+   "moras": [
+    "た",
+    "ら"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "いや",
+   "kind": "word",
+   "reading": "いや",
+   "moras": [
+    "い",
+    "や"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 2,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "ブレーキ",
+   "kind": "word",
+   "reading": "ぶれーき",
+   "moras": [
+    "ぶ",
+    "れ",
+    "ー",
+    "き"
+   ],
+   "marks": [
+    0,
+    2,
+    0,
+    0
+   ],
+   "accent": 2,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "踏ん",
+   "kind": "word",
+   "reading": "ふん",
+   "moras": [
+    "ふ",
+    "ん"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "だ",
+   "kind": "word",
+   "reading": "だ",
+   "moras": [
+    "だ"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ん",
+   "kind": "word",
+   "reading": "ん",
+   "moras": [
+    "ん"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "だ",
+   "kind": "word",
+   "reading": "だ",
+   "moras": [
+    "だ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "けど",
+   "kind": "word",
+   "reading": "けど",
+   "moras": [
+    "け",
+    "ど"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "効か",
+   "kind": "word",
+   "reading": "きか",
+   "moras": [
+    "き",
+    "か"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "なかっ",
+   "kind": "word",
+   "reading": "なかっ",
+   "moras": [
+    "な",
+    "か",
+    "っ"
+   ],
+   "marks": [
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "って",
+   "kind": "word",
+   "reading": "って",
+   "moras": [
+    "っ",
+    "て"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "いう",
+   "kind": "word",
+   "reading": "いう",
+   "moras": [
+    "い",
+    "う"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "よう",
+   "kind": "word",
+   "reading": "よう",
+   "moras": [
+    "よ",
+    "う"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "な",
+   "kind": "word",
+   "reading": "な",
+   "moras": [
+    "な"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "こと",
+   "kind": "word",
+   "reading": "こと",
+   "moras": [
+    "こ",
+    "と"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "言っ",
+   "kind": "word",
+   "reading": "いっ",
+   "moras": [
+    "い",
+    "っ"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "て",
+   "kind": "word",
+   "reading": "て",
+   "moras": [
+    "て"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "で",
+   "kind": "word",
+   "reading": "で",
+   "moras": [
+    "で"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "軽",
+   "kind": "word",
+   "reading": "けい",
+   "moras": [
+    "け",
+    "い"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "自動",
+   "kind": "word",
+   "reading": "じどう",
+   "moras": [
+    "じ",
+    "ど",
+    "う"
+   ],
+   "marks": [
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "車",
+   "kind": "word",
+   "reading": "しゃ",
+   "moras": [
+    "しゃ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "運転",
+   "kind": "word",
+   "reading": "うんてん",
+   "moras": [
+    "う",
+    "ん",
+    "て",
+    "ん"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "手",
+   "kind": "word",
+   "reading": "しゅ",
+   "moras": [
+    "しゅ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "同乗",
+   "kind": "word",
+   "reading": "どうじょう",
+   "moras": [
+    "ど",
+    "う",
+    "じょ",
+    "う"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "者",
+   "kind": "word",
+   "reading": "しゃ",
+   "moras": [
+    "しゃ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "2人",
+   "kind": "word",
+   "reading": "ふたり",
+   "moras": [
+    "ふ",
+    "た",
+    "り"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "は",
+   "kind": "word",
+   "reading": "は",
+   "moras": [
+    "は"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "怪我",
+   "kind": "word",
+   "reading": "けが",
+   "moras": [
+    "け",
+    "が"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "し",
+   "kind": "word",
+   "reading": "し",
+   "moras": [
+    "し"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "て",
+   "kind": "word",
+   "reading": "て",
+   "moras": [
+    "て"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "救急",
+   "kind": "word",
+   "reading": "きゅうきゅう",
+   "moras": [
+    "きゅ",
+    "う",
+    "きゅ",
+    "う"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "搬送",
+   "kind": "word",
+   "reading": "はんそう",
+   "moras": [
+    "は",
+    "ん",
+    "そ",
+    "う"
+   ],
+   "marks": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "さ",
+   "kind": "word",
+   "reading": "さ",
+   "moras": [
+    "さ"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "れ",
+   "kind": "word",
+   "reading": "れ",
+   "moras": [
+    "れ"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "て",
+   "kind": "word",
+   "reading": "て",
+   "moras": [
+    "て"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "い",
+   "kind": "word",
+   "reading": "い",
+   "moras": [
+    "い"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "て",
+   "kind": "word",
+   "reading": "て",
+   "moras": [
+    "て"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "警視",
+   "kind": "word",
+   "reading": "けいし",
+   "moras": [
+    "け",
+    "い",
+    "し"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "庁",
+   "kind": "word",
+   "reading": "ちょう",
+   "moras": [
+    "ちょ",
+    "う"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "詳しい",
+   "kind": "word",
+   "reading": "くわしい",
+   "moras": [
+    "く",
+    "わ",
+    "し",
+    "い"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": 3,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "状況",
+   "kind": "word",
+   "reading": "じょうきょう",
+   "moras": [
+    "じょ",
+    "う",
+    "きょ",
+    "う"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "調べ",
+   "kind": "word",
+   "reading": "しらべ",
+   "moras": [
+    "し",
+    "ら",
+    "べ"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "て",
+   "kind": "word",
+   "reading": "て",
+   "moras": [
+    "て"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "い",
+   "kind": "word",
+   "reading": "い",
+   "moras": [
+    "い"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ます",
+   "kind": "word",
+   "reading": "ます",
+   "moras": [
+    "ま",
+    "す"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "〜",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ところ",
+   "kind": "word",
+   "reading": "ところ",
+   "moras": [
+    "と",
+    "こ",
+    "ろ"
+   ],
+   "marks": [
+    1,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "事故",
+   "kind": "word",
+   "reading": "じこ",
+   "moras": [
+    "じ",
+    "こ"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "あっ",
+   "kind": "word",
+   "reading": "あっ",
+   "moras": [
+    "あ",
+    "っ"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "か",
+   "kind": "word",
+   "reading": "か",
+   "moras": [
+    "か"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "な",
+   "kind": "word",
+   "reading": "な",
+   "moras": [
+    "な"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "思っ",
+   "kind": "word",
+   "reading": "おもっ",
+   "moras": [
+    "お",
+    "も",
+    "っ"
+   ],
+   "marks": [
+    0,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "て",
+   "kind": "word",
+   "reading": "て",
+   "moras": [
+    "て"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "い",
+   "kind": "word",
+   "reading": "い",
+   "moras": [
+    "い"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ところ",
+   "kind": "word",
+   "reading": "ところ",
+   "moras": [
+    "と",
+    "こ",
+    "ろ"
+   ],
+   "marks": [
+    0,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "〜",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "時",
+   "kind": "word",
+   "reading": "とき",
+   "moras": [
+    "と",
+    "き"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": 1,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "様子",
+   "kind": "word",
+   "reading": "ようす",
+   "moras": [
+    "よ",
+    "う",
+    "す"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "見",
+   "kind": "word",
+   "reading": "み",
+   "moras": [
+    "み"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "行っ",
+   "kind": "word",
+   "reading": "いっ",
+   "moras": [
+    "い",
+    "っ"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "時",
+   "kind": "word",
+   "reading": "とき",
+   "moras": [
+    "と",
+    "き"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "は",
+   "kind": "word",
+   "reading": "は",
+   "moras": [
+    "は"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "急",
+   "kind": "word",
+   "reading": "きゅう",
+   "moras": [
+    "きゅ",
+    "う"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "左側",
+   "kind": "word",
+   "reading": "ひだりがわ",
+   "moras": [
+    "ひ",
+    "だ",
+    "り",
+    "が",
+    "わ"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "車",
+   "kind": "word",
+   "reading": "くるま",
+   "moras": [
+    "く",
+    "る",
+    "ま"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "現れ",
+   "kind": "word",
+   "reading": "あらわれ",
+   "moras": [
+    "あ",
+    "ら",
+    "わ",
+    "れ"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "左側",
+   "kind": "word",
+   "reading": "ひだりがわ",
+   "moras": [
+    "ひ",
+    "だ",
+    "り",
+    "が",
+    "わ"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "スタバ",
+   "kind": "word",
+   "reading": "すたば",
+   "moras": [
+    "す",
+    "た",
+    "ば"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "見え",
+   "kind": "word",
+   "reading": "みえ",
+   "moras": [
+    "み",
+    "え"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ます",
+   "kind": "word",
+   "reading": "ます",
+   "moras": [
+    "ま",
+    "す"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "心配",
+   "kind": "word",
+   "reading": "しんぱい",
+   "moras": [
+    "し",
+    "ん",
+    "ぱ",
+    "い"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "し",
+   "kind": "word",
+   "reading": "し",
+   "moras": [
+    "し"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ない",
+   "kind": "word",
+   "reading": "ない",
+   "moras": [
+    "な",
+    "い"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "で",
+   "kind": "word",
+   "reading": "で",
+   "moras": [
+    "で"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ください",
+   "kind": "word",
+   "reading": "ください",
+   "moras": [
+    "く",
+    "だ",
+    "さ",
+    "い"
+   ],
+   "marks": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "きっと",
+   "kind": "word",
+   "reading": "きっと",
+   "moras": [
+    "き",
+    "っ",
+    "と"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": 3,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "いい",
+   "kind": "word",
+   "reading": "いい",
+   "moras": [
+    "い",
+    "い"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": 1,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "人",
+   "kind": "word",
+   "reading": "ひと",
+   "moras": [
+    "ひ",
+    "と"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "現れる",
+   "kind": "word",
+   "reading": "あらわれる",
+   "moras": [
+    "あ",
+    "ら",
+    "わ",
+    "れ",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "から",
+   "kind": "word",
+   "reading": "から",
+   "moras": [
+    "か",
+    "ら"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "安心",
+   "kind": "word",
+   "reading": "あんしん",
+   "moras": [
+    "あ",
+    "ん",
+    "し",
+    "ん"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "し",
+   "kind": "word",
+   "reading": "し",
+   "moras": [
+    "し"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "て",
+   "kind": "word",
+   "reading": "て",
+   "moras": [
+    "て"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "きっと",
+   "kind": "word",
+   "reading": "きっと",
+   "moras": [
+    "き",
+    "っ",
+    "と"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": 3,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "いい",
+   "kind": "word",
+   "reading": "いい",
+   "moras": [
+    "い",
+    "い"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": 1,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "人",
+   "kind": "word",
+   "reading": "ひと",
+   "moras": [
+    "ひ",
+    "と"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "現れる",
+   "kind": "word",
+   "reading": "あらわれる",
+   "moras": [
+    "あ",
+    "ら",
+    "わ",
+    "れ",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "から",
+   "kind": "word",
+   "reading": "から",
+   "moras": [
+    "か",
+    "ら"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "もう",
+   "kind": "word",
+   "reading": "もう",
+   "moras": [
+    "も",
+    "う"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "驚い",
+   "kind": "word",
+   "reading": "おどろい",
+   "moras": [
+    "お",
+    "ど",
+    "ろ",
+    "い"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "って",
+   "kind": "word",
+   "reading": "って",
+   "moras": [
+    "っ",
+    "て"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "いう",
+   "kind": "word",
+   "reading": "いう",
+   "moras": [
+    "い",
+    "う"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "感じ",
+   "kind": "word",
+   "reading": "かんじ",
+   "moras": [
+    "か",
+    "ん",
+    "じ"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "です",
+   "kind": "word",
+   "reading": "です",
+   "moras": [
+    "で",
+    "す"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ね",
+   "kind": "word",
+   "reading": "ね",
+   "moras": [
+    "ね"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "まさに",
+   "kind": "word",
+   "reading": "まさに",
+   "moras": [
+    "ま",
+    "さ",
+    "に"
+   ],
+   "marks": [
+    2,
+    0,
+    0
+   ],
+   "accent": 1,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "その",
+   "kind": "word",
+   "reading": "その",
+   "moras": [
+    "そ",
+    "の"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "一言",
+   "kind": "word",
+   "reading": "ひとこと",
+   "moras": [
+    "ひ",
+    "と",
+    "こ",
+    "と"
+   ],
+   "marks": [
+    0,
+    2,
+    0,
+    0
+   ],
+   "accent": 2,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "わけ",
+   "kind": "word",
+   "reading": "わけ",
+   "moras": [
+    "わ",
+    "け"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "わかん",
+   "kind": "word",
+   "reading": "わかん",
+   "moras": [
+    "わ",
+    "か",
+    "ん"
+   ],
+   "marks": [
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ない",
+   "kind": "word",
+   "reading": "ない",
+   "moras": [
+    "な",
+    "い"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": 1,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "〜",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "みたい",
+   "kind": "word",
+   "reading": "みたい",
+   "moras": [
+    "み",
+    "た",
+    "い"
+   ],
+   "marks": [
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "です",
+   "kind": "word",
+   "reading": "です",
+   "moras": [
+    "で",
+    "す"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "〜",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "いう",
+   "kind": "word",
+   "reading": "いう",
+   "moras": [
+    "い",
+    "う"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "か",
+   "kind": "word",
+   "reading": "か",
+   "moras": [
+    "か"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "警視",
+   "kind": "word",
+   "reading": "けいし",
+   "moras": [
+    "け",
+    "い",
+    "し"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "庁",
+   "kind": "word",
+   "reading": "ちょう",
+   "moras": [
+    "ちょ",
+    "う"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "よる",
+   "kind": "word",
+   "reading": "よる",
+   "moras": [
+    "よ",
+    "る"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "〜",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "って",
+   "kind": "word",
+   "reading": "って",
+   "moras": [
+    "っ",
+    "て"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "聞い",
+   "kind": "word",
+   "reading": "きい",
+   "moras": [
+    "き",
+    "い"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "たら",
+   "kind": "word",
+   "reading": "たら",
+   "moras": [
+    "た",
+    "ら"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "どう",
+   "kind": "word",
+   "reading": "どう",
+   "moras": [
+    "ど",
+    "う"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "し",
+   "kind": "word",
+   "reading": "し",
+   "moras": [
+    "し"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "って",
+   "kind": "word",
+   "reading": "って",
+   "moras": [
+    "っ",
+    "て"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "聞い",
+   "kind": "word",
+   "reading": "きい",
+   "moras": [
+    "き",
+    "い"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "たら",
+   "kind": "word",
+   "reading": "たら",
+   "moras": [
+    "た",
+    "ら"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "、",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "ブレーキ",
+   "kind": "word",
+   "reading": "ぶれーき",
+   "moras": [
+    "ぶ",
+    "れ",
+    "ー",
+    "き"
+   ],
+   "marks": [
+    0,
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "踏ん",
+   "kind": "word",
+   "reading": "ふん",
+   "moras": [
+    "ふ",
+    "ん"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "だ",
+   "kind": "word",
+   "reading": "だ",
+   "moras": [
+    "だ"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ん",
+   "kind": "word",
+   "reading": "ん",
+   "moras": [
+    "ん"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "だ",
+   "kind": "word",
+   "reading": "だ",
+   "moras": [
+    "だ"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "けど",
+   "kind": "word",
+   "reading": "けど",
+   "moras": [
+    "け",
+    "ど"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "効か",
+   "kind": "word",
+   "reading": "きか",
+   "moras": [
+    "き",
+    "か"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "なかっ",
+   "kind": "word",
+   "reading": "なかっ",
+   "moras": [
+    "な",
+    "か",
+    "っ"
+   ],
+   "marks": [
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "おじ",
+   "kind": "word",
+   "reading": "おじ",
+   "moras": [
+    "お",
+    "じ"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "さん",
+   "kind": "word",
+   "reading": "さん",
+   "moras": [
+    "さ",
+    "ん"
+   ],
+   "marks": [
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "言っ",
+   "kind": "word",
+   "reading": "いっ",
+   "moras": [
+    "い",
+    "っ"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "て",
+   "kind": "word",
+   "reading": "て",
+   "moras": [
+    "て"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "い",
+   "kind": "word",
+   "reading": "い",
+   "moras": [
+    "い"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "まし",
+   "kind": "word",
+   "reading": "まし",
+   "moras": [
+    "ま",
+    "し"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "Ａ",
+   "kind": "word",
+   "reading": "えい",
+   "moras": [
+    "え",
+    "い"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "いう",
+   "kind": "word",
+   "reading": "いう",
+   "moras": [
+    "い",
+    "う"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "Ｂ",
+   "kind": "word",
+   "reading": "びー",
+   "moras": [
+    "び",
+    "ー"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "〜",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "って",
+   "kind": "word",
+   "reading": "って",
+   "moras": [
+    "っ",
+    "て"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": 0,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "いう",
+   "kind": "word",
+   "reading": "いう",
+   "moras": [
+    "い",
+    "う"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "よう",
+   "kind": "word",
+   "reading": "よう",
+   "moras": [
+    "よ",
+    "う"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "な",
+   "kind": "word",
+   "reading": "な",
+   "moras": [
+    "な"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "こと",
+   "kind": "word",
+   "reading": "こと",
+   "moras": [
+    "こ",
+    "と"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "Ａ",
+   "kind": "word",
+   "reading": "えい",
+   "moras": [
+    "え",
+    "い"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "さん",
+   "kind": "word",
+   "reading": "さん",
+   "moras": [
+    "さ",
+    "ん"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "いう",
+   "kind": "word",
+   "reading": "いう",
+   "moras": [
+    "い",
+    "う"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "人",
+   "kind": "word",
+   "reading": "ひと",
+   "moras": [
+    "ひ",
+    "と"
+   ],
+   "marks": [
+    0,
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "ボール",
+   "kind": "word",
+   "reading": "ぼーる",
+   "moras": [
+    "ぼ",
+    "ー",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "ピン",
+   "kind": "word",
+   "reading": "ぴん",
+   "moras": [
+    "ぴ",
+    "ん"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "次々",
+   "kind": "word",
+   "reading": "つぎつぎ",
+   "moras": [
+    "つ",
+    "ぎ",
+    "つ",
+    "ぎ"
+   ],
+   "marks": [
+    0,
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "と",
+   "kind": "word",
+   "reading": "と",
+   "moras": [
+    "と"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "なぎ倒し",
+   "kind": "word",
+   "reading": "なぎたおし",
+   "moras": [
+    "な",
+    "ぎ",
+    "た",
+    "お",
+    "し"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "強風",
+   "kind": "word",
+   "reading": "きょうふう",
+   "moras": [
+    "きょ",
+    "う",
+    "ふ",
+    "う"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "で",
+   "kind": "word",
+   "reading": "で",
+   "moras": [
+    "で"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "木々",
+   "kind": "word",
+   "reading": "きぎ",
+   "moras": [
+    "き",
+    "ぎ"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "なぎ倒さ",
+   "kind": "word",
+   "reading": "なぎたおさ",
+   "moras": [
+    "な",
+    "ぎ",
+    "た",
+    "お",
+    "さ"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "れ",
+   "kind": "word",
+   "reading": "れ",
+   "moras": [
+    "れ"
+   ],
+   "marks": [
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "クマ",
+   "kind": "word",
+   "reading": "くま",
+   "moras": [
+    "く",
+    "ま"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "畑",
+   "kind": "word",
+   "reading": "はたけ",
+   "moras": [
+    "は",
+    "た",
+    "け"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "の",
+   "kind": "word",
+   "reading": "の",
+   "moras": [
+    "の"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "作物",
+   "kind": "word",
+   "reading": "さくもつ",
+   "moras": [
+    "さ",
+    "く",
+    "も",
+    "つ"
+   ],
+   "marks": [
+    0,
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "なぎ倒し",
+   "kind": "word",
+   "reading": "なぎたおし",
+   "moras": [
+    "な",
+    "ぎ",
+    "た",
+    "お",
+    "し"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "て",
+   "kind": "word",
+   "reading": "て",
+   "moras": [
+    "て"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "いっ",
+   "kind": "word",
+   "reading": "いっ",
+   "moras": [
+    "い",
+    "っ"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "ブレーキ",
+   "kind": "word",
+   "reading": "ぶれーき",
+   "moras": [
+    "ぶ",
+    "れ",
+    "ー",
+    "き"
+   ],
+   "marks": [
+    0,
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "を",
+   "kind": "word",
+   "reading": "を",
+   "moras": [
+    "を"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "踏ん",
+   "kind": "word",
+   "reading": "ふん",
+   "moras": [
+    "ふ",
+    "ん"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "だ",
+   "kind": "word",
+   "reading": "だ",
+   "moras": [
+    "だ"
+   ],
+   "marks": [
+    2
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "けど",
+   "kind": "word",
+   "reading": "けど",
+   "moras": [
+    "け",
+    "ど"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "効か",
+   "kind": "word",
+   "reading": "きか",
+   "moras": [
+    "き",
+    "か"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "なかっ",
+   "kind": "word",
+   "reading": "なかっ",
+   "moras": [
+    "な",
+    "か",
+    "っ"
+   ],
+   "marks": [
+    2,
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "急",
+   "kind": "word",
+   "reading": "きゅう",
+   "moras": [
+    "きゅ",
+    "う"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "左側",
+   "kind": "word",
+   "reading": "ひだりがわ",
+   "moras": [
+    "ひ",
+    "だ",
+    "り",
+    "が",
+    "わ"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "に",
+   "kind": "word",
+   "reading": "に",
+   "moras": [
+    "に"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "車",
+   "kind": "word",
+   "reading": "くるま",
+   "moras": [
+    "く",
+    "る",
+    "ま"
+   ],
+   "marks": [
+    0,
+    1,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "現れ",
+   "kind": "word",
+   "reading": "あらわれ",
+   "moras": [
+    "あ",
+    "ら",
+    "わ",
+    "れ"
+   ],
+   "marks": [
+    0,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "た",
+   "kind": "word",
+   "reading": "た",
+   "moras": [
+    "た"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "\n",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "きっと",
+   "kind": "word",
+   "reading": "きっと",
+   "moras": [
+    "き",
+    "っ",
+    "と"
+   ],
+   "marks": [
+    0,
+    1,
+    2
+   ],
+   "accent": 3,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "いい",
+   "kind": "word",
+   "reading": "いい",
+   "moras": [
+    "い",
+    "い"
+   ],
+   "marks": [
+    2,
+    0
+   ],
+   "accent": 1,
+   "status": "predicted",
+   "warnings": []
+  },
+  {
+   "surface": "人",
+   "kind": "word",
+   "reading": "ひと",
+   "moras": [
+    "ひ",
+    "と"
+   ],
+   "marks": [
+    0,
+    1
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "が",
+   "kind": "word",
+   "reading": "が",
+   "moras": [
+    "が"
+   ],
+   "marks": [
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "現れる",
+   "kind": "word",
+   "reading": "あらわれる",
+   "moras": [
+    "あ",
+    "ら",
+    "わ",
+    "れ",
+    "る"
+   ],
+   "marks": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "から",
+   "kind": "word",
+   "reading": "から",
+   "moras": [
+    "か",
+    "ら"
+   ],
+   "marks": [
+    0,
+    0
+   ],
+   "accent": null,
+   "status": "predicted",
+   "warnings": [
+    "phrase_accent_unresolved"
+   ]
+  },
+  {
+   "surface": "。",
+   "kind": "punctuation",
+   "reading": "",
+   "moras": [],
+   "marks": [],
+   "accent": null,
+   "status": "predicted",
+   "warnings": []
+  }
+ ]
+}

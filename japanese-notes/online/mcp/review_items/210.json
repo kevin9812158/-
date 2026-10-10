@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "返品", "zh": "退貨", "basis": "MCP 無警告（仍是預測）", "mcpReading": "へんぴん", "source": "{返|へん}{品|ぴん}#m:0112", "segs": [{"kana": ["へ", "ん", "ぴ", "ん"], "marks": [0, 1, 1, 2], "fromMcp": true, "units": [{"n": 2, "base": "返", "ruby": "へん", "gap": false}, {"n": 2, "base": "品", "ruby": "ぴん", "gap": false}], "after": ""}], "order": 210}

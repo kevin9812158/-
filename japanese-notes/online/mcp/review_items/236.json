@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "言える", "zh": "", "basis": "MCP 無警告（仍是預測）", "mcpReading": "いえる", "source": "{言|い}える#m:012", "segs": [{"kana": ["い", "え", "る"], "marks": [0, 1, 2], "fromMcp": true, "units": [{"n": 1, "base": "言", "ruby": "い", "gap": false}, {"n": 1, "base": "え", "ruby": null, "gap": false}, {"n": 1, "base": "る", "ruby": null, "gap": false}], "after": ""}], "order": 236}

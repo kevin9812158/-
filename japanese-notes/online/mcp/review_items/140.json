@@ -1,0 +1,1 @@
+{"risk": "高", "jp": "汚す", "zh": "", "basis": "號數未解：汚す", "mcpReading": "よごす", "source": "{汚|よご}す#m:020", "segs": [{"kana": ["よ", "ご", "す"], "marks": [0, 2, 0], "fromMcp": true, "units": [{"n": 2, "base": "汚", "ruby": "よご", "gap": false}, {"n": 1, "base": "す", "ruby": null, "gap": false}], "after": ""}], "order": 140}

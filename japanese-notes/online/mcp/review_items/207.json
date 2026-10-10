@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "ネット", "zh": "網路", "basis": "MCP 無警告（仍是預測）", "mcpReading": "ねっと", "source": "ネット#m:012", "segs": [{"kana": ["ね", "っ", "と"], "marks": [0, 1, 2], "fromMcp": true, "units": [{"n": 1, "base": "ネ", "ruby": null, "gap": false}, {"n": 1, "base": "ッ", "ruby": null, "gap": false}, {"n": 1, "base": "ト", "ruby": null, "gap": false}], "after": ""}], "order": 207}

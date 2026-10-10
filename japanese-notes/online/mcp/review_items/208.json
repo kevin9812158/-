@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "サイズ", "zh": "尺寸", "basis": "MCP 無警告（仍是預測）", "mcpReading": "さいず", "source": "サイズ#m:200", "segs": [{"kana": ["さ", "い", "ず"], "marks": [2, 0, 0], "fromMcp": true, "units": [{"n": 1, "base": "サ", "ruby": null, "gap": false}, {"n": 1, "base": "イ", "ruby": null, "gap": false}, {"n": 1, "base": "ズ", "ruby": null, "gap": false}], "after": ""}], "order": 208}

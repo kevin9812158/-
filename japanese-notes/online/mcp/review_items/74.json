@@ -1,0 +1,1 @@
+{"risk": "高", "jp": "交換", "zh": "換貨", "basis": "號數未解：交換", "mcpReading": "こうかん", "source": "{交|こう}{換|かん}#m:0112", "segs": [{"kana": ["こ", "う", "か", "ん"], "marks": [0, 1, 1, 2], "fromMcp": true, "units": [{"n": 2, "base": "交", "ruby": "こう", "gap": false}, {"n": 2, "base": "換", "ruby": "かん", "gap": false}], "after": ""}], "order": 74}

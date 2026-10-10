@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "叩く", "zh": "五段動詞", "basis": "MCP 無警告（仍是預測）", "mcpReading": "たたく", "source": "{叩|たた}く#m:020", "segs": [{"kana": ["た", "た", "く"], "marks": [0, 2, 0], "fromMcp": true, "units": [{"n": 2, "base": "叩", "ruby": "たた", "gap": false}, {"n": 1, "base": "く", "ruby": null, "gap": false}], "after": ""}], "order": 214}

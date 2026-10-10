@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "〜時", "zh": "…的時候", "basis": "MCP 無警告（仍是預測）", "mcpReading": "とき", "source": "!〜／{時|とき}#m:20", "segs": [{"kana": ["と", "き"], "marks": [2, 0], "fromMcp": true, "units": [{"n": 2, "base": "時", "ruby": "とき", "gap": false}], "after": ""}], "order": 243}

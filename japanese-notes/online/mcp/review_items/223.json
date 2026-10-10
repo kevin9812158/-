@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "塗れる", "zh": "", "basis": "MCP 無警告（仍是預測）", "mcpReading": "ぬれる", "source": "{塗|ぬ}れる#m:012", "segs": [{"kana": ["ぬ", "れ", "る"], "marks": [0, 1, 2], "fromMcp": true, "units": [{"n": 1, "base": "塗", "ruby": "ぬ", "gap": false}, {"n": 1, "base": "れ", "ruby": null, "gap": false}, {"n": 1, "base": "る", "ruby": null, "gap": false}], "after": ""}], "order": 223}

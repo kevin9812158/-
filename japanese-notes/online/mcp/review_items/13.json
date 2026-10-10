@@ -1,0 +1,1 @@
+{"risk": "高", "jp": "言う", "zh": "", "basis": "讀音和 MCP 不一致（MCP 讀 ゆう），暫畫 0 號", "mcpReading": "ゆう", "source": "{言|い}う", "segs": [{"kana": ["い", "う"], "marks": [0, 1], "fromMcp": false, "units": [{"n": 1, "base": "言", "ruby": "い", "gap": false}, {"n": 1, "base": "う", "ruby": null, "gap": false}], "after": ""}], "order": 13}

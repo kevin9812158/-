@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "登る", "zh": "", "basis": "MCP 無警告（仍是預測）", "mcpReading": "のぼる", "source": "{登|のぼ}る#m:012", "segs": [{"kana": ["の", "ぼ", "る"], "marks": [0, 1, 2], "fromMcp": true, "units": [{"n": 2, "base": "登", "ruby": "のぼ", "gap": false}, {"n": 1, "base": "る", "ruby": null, "gap": false}], "after": ""}], "order": 229}

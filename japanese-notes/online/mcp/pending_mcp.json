@@ -1,0 +1,1604 @@
+[
+  {
+    "level": "高",
+    "item": "モバイルバッテリー",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：モバイル、バッテリー（モバイル [0, 1, 1, 1]、バッテリー [2, 0, 0, 0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "充電器",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：充電、器（充電 [0, 1, 1, 2]、器 [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "充電アダプタ",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：充電、アダプタ（充電 [0, 1, 1, 1]、アダプタ [1, 2, 0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "充電ケーブル",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：充電、ケーブル（充電 [0, 1, 1, 2]、ケーブル [0, 0, 0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "プラグ",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（プラグ [2, 0, 0]（1號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "スマホの充電器を貸していただけますか？",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：スマホ、の、充電、器、を、貸し、て、いただけ、ます、か（スマホ [0, 1, 1]、の [0]、充電 [0, 1, 1, 2]、器 [0]、を [0]、貸し [0, 1]、て [2]、いただけ [0, 1, 1, 1]、ます [2, 0]、か [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "充電器でもいい？爆速で充電できるよ。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：充電、器、で、も、爆、速、で、充電、できる、よ（充電 [0, 1, 1, 2]、器 [0]、で [0]、も [0]、いい [0, 2]（0號）、爆 [0, 2]、速 [0, 0]、で [0]、充電 [0, 1, 1, 2]、できる [0, 2, 0]、よ [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "色が移る",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：色、が（色 [0, 2]、が [0]、移る [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "洗濯機からTシャツを出したら、服に色が移ってしまっていた。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：洗濯、機、から、T、シャツ、を、出し、たら、服、に、色、が、移っ、て、しまっ、て、い、た（洗濯 [0, 1, 1, 2]、機 [0]、から [0, 0]、T [0, 1]、シャツ [1, 1]、を [0]、出し [2, 0]、たら [0, 0]、服 [0, 2]、に [0]、色 [0, 2]、が [0]、移っ [0, 2, 0]、て [0]、しまっ [0, 0, 0]、て [0]、い [0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "色移り",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（色移り [0, 1, 2, 0, 0]（3號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "洗濯機からTシャツを出したら、白いシャツに色移りしてしまっていた。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：洗濯、機、から、T、シャツ、を、出し、たら、白い、シャツ、に、色移り、し、て、しまっ、て、い、た（洗濯 [0, 1, 1, 2]、機 [0]、から [0, 0]、T [0, 1]、シャツ [1, 1]、を [0]、出し [2, 0]、たら [0, 0]、白い [0, 2, 0]、シャツ [2, 0]、に [0]、色移り [0, 2, 0, 1, 1]、し [1]、て [1]、しまっ [1, 1, 1]、て [1]、い [1]、た [2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "〜しか〜ない",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（しか [2, 0]（1號）、ない [2, 0]（1號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "卵が1個しかない。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：卵、が、1、個、しか、ない（卵 [0, 2, 0]、が [0]、1 [2, 0]、個 [0]、しか [0, 0]、ない [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "卵が1つしかありません。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：卵、が、1、つ、しか、あり、ませ、ん（卵 [0, 2, 0]、が [0]、1 [0, 2]、つ [0]、しか [0, 0]、あり [2, 0]、ませ [0, 0]、ん [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "卵が1個しか残っていない。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：卵、が、1、個、しか、残っ、て、い、ない（卵 [0, 2, 0]、が [0]、1 [2, 0]、個 [0]、しか [0, 0]、残っ [0, 2, 0]、て [0]、い [0]、ない [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "〜も〜ない",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（も [2]（0號）、ない [2, 0]（1號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "卵が1個もない。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：卵、が、1、個、も、ない（卵 [0, 2, 0]、が [0]、1 [2, 0]、個 [0]、も [0]、ない [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "卵が1個も残っていない。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：卵、が、1、個、も、残っ、て、い、ない（卵 [0, 2, 0]、が [0]、1 [2, 0]、個 [0]、も [0]、残っ [0, 2, 0]、て [0]、い [0]、ない [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "階段を登る",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：階段、を（階段 [0, 1, 1, 1]、を [0]、登る [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "山に登る",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：山、に（山 [0, 2]、に [0]、登る [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "山道を上る",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：山道、を（山道 [0, 1, 1, 1]、を [0]、上る [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "定休日",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：定休、日（定休 [0, 1, 1, 0]、日 [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "営業時間",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：営業、時間（営業 [0, 1, 1, 1]、時間 [2, 0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "閉まる・閉まります",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：閉まり、ます（閉まる [0, 2, 0]（2號）、閉まり [0, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "開く・開きます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：開き、ます（開く [0, 2, 0]（2號）、開き [0, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "がっかりする",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：がっかり、する（がっかり [0, 1, 2, 0]、する [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "事前に",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：事前、に（事前 [0, 1, 1]、に [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "せっかく行ったのにお店が休みだった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：行っ、た、の、に、お、店、が、休み、だっ、た（せっかく [0, 1, 1, 2]（4號）、行っ [0, 1]、た [2]、の [0]、に [0]、お [0]、店 [1, 1]、が [0]、休み [0, 1, 1]、だっ [1, 2]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "楽しみにしていたお店",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：楽しみ、に、し、て、い、た、お、店（楽しみ [0, 1, 2, 0]、に [0]、し [0]、て [0]、い [0]、た [0]、お [0]、店 [1, 2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "事前に営業時間を確認しておけばよかった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：事前、に、営業、時間、を、確認、し、て、おけ、ば、よかっ、た（事前 [0, 1, 1]、に [0]、営業 [0, 1, 1, 1]、時間 [2, 0, 0]、を [0]、確認 [0, 1, 1, 1]、し [1]、て [1]、おけ [1, 2]、ば [0]、よかっ [2, 0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "事前に買っておけばよかった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：事前、に、買っ、て、おけ、ば、よかっ、た（事前 [0, 1, 1]、に [0]、買っ [0, 1]、て [1]、おけ [1, 2]、ば [0]、よかっ [2, 0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "また別の日に来るしかない。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：別、の、日、に、来る、しか（また [0, 2]（0號）、別 [0, 1]、の [0]、日 [0]、に [0]、来る [2, 0]、しか [0, 0]、ない [2, 0]（1號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "家族が帰ってくるまで待つしかない。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：家族、が、帰っ、て、くる、まで、待つ、しか（家族 [2, 0, 0]、が [0]、帰っ [2, 0, 0]、て [0]、くる [0, 0]、まで [0, 0]、待つ [2, 0]、しか [0, 0]、ない [2, 0]（1號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "閉まっていた",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：閉まっ、て、い、た（閉まっ [0, 2, 0]、て [0]、い [0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "店が閉まっていた。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：店、が、閉まっ、て、い、た（店 [0, 2]、が [0]、閉まっ [0, 2, 0]、て [0]、い [0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "店が閉まってたんです。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：店、が、閉まっ、て、た、ん、です（店 [0, 2]、が [0]、閉まっ [0, 1, 1]、て [2]、た [0]、ん [0]、です [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "閉まっています",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：閉まっ、て、い、ます（閉まっ [0, 2, 0]、て [0]、い [0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "店が閉まっています。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：店、が、閉まっ、て、い、ます（店 [0, 2]、が [0]、閉まっ [0, 2, 0]、て [0]、い [0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "開いていなかった",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：開い、て、い、なかっ、た（開い [0, 2, 0]、て [0]、い [0]、なかっ [0, 0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "店が開いていなかった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：店、が、開い、て、い、なかっ、た（店 [0, 2]、が [0]、開い [0, 2, 0]、て [0]、い [0]、なかっ [0, 0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "今日は開いていませんでした。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：今日、は、開い、て、い、ませ、ん、でし、た（今日 [2, 0]、は [0]、開い [0, 2, 0]、て [0]、い [0]、ませ [0, 0]、ん [0]、でし [0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "定休日だった",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：定休、日、だっ、た（定休 [0, 1, 1, 0]、日 [2, 0]、だっ [0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "今日は定休日でした。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：今日、は、定休、日、でし、た（今日 [2, 0]、は [0]、定休 [0, 1, 1, 0]、日 [2, 0]、でし [0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "楽しみにしていたお店に行きましたが、今日は休みでした。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：楽しみ、に、し、て、い、た、お、店、に、行き、まし、た、が、今日、は、休み、でし、た（楽しみ [0, 1, 2, 0]、に [0]、し [0]、て [0]、い [0]、た [0]、お [0]、店 [1, 1]、に [0]、行き [0, 1]、まし [2, 0]、た [0]、が [0]、今日 [2, 0]、は [0]、休み [0, 1, 1]、でし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "とてもがっかりしました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：がっかり、し、まし、た（とても [0, 1, 2]（0號）、がっかり [0, 1, 2, 0]、し [0]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ずっと楽しみにして、わざわざここまで来たのに、今日は定休日だった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：楽しみ、に、し、て、ここ、まで、来、た、の、に、今日、は、定休、日、だっ、た（ずっと [0, 1, 2]（0號）、楽しみ [0, 1, 2, 0]、に [0]、し [0]、て [0]、わざわざ [2, 0, 0, 0]（1號）、ここ [0, 1]、まで [2, 0]、来 [2]、た [0]、の [0]、に [0]、今日 [2, 0]、は [0]、定休 [0, 1, 1, 0]、日 [2, 0]、だっ [0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "楽しみにしていたお店に行きましたが、今日は開いていませんでした。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：楽しみ、に、し、て、い、た、お、店、に、行き、まし、た、が、今日、は、開い、て、い、ませ、ん、でし、た（楽しみ [0, 1, 2, 0]、に [0]、し [0]、て [0]、い [0]、た [0]、お [0]、店 [1, 1]、に [0]、行き [0, 1]、まし [2, 0]、た [0]、が [0]、今日 [2, 0]、は [0]、開い [0, 2, 0]、て [0]、い [0]、ませ [0, 0]、ん [0]、でし [0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "楽しみにしていたのに。本当にがっかりしたわ。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：楽しみ、に、し、て、い、た、の、に、本当、に、がっかり、し、た、わ（楽しみ [0, 1, 2, 0]、に [0]、し [0]、て [0]、い [0]、た [0]、の [0]、に [0]、本当 [0, 1, 1, 1]、に [0]、がっかり [0, 1, 2, 0]、し [0]、た [0]、わ [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "貼り紙",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（貼り紙 [0, 1, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "誠に勝手ながら、〜させていただきます。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：誠、に、勝手、ながら、さ、せ、て、いただき、ます（誠 [0, 1, 1]、に [0]、勝手 [0, 1, 1]、ながら [2, 0, 0]、さ [0]、せ [1]、て [2]、いただき [0, 1, 1, 1]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "事前に確認しておけばよかった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：事前、に、確認、し、て、おけ、ば、よかっ、た（事前 [0, 1, 1]、に [0]、確認 [0, 1, 1, 1]、し [1]、て [1]、おけ [1, 2]、ば [0]、よかっ [2, 0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "画面",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（画面 [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "ひび",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（ひび [0, 2]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "割れる・割れます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：割れ、ます（割れる [0, 1, 2]（0號）、割れ [0, 1]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "割る・割ります",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：割り、ます（割る [0, 2]（0號）、割り [0, 1]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ひび割れる・ひび割れます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ひび割れ、ます（ひび割れる [0, 1, 1, 2, 0]（4號）、ひび割れ [0, 1, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "滑る・滑ります",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：滑り、ます（滑る [0, 2, 0]（2號）、滑り [0, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "落とす・落とします",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：落とし、ます（落とす [0, 2, 0]（2號）、落とし [0, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "買い替える・買い替えます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：買い替え、ます（買い替える [0, 1, 1, 2, 0]（4號）、買い替え [0, 1, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "卵を割る",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：卵、を（卵 [0, 2, 0]、を [0]、割る [0, 2]（0號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "卵が割れる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：卵、が（卵 [0, 2, 0]、が [0]、割れる [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "手が滑って",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：手、が、滑っ、て（手 [2]、が [0]、滑っ [0, 2, 0]、て [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ショックです",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ショック、です（ショック [2, 0, 0]、です [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "買い替えないといけないかもしれない。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：買い替え、ない、と、いけ、ない、か、も、しれ、ない（買い替え [0, 1, 1, 2]、ない [0, 0]、と [0]、いけ [0, 0]、ない [0, 0]、か [0]、も [0]、しれ [0, 1]、ない [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "操作もしにくい。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：操作、も、し、にくい（操作 [2, 0, 0]、も [0]、し [0]、にくい [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "スマホを落としてしまいました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：スマホ、を、落とし、て、しまい、まし、た（スマホ [0, 1, 1]、を [0]、落とし [0, 2, 0]、て [0]、しまい [0, 0, 0]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "画面が割れてしまいました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：画面、が、割れ、て、しまい、まし、た（画面 [0, 1, 1]、が [0]、割れ [0, 1]、て [1]、しまい [1, 1, 1]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "とてもショックです。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ショック、です（とても [0, 1, 2]（0號）、ショック [2, 0, 0]、です [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ほんの少し手が滑って、スマホを落としてしまった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：手、が、滑っ、て、スマホ、を、落とし、て、しまっ、た（ほんの [0, 1, 2]（0號）、少し [0, 2, 0]（2號）、手 [2]、が [0]、滑っ [0, 2, 0]、て [0]、スマホ [0, 1, 1]、を [0]、落とし [0, 2, 0]、て [0]、しまっ [0, 0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "画面がひび割れてしまって、操作もしにくい。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：画面、が、ひび割れ、て、しまっ、て、操作、も、し、にくい（画面 [0, 1, 1]、が [0]、ひび割れ [0, 1, 2, 0]、て [0]、しまっ [0, 0, 0]、て [0]、操作 [2, 0, 0]、も [0]、し [0]、にくい [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "足元",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（足元 [0, 1, 2, 0]（3號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "滑りますので、足元に気をつけてください。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：滑り、ます、の、で、足元、に、気、を、つけ、て、ください（滑り [0, 2, 0]、ます [0, 0]、の [0]、で [0]、足元 [0, 1, 2, 0]、に [0]、気 [0]、を [2]、つけ [2, 0]、て [0]、ください [0, 0, 0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "滑りますので、足元にご注意ください。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：滑り、ます、の、で、足元、に、ご、注意、ください（滑り [0, 2, 0]、ます [0, 0]、の [0]、で [0]、足元 [0, 1, 2, 0]、に [0]、ご [0]、注意 [2, 0, 0]、ください [0, 0, 0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ひびが入る",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ひび、が（ひび [0, 2]、が [0]、入る [2, 0, 0]（1號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "壁にひびが入っていますか？",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：壁、に、ひび、が、入っ、て、い、ます、か（壁 [0, 1]、に [0]、ひび [0, 2]、が [0]、入っ [2, 0, 0]、て [0]、い [0]、ます [2, 0]、か [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "昨日地震だったんですよね。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：昨日、地震、だっ、た、ん、です、よ、ね（昨日 [0, 2, 0]、地震 [0, 1, 1]、だっ [1, 2]、た [0]、ん [0]、です [0, 0]、よ [0]、ね [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "ネット",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（ネット [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "サイズ",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（サイズ [2, 0, 0]（1號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "スニーカー",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（スニーカー [0, 2, 0, 0, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "返品",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（返品 [0, 1, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "交換",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：交換（交換 [0, 1, 1, 2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "ルイーサ",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（ルイーサ [0, 2, 0, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "届く・届きます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：届き、ます（届く [0, 2, 0]（2號）、届き [0, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "届ける・届けます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：届け、ます（届ける [0, 1, 2, 0]（3號）、届け [0, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "気づく・気づきます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：気づく、気づき、ます（気づく [0, 2, 0]、気づき [0, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "問い合わせる・問い合わせます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：問い合わせ、ます（問い合わせる [0, 1, 1, 1, 2, 0]（5號）、問い合わせ [0, 1, 1, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ようやく",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ようやく（ようやく [0, 1, 1, 2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "さすがに",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：さすが、に（さすが [0, 1, 1]、に [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "とりあえず",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（とりあえず [0, 1, 2, 0, 0]（3號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "〜ことに気づく",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：こと、に、気づく（こと [2, 0]、に [0]、気づく [0, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "サイズを間違えて注文したことに気づいた。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：サイズ、を、間違え、て、注文、し、た、こと、に、気づい、た（サイズ [2, 0, 0]、を [0]、間違え [0, 1, 2, 0]、て [0]、注文 [0, 1, 1, 1]、し [1]、た [2]、こと [0, 0]、に [0]、気づい [0, 2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "サイズを間違えて注文したのに気づいた。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：サイズ、を、間違え、て、注文、し、た、の、に、気づい、た（サイズ [2, 0, 0]、を [0]、間違え [0, 1, 2, 0]、て [0]、注文 [0, 1, 1, 1]、し [1]、た [2]、の [0]、に [0]、気づい [0, 2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "〜と気づく",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：気づく（と [2]（0號）、気づく [0, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "注文したと気づいた。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：注文、し、た、と、気づい、た（注文 [0, 1, 1, 1]、し [1]、た [2]、と [0]、気づい [0, 2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ハルキさんが隣に立っていると気づいた。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ハルキ、さん、が、隣、に、立っ、て、いる、と、気づい、た（ハルキ [2, 0, 0]、さん [0, 0]、が [0]、隣 [0, 1, 1]、に [0]、立っ [2, 0]、て [0]、いる [0, 0]、と [0]、気づい [0, 2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "履いてみたら、サイズが大きすぎました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：履い、て、み、たら、サイズ、が、大き、すぎ、まし、た（履い [0, 1]、て [1]、み [2]、たら [0, 0]、サイズ [2, 0, 0]、が [0]、大き [0, 1, 2]、すぎ [2, 0]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "履いてみたところ、サイズが大きすぎました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：履い、て、み、た、ところ、サイズ、が、大き、すぎ、まし、た（履い [0, 1]、て [1]、み [2]、た [0]、ところ [0, 0, 0]、サイズ [2, 0, 0]、が [0]、大き [0, 1, 2]、すぎ [2, 0]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "大きすぎる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：大き（大き [0, 1, 2]、すぎる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "小さすぎる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：小さ（小さ [0, 1, 2]、すぎる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "お店に連絡して、交換できるか聞いてみようと思います。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：お、店、に、連絡、し、て、交換、できる、か、聞い、て、みよう、と、思い、ます（お [0]、店 [1, 1]、に [0]、連絡 [0, 1, 1, 1]、し [1]、て [2]、交換 [0, 1, 1, 2]、できる [0, 2, 0]、か [0]、聞い [0, 1]、て [1]、みよう [2, 0, 0]、と [0]、思い [0, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "履けないこともないけど",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：履け、ない、こと、も、ない、けど（履け [0, 1]、ない [2, 0]、こと [0, 0]、も [0]、ない [2, 0]、けど [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "さすがにこれでは歩きにくい。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：さすが、に、これ、で、は、歩き、にくい（さすが [0, 1, 1]、に [0]、これ [0, 1]、で [0]、は [0]、歩き [0, 1, 1]、にくい [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "〜にしても",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：に、し、て、も（に [0]、し [1]、て [2]、も [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "返品するにしても交換するにしても、とりあえずお店に問い合わせてみるしかないな。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：返品、する、に、し、て、も、交換、する、に、し、て、も、お、店、に、問い合わせ、て、みる、しか、ない、な（返品 [0, 1, 1, 1]、する [1, 1]、に [0]、し [0]、て [0]、も [0]、交換 [0, 1, 1, 1]、する [1, 1]、に [0]、し [0]、て [0]、も [0]、とりあえず [0, 1, 2, 0, 0]（3號）、お [0]、店 [1, 1]、に [0]、問い合わせ [0, 1, 1, 2, 0]、て [0]、みる [0, 0]、しか [0, 0]、ない [2, 0]、な [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "〜ても",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：て、も（て [2]、も [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "返品しても交換しても",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：返品、し、て、も、交換、し、て、も（返品 [0, 1, 1, 1]、し [1]、て [2]、も [0]、交換 [0, 1, 1, 1]、し [1]、て [2]、も [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ネットで靴を買いました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ネット、で、靴、を、買い、まし、た（ネット [0, 1, 1]、で [0]、靴 [0, 2]、を [0]、買い [0, 1]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "届いてから履いてみたら、サイズが大きすぎました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：届い、て、から、履い、て、み、たら、サイズ、が、大き、すぎ、まし、た（届い [0, 2, 0]、て [0]、から [0, 0]、履い [0, 1]、て [1]、み [2]、たら [0, 0]、サイズ [2, 0, 0]、が [0]、大き [0, 1, 2]、すぎ [2, 0]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "サイズを間違えて注文してしまったようです。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：サイズ、を、間違え、て、注文、し、て、しまっ、た、よう、です（サイズ [2, 0, 0]、を [0]、間違え [0, 1, 2, 0]、て [0]、注文 [0, 1, 1, 1]、し [1]、て [1]、しまっ [1, 1, 1]、た [2]、よう [0, 0]、です [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "先日ネットで靴を買ったんですけど、履いてみたところサイズが大きすぎました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ネット、で、靴、を、買っ、た、ん、です、けど、履い、て、み、た、ところ、サイズ、が、大き、すぎ、まし、た（先日 [0, 1, 1, 2]（0號）、ネット [0, 1, 1]、で [0]、靴 [0, 2]、を [0]、買っ [0, 1]、た [2]、ん [0]、です [0, 0]、けど [0, 0]、履い [0, 1]、て [1]、み [2]、た [0]、ところ [0, 0, 0]、サイズ [2, 0, 0]、が [0]、大き [0, 1, 2]、すぎ [2, 0]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "楽しみにしていた靴がようやく届いたんだけど、履いてみたら、サイズを間違えて注文していたことに気づいた。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：楽しみ、に、し、て、い、た、靴、が、ようやく、届い、た、ん、だ、けど、履い、て、み、たら、サイズ、を、間違え、て、注文、し、て、い、た、こと、に、気づい、た（楽しみ [0, 1, 2, 0]、に [0]、し [0]、て [0]、い [0]、た [0]、靴 [0, 2]、が [0]、ようやく [0, 1, 1, 2]、届い [0, 2, 0]、た [0]、ん [0]、だ [0]、けど [0, 0]、履い [0, 1]、て [1]、み [2]、たら [0, 0]、サイズ [2, 0, 0]、を [0]、間違え [0, 1, 2, 0]、て [0]、注文 [0, 1, 1, 1]、し [1]、て [1]、い [1]、た [2]、こと [0, 0]、に [0]、気づい [0, 2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "履けないこともないけど、さすがにこれでは歩きにくい。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：履け、ない、こと、も、ない、けど、さすが、に、これ、で、は、歩き、にくい（履け [0, 1]、ない [2, 0]、こと [0, 0]、も [0]、ない [2, 0]、けど [0, 0]、さすが [0, 1, 1]、に [0]、これ [0, 1]、で [0]、は [0]、歩き [0, 1, 1]、にくい [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "サイズが大きすぎました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：サイズ、が、大き、すぎ、まし、た（サイズ [2, 0, 0]、が [0]、大き [0, 1, 2]、すぎ [2, 0]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "交換できるか聞いてみようと思います。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：交換、できる、か、聞い、て、みよう、と、思い、ます（交換 [0, 1, 1, 2]、できる [0, 2, 0]、か [0]、聞い [0, 1]、て [1]、みよう [2, 0, 0]、と [0]、思い [0, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "履けないこともないけど。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：履け、ない、こと、も、ない、けど（履け [0, 1]、ない [2, 0]、こと [0, 0]、も [0]、ない [2, 0]、けど [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "とりあえずお店に問い合わせてみるしかないな。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：お、店、に、問い合わせ、て、みる、しか、ない、な（とりあえず [0, 1, 2, 0, 0]（3號）、お [0]、店 [1, 1]、に [0]、問い合わせ [0, 1, 1, 2, 0]、て [0]、みる [0, 0]、しか [0, 0]、ない [2, 0]、な [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "名詞＋できる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：名詞、＋、できる（名詞 [0, 1, 2]、＋ [2, 0, 0]、できる [0, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ドラムができる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ドラム、が（ドラム [2, 0, 0]、が [0]、できる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "テニスができる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：テニス、が（テニス [2, 0, 0]、が [0]、できる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "原形動詞＋ことができる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：原形、動詞、＋、こと、が、できる（原形 [0, 1, 1, 1]、動詞 [2, 0, 0]、＋ [2, 0, 0]、こと [2, 0]、が [0]、できる [0, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ドラムを叩くことができる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ドラム、を、叩く、こと、が（ドラム [2, 0, 0]、を [0]、叩く [0, 2, 0]、こと [0, 0]、が [0]、できる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ピアノを弾くことができる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ピアノ、を、弾く、こと、が（ピアノ [0, 1, 1]、を [0]、弾く [0, 1]、こと [1, 2]、が [0]、できる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "動詞の能力形",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：動詞、の、能力、形（動詞 [0, 1, 1]、の [0]、能力 [0, 1, 1, 1]、形 [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "作る→作れる",
+    "basis": "MCP：needsReview；warnings：worker_needs_review（作る [0, 2, 0]（2號）、作れる [0, 1, 2, 0]（3號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "見る→見られる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：見、られる（見る [2, 0]（1號）、見 [0]、られる [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "訪ねる→訪ねられる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：訪ね、られる（訪ねる [0, 1, 2, 0]（3號）、訪ね [0, 1, 1]、られる [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "来る→来られる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：来、られる（来る [2, 0]（1號）、来 [0]、られる [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "する→できる",
+    "basis": "MCP：needsReview；warnings：worker_needs_review（する [0, 2]（0號）、できる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "可能形",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：可能、形（可能 [0, 1, 1]、形 [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "自分が〜できる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：自分、が（自分 [0, 1, 1]、が [0]、できる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "受け身",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（受け身 [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "他の人から〜される",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：他、の、人、から、さ、れる（他 [2, 0]、の [0]、人 [0, 1]、から [1, 2]、さ [0]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "叩く",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（叩く [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "叩ける",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：叩ける（叩ける [0, 1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "叩かれる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：叩か、れる（叩か [0, 1, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "作る",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（作る [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "作れる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（作れる [0, 1, 2, 0]（3號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "作られる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：作ら、れる（作ら [0, 1, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "見る",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（見る [2, 0]（1號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "見られる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：見、られる（見 [0]、られる [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "食べる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（食べる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "食べられる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：食べ、られる（食べ [0, 1]、られる [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "来る",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（来る [2, 0]（1號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "来られる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：来、られる（来 [0]、られる [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "する",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（する [0, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "できる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（できる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "される",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：さ、れる（さ [0]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "塗る",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（塗る [0, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "塗れる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（塗れる [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "塗られる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：塗ら、れる（塗ら [0, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "のし上がる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（のし上がる [0, 1, 1, 2, 0]（4號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "のし上がれる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（のし上がれる [0, 1, 1, 1, 2, 0]（5號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "生き延びる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（生き延びる [0, 1, 1, 2, 0]（4號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "生き延びられる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：生き延び、られる（生き延び [0, 1, 1, 1]、られる [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "稼ぐ",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（稼ぐ [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "稼げる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（稼げる [0, 1, 2, 0]（3號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "稼がれる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：稼が、れる（稼が [0, 1, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "勉強し始める",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：勉強、し、始める（勉強 [0, 1, 1, 1]、し [1]、始める [1, 1, 1, 2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "勉強し始められる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：勉強、し、始め、られる（勉強 [0, 1, 1, 1]、し [1]、始め [1, 1, 1]、られる [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "登る",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（登る [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "登れる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（登れる [0, 1, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "登られる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：登ら、れる（登ら [0, 1, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "コピーする",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：コピー、する（コピー [2, 0, 0]、する [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "コピーできる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（コピー [2, 0, 0]（1號）、できる [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "コピーされる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：コピー、さ、れる（コピー [0, 1, 1]、さ [1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "使う",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（使う [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "使える",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（使える [0, 1, 2, 0]（3號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "使われる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：使わ、れる（使わ [0, 1, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "笑う",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（笑う [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "笑える",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（笑える [0, 1, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "笑われる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：笑わ、れる（笑わ [0, 1, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "言う",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：言う（言う [0, 2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "言える",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（言える [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "言われる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：言わ、れる（言わ [0, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "割る",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（割る [0, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "割れる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（割れる [0, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "割られる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：割ら、れる（割ら [0, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "汚す",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：汚す（汚す [0, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "汚せる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved、worker_needs_review；accent null：汚せる（汚せる [0, 1, 1, 2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "汚される",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：汚さ、れる（汚さ [0, 1, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "引っ張る",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（引っ張る [0, 1, 2, 0]（3號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "低",
+    "item": "引っ張れる",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（引っ張れる [0, 1, 1, 2, 0]（4號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "引っ張られる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：引っ張ら、れる（引っ張ら [0, 1, 1, 1]、れる [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "かける",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（かける [0, 2, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "かけられる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：かけ、られる（かけ [0, 1]、られる [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "生き延びられた",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：生き延び、られ、た（生き延び [0, 1, 1, 1]、られ [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "心から笑える",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：心、から（心 [0, 1, 2]、から [0, 0]、笑える [0, 1, 1, 2]（0號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "先に登られた",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：先、に、登ら、れ、た（先 [0, 1]、に [0]、登ら [0, 1, 1]、れ [1]、た [2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "エンジンをかけられる",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：エンジン、を、かけ、られる（エンジン [2, 0, 0, 0]、を [0]、かけ [0, 1]、られる [1, 2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "カラーコーン",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：カラー、コーン（カラー [0, 1, 1]、コーン [2, 0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ブレーキを踏む",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ブレーキ、を（ブレーキ [0, 2, 0, 0]、を [0]、踏む [0, 2]（0號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "軽自動車",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：軽、自動、車（軽 [0, 1]、自動 [1, 2, 0]、車 [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "同乗者",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：同乗、者（同乗 [0, 1, 1, 2]、者 [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "目撃者",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：目撃、者（目撃 [0, 1, 1, 2]、者 [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "高齢者",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：高齢、者（高齢 [0, 1, 1, 2]、者 [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "一言",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（一言 [0, 2, 0, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "呆然",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：呆然（呆然 [0, 1, 1, 2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "道路脇",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：道路、脇（道路 [0, 1, 2]、脇 [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "なぎ倒す・なぎ倒します",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：なぎ倒し、ます（なぎ倒す [0, 1, 1, 2, 0]（4號）、なぎ倒し [0, 1, 1, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "効く・効きます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：効き、ます（効く [0, 2]（0號）、効き [0, 1]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "救急搬送する",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：救急、搬送、する（救急 [0, 1, 1, 1]、搬送 [2, 0, 0, 0]、する [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "現れる・現れます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：現れ、ます（現れる [0, 1, 1, 2, 0]（4號）、現れ [0, 1, 2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ぶつかる・ぶつかります",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ぶつかり、ます（ぶつかる [0, 1, 1, 2]（0號）、ぶつかり [0, 1, 1, 1]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ぶつける・ぶつけます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ぶつけ、ます（ぶつける [0, 1, 1, 2]（0號）、ぶつけ [0, 1, 1]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "車を壁にぶつけました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：車、を、壁、に、ぶつけ、まし、た（車 [0, 1, 1]、を [0]、壁 [0, 1]、に [0]、ぶつけ [0, 1, 1]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "車が壁にぶつかった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：車、が、壁、に、ぶつかっ、た（車 [0, 1, 1]、が [0]、壁 [0, 1]、に [0]、ぶつかっ [0, 1, 1, 1]、た [2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "この薬は効かなかった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：薬、は、効か、なかっ、た（この [0, 2]（0號）、薬 [0, 1, 1]、は [0]、効か [0, 1]、なかっ [2, 0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "カラーコーンをなぎ倒し、道路脇の壁に衝突。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：カラー、コーン、を、道路、脇、の、壁、に、衝突（カラー [0, 1, 1]、コーン [2, 0, 0]、を [0]、なぎ倒し [0, 1, 1, 2, 0]（4號）、道路 [0, 1, 2]、脇 [0, 0]、の [0]、壁 [0, 1]、に [0]、衝突 [0, 1, 1, 2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "目撃者の車にもぶつかりました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：目撃、者、の、車、に、も、ぶつかり、まし、た（目撃 [0, 1, 1, 2]、者 [0]、の [0]、車 [0, 1, 1]、に [0]、も [0]、ぶつかり [0, 1, 1, 1]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "最初、後ろで何か事故があったのかなというふうに思ってたところ、",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：後ろ、で、何、か、事故、が、あっ、た、の、か、な、と、いう、ふう、に、思っ、て、た、ところ（最初 [0, 1, 2]（0號）、後ろ [0, 1, 1]、で [0]、何 [2, 0]、か [0]、事故 [2, 0]、が [0]、あっ [2, 0]、た [0]、の [0]、か [0]、な [0]、と [0]、いう [0, 2]、ふう [0, 0]、に [0]、思っ [0, 1, 1]、て [2]、た [0]、ところ [0, 0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "急に左側に車が現れたので、もう驚いたっていう、",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：急、に、左側、に、車、が、現れ、た、の、で、もう、驚い、た、って（急 [0, 1]、に [0]、左側 [0, 1, 1, 1, 1]、に [0]、車 [0, 1, 1]、が [0]、現れ [0, 1, 2, 0]、た [0]、の [0]、で [0]、もう [2, 0]、驚い [0, 1, 2, 0]、た [0]、って [0, 0]、いう [2, 0]（1號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "まさにその一言ですね。どこから来たんだっていう。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：一言、です、ね、どこ、から、来、た、ん、だ、って（まさに [2, 0, 0]（1號）、その [0, 2]（0號）、一言 [0, 2, 0, 0]、です [0, 0]、ね [0]、どこ [2, 0]、から [0, 0]、来 [2]、た [0]、ん [0]、だ [0]、って [0, 0]、いう [0, 2]（0號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "警視庁によると、軽自動車の運転手は高齢者でした。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：警視、庁、に、よる、と、軽、自動、車、の、運転、手、は、高齢、者、でし、た（警視 [0, 1, 2]、庁 [0, 0]、に [0]、よる [0, 0]、と [0]、軽 [0, 1]、自動 [1, 2, 0]、車 [0]、の [0]、運転 [0, 1, 2, 0]、手 [0]、は [0]、高齢 [0, 1, 1, 2]、者 [0]、でし [0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "様子を見に行った時には、なんかもう呆然というか、",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：様子、を、見、に、行っ、た、時、に、は、なん、か、もう、呆然、と、いう、か（様子 [0, 1, 1]、を [0]、見 [2]、に [0]、行っ [0, 1]、た [2]、時 [0, 0]、に [0]、は [0]、なん [2, 0]、か [0]、もう [2, 0]、呆然 [0, 1, 1, 1]、と [2]、いう [0, 2]、か [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "なんかわけわかんない状態だったみたいですね。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：なん、か、わけ、わかん、状態、だっ、た、みたい、です、ね（なん [2, 0]、か [0]、わけ [0, 1]、わかん [1, 2, 0]、ない [2, 0]（1號）、状態 [0, 1, 1, 1]、だっ [1, 2]、た [0]、みたい [0, 0, 0]、です [0, 0]、ね [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "どうしたのって聞いたら、いやブレーキ踏んだんだけど効かなかったっていうようなことを言ってたので。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：どう、し、た、の、って、聞い、たら、踏ん、だ、ん、だ、けど、効か、なかっ、た、って、いう、よう、な、こと、を、言っ、て、た、の、で（どう [2, 0]、し [0]、た [0]、の [0]、って [0, 0]、聞い [0, 1]、たら [2, 0]、いや [0, 2]（2號）、ブレーキ [0, 2, 0, 0]（2號）、踏ん [0, 1]、だ [2]、ん [0]、だ [0]、けど [0, 0]、効か [0, 1]、なかっ [2, 0, 0]、た [0]、って [0, 0]、いう [0, 1]、よう [2, 0]、な [0]、こと [0, 0]、を [0]、言っ [0, 1]、て [2]、た [0]、の [0]、で [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "軽自動車の運転手と同乗者の2人は怪我をして救急搬送されていて、",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：軽、自動、車、の、運転、手、と、同乗、者、の、2人、は、怪我、を、し、て、救急、搬送、さ、れ、て、い、て（軽 [0, 1]、自動 [1, 2, 0]、車 [0]、の [0]、運転 [0, 1, 2, 0]、手 [0]、と [0]、同乗 [0, 1, 1, 2]、者 [0]、の [0]、2人 [0, 1, 2]、は [0]、怪我 [0, 2]、を [0]、し [0]、て [0]、救急 [0, 1, 1, 1]、搬送 [1, 1, 1, 1]、さ [1]、れ [1]、て [1]、い [1]、て [2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "警視庁が詳しい状況を調べています。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：警視、庁、が、状況、を、調べ、て、い、ます（警視 [0, 1, 2]、庁 [0, 0]、が [0]、詳しい [0, 1, 2, 0]（3號）、状況 [0, 1, 1, 1]、を [0]、調べ [0, 1, 1]、て [1]、い [1]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "〜たところ",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：た、ところ（た [0]、ところ [1, 1, 2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "事故があったのかなと思っていたところ、",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：事故、が、あっ、た、の、か、な、と、思っ、て、い、た、ところ（事故 [2, 0]、が [0]、あっ [2, 0]、た [0]、の [0]、か [0]、な [0]、と [0]、思っ [0, 2, 0]、て [0]、い [0]、た [0]、ところ [0, 0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "〜時",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（時 [2, 0]（1號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "様子を見に行った時には",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：様子、を、見、に、行っ、た、時、に、は（様子 [0, 1, 1]、を [0]、見 [2]、に [0]、行っ [0, 1]、た [2]、時 [0, 0]、に [0]、は [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "急に左側に車が現れた",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：急、に、左側、に、車、が、現れ、た（急 [0, 1]、に [0]、左側 [0, 1, 1, 1, 1]、に [0]、車 [0, 1, 1]、が [0]、現れ [0, 1, 2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "左側にスタバが見えます",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：左側、に、スタバ、が、見え、ます（左側 [0, 1, 1, 1, 1]、に [0]、スタバ [0, 1, 1]、が [0]、見え [2, 0]、ます [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "心配しないでください。きっといい人が現れるから。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：心配、し、ない、で、ください、人、が、現れる、から（心配 [0, 1, 1, 1]、し [1]、ない [2, 0]、で [0]、ください [0, 0, 0, 0]、きっと [0, 1, 2]（3號）、いい [2, 0]（1號）、人 [0, 1]、が [0]、現れる [0, 1, 1, 2, 0]、から [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "安心して、きっといい人が現れるから。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：安心、し、て、人、が、現れる、から（安心 [0, 1, 1, 1]、し [1]、て [2]、きっと [0, 1, 2]（3號）、いい [2, 0]（1號）、人 [0, 1]、が [0]、現れる [0, 1, 1, 2, 0]、から [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "もう驚いたっていう感じですね",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：もう、驚い、た、って、感じ、です、ね（もう [2, 0]、驚い [0, 1, 2, 0]、た [0]、って [0, 0]、いう [0, 2]（0號）、感じ [0, 1, 1]、です [2, 0]、ね [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "低",
+    "item": "まさにその一言",
+    "basis": "MCP 無警告、needsReview: false，仍是預測（まさに [2, 0, 0]（1號）、その [0, 2]（0號）、一言 [0, 2, 0, 0]（2號）；unreviewed／predicted）",
+    "action": "抽樣核對"
+  },
+  {
+    "level": "高",
+    "item": "わけわかんない",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：わけ、わかん（わけ [0, 1]、わかん [1, 2, 0]、ない [2, 0]（1號）；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "〜みたいです",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：みたい、です（みたい [2, 0, 0]、です [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "〜というか",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：いう、か（と [2]（0號）、いう [0, 2]、か [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "警視庁によると",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：警視、庁、に、よる、と（警視 [0, 1, 2]、庁 [0, 0]、に [0]、よる [0, 0]、と [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "〜って聞いたら",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：聞い、たら（って [0, 2]（0號）、聞い [0, 1]、たら [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "どうしたのって聞いたら、ブレーキを踏んだんだけど効かなかったとおじさんが言っていました。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：どう、し、た、の、って、聞い、たら、ブレーキ、を、踏ん、だ、ん、だ、けど、効か、なかっ、た、と、おじ、さん、が、言っ、て、い、まし、た（どう [2, 0]、し [0]、た [0]、の [0]、って [0, 0]、聞い [0, 1]、たら [2, 0]、ブレーキ [0, 2, 0, 0]、を [0]、踏ん [0, 1]、だ [2]、ん [0]、だ [0]、けど [0, 0]、効か [0, 1]、なかっ [2, 0, 0]、た [0]、と [0]、おじ [0, 1]、さん [1, 1]、が [0]、言っ [0, 1]、て [1]、い [1]、まし [2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ＡというＢ",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：Ａ、と、いう、Ｂ（Ａ [2, 0]、と [2]、いう [0, 2]、Ｂ [2, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "〜っていうようなこと",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：いう、よう、な、こと（って [0, 2]（0號）、いう [0, 1]、よう [2, 0]、な [0]、こと [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "Ａさんという人",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：Ａ、さん、と、いう、人（Ａ [2, 0]、さん [0, 0]、と [0]、いう [0, 2]、人 [0, 2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ボールがピンを次々となぎ倒した。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ボール、が、ピン、を、次々、と、なぎ倒し、た（ボール [0, 1, 1]、が [0]、ピン [2, 0]、を [0]、次々 [0, 2, 0, 0]、と [0]、なぎ倒し [0, 1, 1, 2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "強風で木々がなぎ倒された。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：強風、で、木々、が、なぎ倒さ、れ、た（強風 [0, 1, 1, 1]、で [0]、木々 [2, 0]、が [0]、なぎ倒さ [0, 1, 1, 1, 1]、れ [1]、た [2]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "クマが畑の作物をなぎ倒していった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：クマ、が、畑、の、作物、を、なぎ倒し、て、いっ、た（クマ [2, 0]、が [0]、畑 [0, 1, 1]、の [0]、作物 [0, 2, 0, 0]、を [0]、なぎ倒し [0, 1, 1, 2, 0]、て [0]、いっ [0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ブレーキを踏んだけど効かなかった。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：ブレーキ、を、踏ん、だ、けど、効か、なかっ、た（ブレーキ [0, 2, 0, 0]、を [0]、踏ん [0, 1]、だ [2]、けど [0, 0]、効か [0, 1]、なかっ [2, 0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "急に左側に車が現れた。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：急、に、左側、に、車、が、現れ、た（急 [0, 1]、に [0]、左側 [0, 1, 1, 1, 1]、に [0]、車 [0, 1, 1]、が [0]、現れ [0, 1, 2, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "きっといい人が現れるから。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：人、が、現れる、から（きっと [0, 1, 2]（3號）、いい [2, 0]（1號）、人 [0, 1]、が [0]、現れる [0, 1, 1, 2, 0]、から [0, 0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "どうしたのって聞いたら、わけわかんないみたいでした。",
+    "basis": "MCP：needsReview；warnings：phrase_accent_unresolved；accent null：どう、し、た、の、って、聞い、たら、わかん、ない、みたい、でし、た（どう [2, 0]、し [0]、た [0]、の [0]、って [0, 0]、聞い [0, 1]、たら [2, 0]、わけ [2, 0]（1號）、わかん [0, 2, 0]、ない [0, 0]、みたい [0, 0, 0]、でし [0, 0]、た [0]；unreviewed／predicted）",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "充電",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：充電器 [0, 1, 1, 2]；充電アダプタ [0, 1, 1, 1]；充電ケーブル [0, 1, 1, 2]；スマホの充電器を貸していただけますか？ [0, 1, 1, 2]；充電器でもいい？爆速で充電できるよ。 [0, 1, 1, 2]；充電器でもいい？爆速で充電できるよ。 [0, 1, 1, 2]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "シャツ",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：洗濯機からTシャツを出したら、服に色が移ってしまっていた。 [1, 1]；洗濯機からTシャツを出したら、白いシャツに色移りしてしまっていた。 [1, 1]；洗濯機からTシャツを出したら、白いシャツに色移りしてしまっていた。 [2, 0]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "色移り",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：色移り [0, 1, 2, 0, 0]；洗濯機からTシャツを出したら、白いシャツに色移りしてしまっていた。 [0, 2, 0, 1, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "1",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：卵が1個しかない。 [2, 0]；卵が1つしかありません。 [0, 2]；卵が1個しか残っていない。 [2, 0]；卵が1個もない。 [2, 0]；卵が1個も残っていない。 [2, 0]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "日",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：定休日 [2, 0]；また別の日に来るしかない。 [0]；定休日だった [2, 0]；今日は定休日でした。 [2, 0]；ずっと楽しみにして、わざわざここまで来たのに、今日は定休日だった。 [2, 0]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "店",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：せっかく行ったのにお店が休みだった。 [1, 1]；楽しみにしていたお店 [1, 2]；店が閉まっていた。 [0, 2]；店が閉まってたんです。 [0, 2]；店が閉まっています。 [0, 2]；店が開いていなかった。 [0, 2]；楽しみにしていたお店に行きましたが、今日は休みでした。 [1, 1]；楽しみにしていたお店に行きましたが、今日は開いていませんでした。 [1, 1]；お店に連絡して、交換できるか聞いてみようと思います。 [1, 1]；返品するにしても交換するにしても、とりあえずお店に問い合わせてみるしかないな。 [1, 1]；とりあえずお店に問い合わせてみるしかないな。 [1, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "閉まっ",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：閉まっていた [0, 2, 0]；店が閉まっていた。 [0, 2, 0]；店が閉まってたんです。 [0, 1, 1]；閉まっています [0, 2, 0]；店が閉まっています。 [0, 2, 0]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "来",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：ずっと楽しみにして、わざわざここまで来たのに、今日は定休日だった。 [2]；来る→来られる [0]；来られる [0]；まさにその一言ですね。どこから来たんだっていう。 [2]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "画面",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：画面 [0, 1, 2]；画面が割れてしまいました。 [0, 1, 1]；画面がひび割れてしまって、操作もしにくい。 [0, 1, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "買い替え",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：買い替える・買い替えます [0, 1, 2, 0]；買い替えないといけないかもしれない。 [0, 1, 1, 2]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "手",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：手が滑って [2]；ほんの少し手が滑って、スマホを落としてしまった。 [2]；警視庁によると、軽自動車の運転手は高齢者でした。 [0]；軽自動車の運転手と同乗者の2人は怪我をして救急搬送されていて、 [0]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "ネット",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：ネット [0, 1, 2]；ネットで靴を買いました。 [0, 1, 1]；先日ネットで靴を買ったんですけど、履いてみたところサイズが大きすぎました。 [0, 1, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "返品",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：返品 [0, 1, 1, 2]；返品するにしても交換するにしても、とりあえずお店に問い合わせてみるしかないな。 [0, 1, 1, 1]；返品しても交換しても [0, 1, 1, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "交換",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：交換 [0, 1, 1, 2]；お店に連絡して、交換できるか聞いてみようと思います。 [0, 1, 1, 2]；返品するにしても交換するにしても、とりあえずお店に問い合わせてみるしかないな。 [0, 1, 1, 1]；返品しても交換しても [0, 1, 1, 1]；交換できるか聞いてみようと思います。 [0, 1, 1, 2]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "動詞",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：原形動詞＋ことができる [2, 0, 0]；動詞の能力形 [0, 1, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "見",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：見る→見られる [0]；見られる [0]；様子を見に行った時には、なんかもう呆然というか、 [2]；様子を見に行った時には [2]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "人",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：他の人から〜される [0, 1]；心配しないでください。きっといい人が現れるから。 [0, 1]；安心して、きっといい人が現れるから。 [0, 1]；Ａさんという人 [0, 2]；きっといい人が現れるから。 [0, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "コピー",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：コピーする [2, 0, 0]；コピーできる [2, 0, 0]；コピーされる [0, 1, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "車",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：軽自動車 [0]；車を壁にぶつけました。 [0, 1, 1]；車が壁にぶつかった。 [0, 1, 1]；目撃者の車にもぶつかりました。 [0, 1, 1]；急に左側に車が現れたので、もう驚いたっていう、 [0, 1, 1]；警視庁によると、軽自動車の運転手は高齢者でした。 [0]；軽自動車の運転手と同乗者の2人は怪我をして救急搬送されていて、 [0]；急に左側に車が現れた [0, 1, 1]；急に左側に車が現れた。 [0, 1, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "呆然",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：呆然 [0, 1, 1, 2]；様子を見に行った時には、なんかもう呆然というか、 [0, 1, 1, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "搬送",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：救急搬送する [2, 0, 0, 0]；軽自動車の運転手と同乗者の2人は怪我をして救急搬送されていて、 [1, 1, 1, 1]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "思っ",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：最初、後ろで何か事故があったのかなというふうに思ってたところ、 [0, 1, 1]；事故があったのかなと思っていたところ、 [0, 2, 0]",
+    "action": "請核對"
+  },
+  {
+    "level": "高",
+    "item": "時",
+    "basis": "同一詞在不同查詢的 marks 不一致（未必帶警告）：様子を見に行った時には、なんかもう呆然というか、 [0, 0]；〜時 [2, 0]；様子を見に行った時には [0, 0]",
+    "action": "請核對"
+  }
+]

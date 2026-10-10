@@ -1,0 +1,1 @@
+{"risk": "低", "jp": "画面", "zh": "螢幕、畫面", "basis": "MCP 無警告（仍是預測）", "mcpReading": "がめん", "source": "{画|が}{面|めん}#m:012", "segs": [{"kana": ["が", "め", "ん"], "marks": [0, 1, 2], "fromMcp": true, "units": [{"n": 1, "base": "画", "ruby": "が", "gap": false}, {"n": 2, "base": "面", "ruby": "めん", "gap": false}], "after": ""}], "order": 204}
