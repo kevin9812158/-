@@ -1,0 +1,203 @@
+{
+ "blocks": [
+  {
+   "type": "title",
+   "text": "上週複習"
+  },
+  {
+   "type": "tag",
+   "text": "單字"
+  },
+  {
+   "type": "cards",
+   "per_row": 3,
+   "cards": [
+    {
+     "jp": "モバイルバッテリー",
+     "zh": "行動電源",
+     "arrow": "年輕人常說 モバ充",
+     "illust": {
+      "source": "いらすとや",
+      "title": "モバイルバッテリーのイラスト",
+      "url": "https://www.irasutoya.com/2015/01/blog-post_14.html",
+      "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNuFm0ipiJFeALIbmrTDeewj0PXid-Mu-AXWTMmhIcL0eGQlOB3cMBS0kgBnSVm2aWz9Z0AJ57gQ5DU-yBO2YKFoMwSOauguKyzJS19DGezJZrV50eOLSTEU0d55QUasv3d4KK-IoSRZjA/s1600/smartphone_mobile_battery.png"
+     }
+    },
+    {
+     "jp": "{充|じゅう}{電|でん}{器|き}",
+     "zh": "充電器（整組）",
+     "illust": {
+      "source": "いらすとや",
+      "title": "スマートフォンの充電のイラスト",
+      "url": "https://www.irasutoya.com/2015/11/blog-post_129.html",
+      "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZjl_Jtcuz9MaDSgyJFr_51IzNEabMFnJ48uoDVx7IPuejhTNl9Y7qJOdM0B4dkIV6xSqYvkpVXVN9Smwz9Z_n4Y8ZxZfFlsFLxVhVS2eF-ZYlThp-EHrAuuE7P-zLJ4lQDKIDkiJnMFA/s1600/smartphone_juuden.png"
+     }
+    },
+    {
+     "jp": "{充|じゅう}{電|でん}アダプタ",
+     "zh": "充電頭",
+     "illust": {
+      "source": "いらすとや",
+      "title": "ACアダプターのイラスト",
+      "url": "https://www.irasutoya.com/2016/02/ac.html",
+      "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghk7xHzGrOuwPwQ2s8luNuCfJChbTNnmjutgEUSIa8-dSwHlp5E0UpLVuii5LpH0lcFwYf5WkCPgB4UcmhhgVXVqgJCGhgsDss8mF8bgBxM11nUHie8wdctv47ZYlqyuQACsmaRMgbihDL/s1600/computer_adapter.png"
+     }
+    },
+    {
+     "jp": "{充|じゅう}{電|でん}ケーブル",
+     "zh": "充電線",
+     "illust": {
+      "source": "いらすとや",
+      "title": "USBケーブルのイラスト",
+      "url": "https://www.irasutoya.com/2014/06/usb.html",
+      "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiNhX8u9OGtba2qlfvJItXgleFzhFzre792kf2JJvT5FOpWEY4WjUUs-LPSj9vslzId9ymmBx4jX68bUKRba92xWgfoOutxQ1IYi_l-h76FmCzgtvuPPm5I-fJq0Cdw1VxWZ9_vpZp8fM/s1600/computer_usb_cable.png"
+     }
+    },
+    {
+     "jp": "プラグ",
+     "zh": "插頭",
+     "illust": {
+      "source": "いらすとや",
+      "title": "電源プラグのイラスト",
+      "url": "https://www.irasutoya.com/2019/09/blog-post_804.html",
+      "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipZ229ImJvFzcFI7nrLjXKolqPYjdyb4S-TXjJ3iLaybIiepoocXXrlAnNX7AOaPPTmGXPCaRwJhrBlHAheDMnMidG6jmqtvmJKhlXIgmJC9rNroEYUstYnqJ1ONaxZdfRuwB0Qkoi-ukL/s380/tanshi_dengen_plug.png"
+     }
+    }
+   ]
+  },
+  {
+   "type": "note",
+   "text": "跟飯店借整組說「充電器」就好；只要插頭那個頭才說「充電アダプタ」。"
+  },
+  {
+   "type": "bullets",
+   "rows": [
+    {
+     "jp": "スマホ+の／{充|じゅう}{電|でん}{器|き}+を／{貸|か}して／いただけます+か／!？",
+     "zh": "可以借我手機充電器嗎？"
+    },
+    {
+     "jp": "{充|じゅう}{電|でん}{器|き}+でも／いい／!？／{爆|ばく}{速|そく}+で／{充|じゅう}{電|でん}／できる+よ／!。",
+     "zh": "用充電器可以嗎？可以超快速充電喔。"
+    }
+   ]
+  },
+  {
+   "type": "defs",
+   "header": "「衣服染色了」的說法",
+   "rows": [
+    {
+     "term_jp": "{色|いろ}+が／{移|うつ}る",
+     "term_sub": "染到顏色",
+     "examples": [
+      {
+       "jp": "{洗|せん}{濯|たく}{機|き}+から／Tシャツ+を／{出|だ}したら／!、／{服|ふく}+に／{色|いろ}+が／{移|うつ}って／しまっていた／!。",
+       "zh": "從洗衣機拿出 T 恤，發現衣服被染色了。"
+      }
+     ]
+    },
+    {
+     "term_jp": "{色|いろ}{移|うつ}り",
+     "term_sub": "染色",
+     "examples": [
+      {
+       "jp": "{洗|せん}{濯|たく}{機|き}+から／Tシャツ+を／{出|だ}したら／!、／{白|しろ}い／シャツ+に／{色|いろ}{移|うつ}り／して／しまっていた／!。",
+       "zh": "拿出 T 恤，白襯衫被染色了。"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "note",
+   "text": "「色が変わった」只是顏色變了；沾到別的顏色要說 色が移る／色移り。"
+  },
+  {
+   "type": "note",
+   "text": "〜てしまっていた 直接說 〜てしまった 也可以。"
+  },
+  {
+   "type": "defs",
+   "header": "「只剩一個」和「一個都沒有」",
+   "rows": [
+    {
+     "term_jp": "〜しか／〜ない",
+     "term_sub": "只有…",
+     "examples": [
+      {
+       "jp": "{卵|たまご}+が／{1|いっ}{個|こ}+しか／ない／!。",
+       "zh": "只剩一個蛋。"
+      },
+      {
+       "jp": "{卵|たまご}+が／{1|ひと}つ+しか／ありません／!。",
+       "zh": "只剩一個蛋。"
+      },
+      {
+       "jp": "{卵|たまご}+が／{1|いっ}{個|こ}+しか／{残|のこ}って／いない／!。",
+       "zh": "只剩下一個蛋。"
+      }
+     ]
+    },
+    {
+     "term_jp": "〜も／〜ない",
+     "term_sub": "一個都沒有",
+     "examples": [
+      {
+       "jp": "{卵|たまご}+が／{1|いっ}{個|こ}+も／ない／!。",
+       "zh": "一個蛋都沒有。"
+      },
+      {
+       "jp": "{卵|たまご}+が／{1|いっ}{個|こ}+も／{残|のこ}って／いない／!。",
+       "zh": "一個蛋都沒剩。"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sentences",
+   "header": "「爬（樓梯／山）」的說法",
+   "rows": [
+    {
+     "jp": "{階|かい}{段|だん}+を／{登|のぼ}る",
+     "zh": "爬樓梯",
+     "arrow": "階段を上がる 也可以"
+    },
+    {
+     "jp": "{山|やま}+に／{登|のぼ}る",
+     "zh": "爬山",
+     "arrow": "山を登る 也可以"
+    },
+    {
+     "jp": "{山|やま}{道|みち}+を／{上|のぼ}る",
+     "zh": "走山路上去",
+     "arrow": "山道を上がる 文法不算錯，但少用"
+    }
+   ]
+  },
+  {
+   "type": "note",
+   "text": "山を上がる 日本人聽起來怪怪的，不說。"
+  }
+ ],
+ "pending": [
+  {
+   "level": "中",
+   "item": "モバ充",
+   "basis": "逐字稿辨識為「モバージュ」，依上下文（行動電源的年輕人說法）推為 モバ充",
+   "action": "請核對"
+  },
+  {
+   "level": "中",
+   "item": "「拿很重的行李爬樓梯，真的很吃力」的日文全句",
+   "basis": "截圖 #11–#12 只有中文題目，逐字稿沒有完整日文答案，所以只收了 登る／上がる 的用法",
+   "action": "如有老師的答案請補充"
+  },
+  {
+   "level": "中",
+   "item": "色移り 的念法",
+   "basis": "逐字稿「伊豆字裡」，老師說查了十個影片、大家念的跟老牌字典排第一的不同；兩種念法辨識不出來",
+   "action": "請聽 18:56 附近確認老師建議的念法"
+  }
+ ]
+}

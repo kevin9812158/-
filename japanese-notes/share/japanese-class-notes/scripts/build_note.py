@@ -436,15 +436,18 @@ def add_jp_line(container, line, accent_default, bullet=False, trailing_zh=None,
 
 
 # ---------- 區塊 ----------
-def add_title(doc, text):
+def add_title(doc, text, page_break=False):
     p = doc.add_paragraph(); tight(p, WD_ALIGN_PARAGRAPH.CENTER)
     p.paragraph_format.space_before = Pt(10)
+    p.paragraph_format.keep_with_next = True  # 標題不單獨留在頁尾
+    p.paragraph_format.page_break_before = page_break
     r = p.add_run(text); set_font(r, FONT_TITLE, 18, bold=True)
 
 
 def add_tag(doc, text):
     p = doc.add_paragraph(); tight(p, WD_ALIGN_PARAGRAPH.CENTER)
     p.paragraph_format.space_before = Pt(4); p.paragraph_format.space_after = Pt(6)
+    p.paragraph_format.keep_with_next = True
     r = p.add_run(f" {text} "); set_font(r, FONT_TITLE, 16, bold=True)
     rpr = r._element.get_or_add_rPr()
     shd = OxmlElement("w:shd"); shd.set(qn("w:val"), "clear"); shd.set(qn("w:fill"), TAG_FILL)
@@ -722,7 +725,7 @@ def block_pending(doc, b, acc):
 BLOCKS = {"cards": block_cards, "bullets": block_bullets, "grid": block_grid,
           "sentences": block_sentences, "defs": block_defs,
           "note": block_note, "pending": block_pending,
-          "title": lambda d, b, a: add_title(d, b["text"]),
+          "title": lambda d, b, a: add_title(d, b["text"], b.get("page_break", False)),
           "tag": lambda d, b, a: add_tag(d, b["text"])}
 
 
