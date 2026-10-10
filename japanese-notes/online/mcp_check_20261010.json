@@ -1,0 +1,9 @@
+{"note": "JAPANESE UP 連接器重設後的唯讀檢查（2026-10-10）；只留 tokens 與品質欄位，未送任何回饋。source.version=sha256:aa1e7d1b…f811, analysisVersion=author-context-v1, consentStatus=current, policyVersion=pronunciation-collaboration.v1",
+ "results": [
+  {"text": "割引", "needsReview": false, "tokens": [{"surface": "割引", "reading": "わりびき", "marks": [0,1,1,2], "accent": 0, "warnings": []}], "draftExpires": "2027-01-06T23:44:51.505Z"},
+  {"text": "勤める", "needsReview": false, "tokens": [{"surface": "勤める", "reading": "つとめる", "marks": [0,1,2,0], "accent": 3, "warnings": []}], "draftExpires": "2027-01-06T23:44:52.653Z"},
+  {"text": "ガチョウ肉", "needsReview": true, "tokens": [{"surface": "ガチョウ", "reading": "がちょう", "marks": [0,1,2], "accent": null, "warnings": ["phrase_accent_unresolved"]}, {"surface": "肉", "reading": "にく", "marks": [0,0], "accent": null, "warnings": ["phrase_accent_unresolved"]}], "draftExpires": "2027-01-06T23:44:53.802Z"},
+  {"text": "ご飯を食べろ", "needsReview": true, "tokens": [{"surface": "ご飯", "reading": "ごはん", "marks": [2,0,0], "accent": null, "warnings": ["phrase_accent_unresolved"]}, {"surface": "を", "reading": "を", "marks": [0], "accent": null, "warnings": ["phrase_accent_unresolved"]}, {"surface": "食べろ", "reading": "たべろ", "marks": [0,2,0], "accent": 2, "warnings": []}], "draftExpires": "2027-01-06T11:13:14.029Z"},
+  {"text": "割引は八時から始まります。", "needsReview": true, "tokens": [{"surface": "割引", "marks": [0,1,1,1], "accent": null}, {"surface": "は", "marks": [0], "accent": null}, {"surface": "八", "marks": [0,2], "accent": null}, {"surface": "時", "marks": [0], "accent": null}, {"surface": "から", "marks": [0,0], "accent": null}, {"surface": "始まり", "marks": [0,1,1,1], "accent": null}, {"surface": "ます", "marks": [2,0], "accent": null}, {"surface": "。", "kind": "punctuation"}], "allWarnings": "phrase_accent_unresolved（標點除外）", "draftExpires": "2027-01-06T23:44:55.073Z"}
+ ]
+}
