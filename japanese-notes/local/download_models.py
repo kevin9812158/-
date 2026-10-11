@@ -7,6 +7,7 @@
 速度：每個檔案分成多段、同時開多條連線下載（單一連線常被限速）。
 斷線會自動重試，已下載的段落留在 models/*.part*，重新執行本程式會接著下載。
 """
+import hashlib
 import os
 import shutil
 import sys
@@ -20,10 +21,17 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MODELS = os.path.join(HERE, "models")
 REL = "https://github.com/k2-fsa/sherpa-onnx/releases/download"
 ASR_NAME = "sherpa-onnx-zipformer-ja-reazonspeech-2024-08-01"
-ASR_HF = f"https://huggingface.co/csukuangfj/{ASR_NAME}/resolve/main"
+# 原始來源（sherpa 的整包就是從這裡轉來的）；第二個是鏡像站
+ASR_HF = ["https://huggingface.co/reazon-research/reazonspeech-k2-v2/resolve/main",
+          "https://hf-mirror.com/reazon-research/reazonspeech-k2-v2/resolve/main"]
 ASR_TAR = f"{REL}/asr-models/{ASR_NAME}.tar.bz2"
 ASR_FILES = ["encoder-epoch-99-avg-1.int8.onnx", "decoder-epoch-99-avg-1.onnx",
              "joiner-epoch-99-avg-1.int8.onnx", "tokens.txt"]
+# 和雲端驗證時用的檔案（GitHub 整包）一致才採用，避免版本不同造成結果不同
+ASR_MD5 = {"encoder-epoch-99-avg-1.int8.onnx": "b9e63f6db61d7d47cb0c075a588b9fac",
+           "decoder-epoch-99-avg-1.onnx": "017a15baba345c6870da8a3e2226f5ff",
+           "joiner-epoch-99-avg-1.int8.onnx": "8c6786c321d9b85f263ddcae6054c5e7",
+           "tokens.txt": "14923ff1c613b1389df8c9d6c2e5cb42"}
 SINGLE = [
     ("silero_vad.onnx", f"{REL}/asr-models/silero_vad.onnx"),
     ("3dspeaker_speech_eres2net_base_sv_zh-cn_3dspeaker_16k.onnx",
@@ -139,21 +147,35 @@ def fetch(url, dst):
     os.replace(tmp, dst)
 
 
+def md5(path):
+    h = hashlib.md5()
+    with open(path, "rb") as f:
+        for buf in iter(lambda: f.read(CHUNK), b""):
+            h.update(buf)
+    return h.hexdigest()
+
+
 def get_asr():
     d = os.path.join(MODELS, ASR_NAME)
     if all(os.path.exists(os.path.join(d, f)) for f in ASR_FILES):
         print(f"已存在，跳過：{ASR_NAME}"); return
     os.makedirs(d, exist_ok=True)
-    try:
-        for f in ASR_FILES:
-            p = os.path.join(d, f)
-            if os.path.exists(p):
-                continue
-            print(f"下載（HuggingFace）：{f}")
-            fetch(f"{ASR_HF}/{f}", p)
-        return
-    except (Failed, urllib.error.URLError, OSError, ValueError) as e:
-        print(f"\n  HuggingFace 下載失敗：{e}\n  改用 GitHub 整包（713 MB）")
+    for base in ASR_HF:
+        host = base.split("/")[2]
+        try:
+            for f in ASR_FILES[::-1]:  # 小檔先下載：版本不同時，在 tokens.txt 就會發現，不必白下載大檔
+                p = os.path.join(d, f)
+                if os.path.exists(p):
+                    continue
+                print(f"下載（{host}）：{f}")
+                fetch(f"{base}/{f}", p)
+                if md5(p) != ASR_MD5[f]:
+                    os.remove(p)
+                    raise Failed(f"{f} 的內容和驗證過的版本不同")
+            return
+        except (Failed, urllib.error.URLError, OSError, ValueError) as e:
+            print(f"\n  {host} 下載失敗：{e}")
+    print("  改用 GitHub 整包（713 MB）")
     tar = os.path.join(MODELS, os.path.basename(ASR_TAR))
     if not os.path.exists(tar):
         print(f"下載（GitHub）：{os.path.basename(ASR_TAR)}")
