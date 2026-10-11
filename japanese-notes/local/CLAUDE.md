@@ -21,6 +21,7 @@
 - Windows 11、Ryzen 7 1700（8 核 16 緒）、32 GB、GTX 1070 8 GB（驅動 456.71 較舊，目前流程只用 CPU）。
 - 已有：uv 0.12.7、Python 3.11.9（系統，另有 uv 管理的 3.13／3.8）、git 2.54、ffmpeg 9.0.2（winget）、Claude Code 2.1.181、node 24。無代理。
 - 專案以 `.python-version` 固定用 3.11（沿用現有直譯器，不另外下載）。
+- 網路：連 GitHub 下載伺服器很慢（約 0.2 MB/s，換節點也一樣），HuggingFace 約 2 MB/s。大檔優先找 HuggingFace 來源並驗 md5。
 - C: 只剩約 33 GB；專案、模型、課程音檔放 D:（約 900 GB 可用）。
 
 ## 一課的流程
