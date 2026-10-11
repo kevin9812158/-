@@ -17,6 +17,12 @@
 - 安裝：`setup_uv.bat`（uv sync → 下載模型 → 檢查），或手動 `uv sync`、`uv run download_models.py`、`uv run pipeline.py check`。
 - 所有指令一律用 `uv run …` 執行。程式本體在 `../online/`，`pipeline.py` 只管路徑和順序；切割工具在 `../tools/clip_tool/`。
 
+## 使用者電腦（2026.10.11 盤點）
+- Windows 11、Ryzen 7 1700（8 核 16 緒）、32 GB、GTX 1070 8 GB（驅動 456.71 較舊，目前流程只用 CPU）。
+- 已有：uv 0.12.7、Python 3.11.9（系統，另有 uv 管理的 3.13／3.8）、git 2.54、ffmpeg 9.0.2（winget）、Claude Code 2.1.181、node 24。無代理。
+- 專案以 `.python-version` 固定用 3.11（沿用現有直譯器，不另外下載）。
+- C: 只剩約 33 GB；專案、模型、課程音檔放 D:（約 900 GB 可用）。
+
 ## 一課的流程
 1. `lessons/<課名>/` 放課堂音檔（只放一個）。筆記內容 note.json 在 `../online/`（或該課的位置）。
 2. `uv run pipeline.py asr lessons/<課名>`（3 小時約 25 分鐘；結果存檔，之後不重跑）
