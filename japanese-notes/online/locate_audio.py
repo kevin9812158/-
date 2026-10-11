@@ -1,13 +1,15 @@
 """用帶時間戳的日文語音辨識結果，找出筆記每一行在音軌裡的朗讀位置（精度目標 1 秒內）。
 
-用法：python3 locate_audio.py note.json asr_full.jsonl 側錄檔名 > audio_positions.tsv
+用法：python3 locate_audio.py note.json asr_full.jsonl 側錄檔名 full.wav > audio_positions.tsv
 
 - asr_full.jsonl：asr_timestamps.py 的輸出（每個 token 有起點秒數）。
 - 兩邊都轉成平假名再比對：筆記用 note.json 的ルビ（最準），辨識結果用 pykakasi 轉讀音，
   每個讀音字元記住它來自哪個 token，命中後取第一個 token 的起點、最後一個 token 的終點當時間。
+- 段末最後一個字的終點用聲音能量決定（speech_end）；其他字的終點＝下一個字的起點。
 - 句子可能被 VAD 切成好幾段，所以每次比對都接上後面間隔 2 秒內的片段。
+- 只列「完整」命中；整句沒有完整命中時，只列分數最高的一筆部分命中（coverage 標缺頭／缺尾，起訖要人工確認）。
 - coverage：「完整」＝句首到句尾都對上；「缺頭／缺尾」＝句首或句尾有 2 拍以上對不上（1 拍以內的差異視為完整），起點或終點可能偏移超過 1 秒，要人工確認。
-- 4 拍以下的短詞只在該主題的時段內找完全一致，避免到處誤判。
+- 8 拍以下的詞句只在該主題的時段內找完全一致，避免同音片段（例：移って「しまっていた」）誤判。
 """
 import datetime
 import difflib
@@ -15,20 +17,27 @@ import json
 import re
 import sys
 
+import numpy as np
 import pykakasi
+import soundfile as sf
 from rapidfuzz import fuzz
 
 sys.path.insert(0, __file__.rsplit("/", 2)[0])
 from mcp_apply import line_morae, plain  # noqa: E402
 
+SR = 16000
+HOP = 160
 THRESHOLD = 85
-MIN_KANA = 5
+MIN_KANA = 9
 MAX_GAP = 2.0
 MAX_HITS = 20
 SECTION_SPAN = {"上週複習": (900, 1350), "せっかく行ったのにお店が休みだった": (1350, 2550),
                 "スマホを落としてしまった": (2550, 3420), "ネットで靴を買ったら…": (3420, 6620),
                 "語法複習：能力形與被動形": (6620, 8330), "新聞：「ありえない所」から車衝突": (8330, 10580)}
-OVERRIDE = {"今日": "きょう", "今日は": "きょうは", "一言": "ひとこと", "何か": "なにか"}
+OVERRIDE = {"今日": "きょう", "今日は": "きょうは", "一言": "ひとこと", "何か": "なにか", "人": "ひと"}
+# 辨識結果裡的英文字母照日文念法轉讀音（筆記的ルビ寫 {T|ティー}）
+LETTERS = dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                   "えー びー しー でぃー いー えふ じー えいち あい じぇー けー える えむ えぬ おー ぴー きゅー あーる えす てぃー ゆー ぶい だぶりゅー えっくす わい ぜっと".split()))
 KEEP = re.compile(r"[ぁ-ゖー]")
 KKS = pykakasi.kakasi()
 
@@ -37,27 +46,45 @@ def hira(s):
     return "".join(chr(ord(c) - 0x60) if "ァ" <= c <= "ヶ" else c for c in s)
 
 
-def asr_stream(path):
+def speech_end(wav, t_last, seg_start, seg_end):
+    """段末最後一個字的終點：在 [最後一個字起點＋0.08 秒, 片段結束] 內，找最後一段連續 3 格（30 ms）
+    超過「附近最安靜 20% 的 RMS×4」的位置。VAD 的片段結束常包含尾音後的雜音，直接用會切太晚。"""
+    a = max(0.0, seg_start - 1.0)
+    wav.seek(int(a * SR))
+    x = wav.read(int((seg_end + 1.0 - a) * SR), dtype="float32")
+    rms = np.sqrt(np.convolve(x ** 2, np.ones(HOP) / HOP, mode="valid")[::HOP] + 1e-12)
+    t = a + np.arange(len(rms)) * HOP / SR
+    thr = np.percentile(rms, 20) * 4
+    idx = np.where((t >= t_last + 0.08) & (t <= seg_end))[0]
+    for k in idx[::-1]:
+        if k >= 2 and (rms[k - 2:k + 1] > thr).all():
+            return float(t[k]) + HOP / SR
+    return min(seg_end, t_last + 0.3)
+
+
+def asr_stream(path, wav_path):
     """回傳 (讀音字串, 每字元的 (起點, 終點), 每字元所屬片段)。"""
     chars, times, segids = [], [], []
+    wav = sf.SoundFile(wav_path)
     for sid, line in enumerate(open(path, encoding="utf-8")):
         seg = json.loads(line)
         toks, ts = seg["tokens"], seg["ts"]
         if not toks:
             continue
+        last_end = speech_end(wav, ts[-1], seg["start"], seg["end"])
         # 每個文字字元對應的 token 時間
         cstart, cend = [], []
         for i, tok in enumerate(toks):
             a = ts[i]
-            b = ts[i + 1] if i + 1 < len(ts) else seg["end"]
-            b = min(b, a + 0.6)
+            # 段內：到下一個 token 為止（最長 0.6 秒）；段末最後一個字：到說話片段結束（尾音可能拉長）
+            b = min(ts[i + 1], a + 0.6) if i + 1 < len(ts) else max(last_end, a + 0.05)
             for _ in tok:
                 cstart.append(a); cend.append(b)
         text = "".join(toks)
         pos = 0
         for w in KKS.convert(text):
             orig = w["orig"]
-            rd = OVERRIDE.get(orig, w["hira"])
+            rd = OVERRIDE.get(orig) or "".join(LETTERS.get(c.upper(), c) for c in w["hira"])
             span = range(pos, min(pos + len(orig), len(cstart)))
             if span:
                 a, b = cstart[span[0]], cend[span[-1]]
@@ -111,10 +138,10 @@ def hms(sec):
     return f"{ms // 3600000}:{ms % 3600000 // 60000:02}:{ms % 60000 // 1000:02}.{ms % 1000:03}"
 
 
-def main(note_p, asr_p, rec_name):
+def main(note_p, asr_p, rec_name, wav_p):
     m = re.search(r"(\d{8})_(\d{6})(\d{3})", rec_name)
     t0 = datetime.datetime.strptime(m[1] + m[2], "%Y%m%d%H%M%S") + datetime.timedelta(milliseconds=int(m[3]))
-    stream, times, segids = asr_stream(asr_p)
+    stream, times, segids = asr_stream(asr_p, wav_p)
     # 片段邊界：每個片段的第一個字元位置
     seg_first = {}
     for i, s in enumerate(segids):
@@ -149,6 +176,10 @@ def main(note_p, asr_p, rec_name):
                 if al is None or i0 + al.dest_start >= own_end:
                     break
                 snip = hay[al.dest_start:al.dest_end]
+                if len(snip) < 0.7 * len(q):
+                    # 片段比句子短時 partial_ratio 會反過來比（把片段塞進句子），不算命中
+                    masked = masked[:al.dest_start] + "＿" * (al.dest_end - al.dest_start) + masked[al.dest_end:]
+                    continue
                 # 用逐字對齊找出句首、句尾實際對上的字，時間取那兩個字（去掉多抓的前後字）
                 blocks = [b for b in difflib.SequenceMatcher(None, q, snip, autojunk=False).get_matching_blocks() if b.size]
                 if not blocks:
@@ -170,6 +201,12 @@ def main(note_p, asr_p, rec_name):
                 continue
             merged.append(h)
         hits = merged
+        # 只保留句首到句尾都對上的命中；一筆都沒有時，列出分數最高的一筆部分命中供人工確認
+        full = [h for h in hits if h[4] == "完整"]
+        if full:
+            hits = full
+        elif hits:
+            hits = [max(hits, key=lambda h: h[2])]
         if not hits:
             print(f"{no}\t{sec}\t{text}\t{q}\t0\t\t\t\t\t\t\t（音軌裡找不到）"); continue
         for k, (a, b, sc, snip, cov) in enumerate(hits[:MAX_HITS], 1):
@@ -179,4 +216,4 @@ def main(note_p, asr_p, rec_name):
 
 
 if __name__ == "__main__":
-    main(*sys.argv[1:4])
+    main(*sys.argv[1:5])
