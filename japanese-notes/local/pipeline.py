@@ -1,15 +1,17 @@
 """線上課音訊流程（本地版）的總入口。程式本體在 ../online/，這裡只負責路徑和步驟順序。
 
+環境用 uv 管理（本資料夾的 .venv）：先 uv sync，再用 uv run pipeline.py …。
+
 每一課一個資料夾：local/lessons/<課名>/，裡面放課堂音檔（m4a 等）。中間產物也存在同一個資料夾，已存在就跳過。
 
-  python pipeline.py check                               檢查環境（套件、ffmpeg、模型）
-  python pipeline.py prepare  <課資料夾>                  音檔轉成 16 kHz 單聲道 full.wav
-  python pipeline.py asr      <課資料夾>                  整段日文辨識（帶時間戳）→ asr_full.jsonl（3 小時約 25 分鐘）
-  python pipeline.py speakers <課資料夾> <Haruki錨點秒數…>  聲紋分群 → spk.npz、centroids.npz
-  python pipeline.py locate   <課資料夾> <note.json>      粗定位 → audio_positions.tsv
-  python pipeline.py refine   <課資料夾> <note.json> <搜尋起秒> <搜尋迄秒> <句子編號…>
+  uv run pipeline.py check                               檢查環境（套件、ffmpeg、模型）
+  uv run pipeline.py prepare  <課資料夾>                  音檔轉成 16 kHz 單聲道 full.wav
+  uv run pipeline.py asr      <課資料夾>                  整段日文辨識（帶時間戳）→ asr_full.jsonl（3 小時約 25 分鐘）
+  uv run pipeline.py speakers <課資料夾> <Haruki錨點秒數…>  聲紋分群 → spk.npz、centroids.npz
+  uv run pipeline.py locate   <課資料夾> <note.json>      粗定位 → audio_positions.tsv
+  uv run pipeline.py refine   <課資料夾> <note.json> <搜尋起秒> <搜尋迄秒> <句子編號…>
                                                         實切精修＋依說話者收緊 → cuts.tsv（給切割工具用）
-  python pipeline.py tool     <課資料夾>                  開啟切割工具網頁（試聽、微調、匯出）
+  uv run pipeline.py tool     <課資料夾>                  開啟切割工具網頁（試聽、微調、匯出）
 
 錨點：確定是 Haruki 在念的時間點（逐字稿中老師說「Haruki，請念」之後那句），3～6 個。
 句子編號：audio_positions.tsv 的 no 欄。
@@ -64,12 +66,12 @@ def check():
         try:
             importlib.import_module(m)
         except ImportError:
-            print(f"✗ 缺少套件 {m}（執行 python -m pip install -r requirements.txt）"); ok = False
+            print(f"✗ 缺少套件 {m}（在本資料夾執行 uv sync）"); ok = False
     if shutil.which("ffmpeg") is None:
-        print("✗ 找不到 ffmpeg（winget install Gyan.FFmpeg，裝完重開視窗）"); ok = False
+        print("✗ 找不到 ffmpeg（請自行安裝 ffmpeg 並加入 PATH）"); ok = False
     for p in (ASR_MODEL, VAD, SPK):
         if not os.path.exists(p):
-            print(f"✗ 缺少模型 {os.path.basename(p)}（執行 python download_models.py）"); ok = False
+            print(f"✗ 缺少模型 {os.path.basename(p)}（執行 uv run download_models.py）"); ok = False
     print("✓ 環境就緒" if ok else "環境未完成，請照上面的提示處理")
     return ok
 
@@ -120,7 +122,7 @@ def refine(lesson, note, w0, w1, *nos):
     cand = os.path.join(lesson, "candidates.tsv")
     run([PY, script("refine_cuts.py"), os.path.abspath(note), a, wav, ASR_MODEL, SPK, cen, w0, w1, *nos], cand)
     run([PY, script("trim_by_speaker.py"), cand, wav, ASR_MODEL, SPK, cen], os.path.join(lesson, "cuts.tsv"))
-    print("完成：cuts.tsv（用 python pipeline.py tool <課資料夾> 試聽、微調、匯出）")
+    print("完成：cuts.tsv（用 uv run pipeline.py tool <課資料夾> 試聽、微調、匯出）")
 
 
 def tool(lesson):

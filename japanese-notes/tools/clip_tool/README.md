@@ -3,8 +3,8 @@
 在自己的電腦上，照切點表把課堂錄音切成一句一句的音檔。只在本機運作，錄音不會上傳。
 
 ## 第一次準備
-1. 安裝 Python（https://www.python.org/downloads/ ，安裝時勾選「Add python.exe to PATH」）。
-2. ffmpeg：`抽音軌.bat` 用過的話已經有了；沒有的話在終端機執行 `winget install Gyan.FFmpeg`。
+需要 Python 3.8 以上和 ffmpeg（指令列可以執行）。不知道電腦裡有沒有，先雙擊 `japanese-notes/local/盤點電腦環境.bat` 確認。
+只用 Python 內建功能，不需要安裝套件；在 `japanese-notes/local` 用 uv 管理的話，也可以 `uv run pipeline.py tool <課資料夾>` 開啟。
 
 ## 每次使用
 1. 準備一個資料夾，放入：

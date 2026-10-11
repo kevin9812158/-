@@ -9,20 +9,24 @@
 - 只做長句（10 拍以上）；單字、短片語不找。
 - 課堂錄音、辨識結果、模型都不進 git（`lessons/`、`models/` 已在 .gitignore）。
 
-## 環境
-- 安裝：雙擊 `setup_windows.bat`（Python、ffmpeg、套件、模型）。檢查：`python pipeline.py check`。
-- 程式本體在 `../online/`，`pipeline.py` 只管路徑和順序；切割工具在 `../tools/clip_tool/`。
+## 環境（重要：不要假設電腦是空的）
+- **動手前先盤點**：請使用者雙擊 `盤點電腦環境.bat`（只讀取，不安裝不修改），讀 `inventory.txt` 了解已有的 Python、uv、git、ffmpeg、GPU、代理設定。
+- **不要自動安裝系統層級的東西**（Python、ffmpeg、git、uv 本身、winget 套件）。缺什麼就列出來，由使用者決定怎麼裝。
+- 專案用 **uv** 管理：套件只裝在本資料夾的 `.venv`（`uv sync`），不碰系統 Python。依賴寫在 `pyproject.toml`，版本鎖在 `uv.lock`。
+  - sherpa-onnx 的依賴宣告是動態的，uv 解析不到 sherpa-onnx-core，所以兩者都明確鎖在 1.13.8。
+- 安裝：`setup_uv.bat`（uv sync → 下載模型 → 檢查），或手動 `uv sync`、`uv run download_models.py`、`uv run pipeline.py check`。
+- 所有指令一律用 `uv run …` 執行。程式本體在 `../online/`，`pipeline.py` 只管路徑和順序；切割工具在 `../tools/clip_tool/`。
 
 ## 一課的流程
 1. `lessons/<課名>/` 放課堂音檔（只放一個）。筆記內容 note.json 在 `../online/`（或該課的位置）。
-2. `python pipeline.py asr lessons/<課名>`（3 小時約 25 分鐘；結果存檔，之後不重跑）
+2. `uv run pipeline.py asr lessons/<課名>`（3 小時約 25 分鐘；結果存檔，之後不重跑）
 3. 找 Haruki 錨點：逐字稿（Plaud MCP）裡老師說「Haruki，請念」之後那句的時間，3～6 個，
    用 asr_full.jsonl 確認那幾秒的辨識內容是 Haruki 念的句子。
-   `python pipeline.py speakers lessons/<課名> 秒數1 秒數2 …`
-4. `python pipeline.py locate lessons/<課名> <note.json>` → audio_positions.tsv（粗定位，找出句子編號與大約時段）
-5. `python pipeline.py refine lessons/<課名> <note.json> <時段起秒> <時段迄秒> <句子編號…>` → cuts.tsv
+   `uv run pipeline.py speakers lessons/<課名> 秒數1 秒數2 …`
+4. `uv run pipeline.py locate lessons/<課名> <note.json>` → audio_positions.tsv（粗定位，找出句子編號與大約時段）
+5. `uv run pipeline.py refine lessons/<課名> <note.json> <時段起秒> <時段迄秒> <句子編號…>` → cuts.tsv
 6. 驗收：照 cuts.tsv 從原始音檔用 ffmpeg 切下來重新辨識，確認剛好是那一句；有疑問的列給使用者。
-7. `python pipeline.py tool lessons/<課名>` 打開切割工具，讓使用者試聽、微調、匯出。
+7. `uv run pipeline.py tool lessons/<課名>` 打開切割工具，讓使用者試聽、微調、匯出。
 
 ## 10/06 這一課（已在雲端做過，可用來驗證本地環境）
 - 音檔：`PassFab20261006_183938033_1.m4a`（使用者 Drive 也有）。note：`../online/note_20261006.json`。

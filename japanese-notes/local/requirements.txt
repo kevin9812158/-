@@ -1,8 +1,0 @@
-# 線上課音訊流程（本地）需要的 Python 套件
-sherpa-onnx>=1.10
-soundfile
-numpy
-scipy
-rapidfuzz
-pykakasi
-python-docx

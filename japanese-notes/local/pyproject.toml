@@ -1,0 +1,18 @@
+[project]
+name = "japanese-notes-local"
+version = "0.1.0"
+description = "線上課錄音：日文辨識、定位例句、判斷說話者、切割（本地執行）"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "sherpa-onnx==1.13.8",
+    "sherpa-onnx-core==1.13.8",  # sherpa-onnx 的依賴宣告是動態的，uv 解析不到，所以明確列出
+    "soundfile>=0.12",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "rapidfuzz>=3.0",
+    "pykakasi>=2.2",
+    "python-docx>=1.1",
+]
+
+[tool.uv]
+package = false
