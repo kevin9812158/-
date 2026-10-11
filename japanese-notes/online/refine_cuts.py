@@ -87,8 +87,9 @@ def main(note_p, asr_p, wav_p, model, spk_model, cent_p, w0, w1, *nos):
 
     RANK = {"Haruki": 0, "老師": 1, "其他": 2}
     print("no\ttext\tselected\tspeaker\tstart\tend\tsimilarity\tharuki_sim\tteacher_sim\trecognized")
-    for no in nos:
+    for k_no, no in enumerate(nos, 1):
         sec, text, q = lines[no]
+        print(f"  [{k_no}/{len(nos)}] 第 {no} 句：{text}", file=sys.stderr, flush=True)
         # 1. 候選
         cands, masked = [], hay0
         while True:

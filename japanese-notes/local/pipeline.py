@@ -11,6 +11,8 @@
   uv run pipeline.py locate   <課資料夾> <note.json>      粗定位 → audio_positions.tsv
   uv run pipeline.py refine   <課資料夾> <note.json> <搜尋起秒> <搜尋迄秒> <句子編號…>
                                                         實切精修＋依說話者收緊 → cuts.tsv（給切割工具用）
+  uv run pipeline.py all      <課資料夾> <note.json>      全部長句（10 拍以上）依主題時段逐段精修 → cuts.tsv
+                                                        （需先跑過 speakers；每個主題完成就存檔，中斷後重跑會跳過已完成的主題）
   uv run pipeline.py tool     <課資料夾>                  開啟切割工具網頁（試聽、微調、匯出）
 
 錨點：確定是 Haruki 在念的時間點（逐字稿中老師說「Haruki，請念」之後那句），3～6 個。
@@ -126,18 +128,59 @@ def refine(lesson, note, w0, w1, *nos):
     print("完成：cuts.tsv（用 uv run pipeline.py tool <課資料夾> 試聽、微調、匯出）")
 
 
+LONG_KANA = 10
+
+
+def all_long(lesson, note):
+    """把筆記裡所有長句依主題分組，每組在該主題的時段（前後各放寬 60 秒）內精修，最後合併、依說話者收緊。"""
+    import json
+    sys.path.insert(0, ONLINE)
+    import locate_audio as L
+    wav, a = prepare(lesson), asr(lesson)
+    cen = os.path.join(lesson, "centroids.npz")
+    if not os.path.exists(cen):
+        sys.exit("先執行 speakers 步驟（需要 Haruki 錨點）")
+    groups = {}
+    for no, (sec, text, q) in enumerate(L.note_lines(json.load(open(note, encoding="utf-8"))), 1):
+        if len(q) >= LONG_KANA:
+            groups.setdefault(sec, []).append(str(no))
+    missing = [sec for sec in groups if sec not in L.SECTION_SPAN]
+    if missing:
+        sys.exit(f"這些主題沒有設定時段（locate_audio.py 的 SECTION_SPAN）：{missing}")
+    total = sum(len(v) for v in groups.values())
+    print(f"長句共 {total} 句，分 {len(groups)} 個主題")
+    parts = []
+    for i, (sec, nos) in enumerate(groups.items(), 1):
+        out = os.path.join(lesson, f"candidates_{i:02d}.tsv")
+        parts.append(out)
+        if os.path.exists(out):
+            print(f"[{i}/{len(groups)}] {sec}：已完成，跳過"); continue
+        w0, w1 = L.SECTION_SPAN[sec]
+        print(f"[{i}/{len(groups)}] {sec}：{len(nos)} 句", flush=True)
+        run([PY, script("refine_cuts.py"), os.path.abspath(note), a, wav, ASR_MODEL, SPK, cen,
+             str(max(0, w0 - 60)), str(w1 + 60), *nos], out + ".tmp")
+        os.replace(out + ".tmp", out)
+    cand = os.path.join(lesson, "candidates.tsv")
+    with open(cand, "w", encoding="utf-8") as f:
+        for k, p in enumerate(parts):
+            lines = open(p, encoding="utf-8").read().splitlines(True)
+            f.writelines(lines if k == 0 else lines[1:])
+    run([PY, script("trim_by_speaker.py"), cand, wav, ASR_MODEL, SPK, cen], os.path.join(lesson, "cuts.tsv"))
+    print("完成：cuts.tsv（用 uv run pipeline.py tool <課資料夾> 試聽、微調、匯出）")
+
+
 def tool(lesson):
     run([PY, TOOL, os.path.abspath(lesson)])
 
 
 def main():
-    if len(sys.argv) < 2 or sys.argv[1] not in ("check", "prepare", "asr", "speakers", "locate", "refine", "tool"):
+    if len(sys.argv) < 2 or sys.argv[1] not in ("check", "prepare", "asr", "speakers", "locate", "refine", "all", "tool"):
         print(__doc__); return
     cmd, args = sys.argv[1], sys.argv[2:]
     if cmd == "check":
         sys.exit(0 if check() else 1)
     lesson = os.path.abspath(args[0])
-    {"prepare": prepare, "asr": asr, "speakers": speakers, "locate": locate, "refine": refine, "tool": tool}[cmd](lesson, *args[1:])
+    {"prepare": prepare, "asr": asr, "speakers": speakers, "locate": locate, "refine": refine, "all": all_long, "tool": tool}[cmd](lesson, *args[1:])
 
 
 if __name__ == "__main__":
