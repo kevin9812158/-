@@ -28,6 +28,7 @@ ONLINE = os.path.normpath(os.path.join(HERE, "..", "online"))
 TOOL = os.path.normpath(os.path.join(HERE, "..", "tools", "clip_tool", "clip_tool.py"))
 MODELS = os.path.join(HERE, "models")
 ASR_MODEL = os.path.join(MODELS, "sherpa-onnx-zipformer-ja-reazonspeech-2024-08-01")
+ASR_ENC = os.path.join(ASR_MODEL, "encoder-epoch-99-avg-1.int8.onnx")
 VAD = os.path.join(MODELS, "silero_vad.onnx")
 SPK = os.path.join(MODELS, "3dspeaker_speech_eres2net_base_sv_zh-cn_3dspeaker_16k.onnx")
 AUDIO_EXT = (".m4a", ".mp3", ".wav", ".aac", ".flac", ".mp4")
@@ -69,7 +70,7 @@ def check():
             print(f"✗ 缺少套件 {m}（在本資料夾執行 uv sync）"); ok = False
     if shutil.which("ffmpeg") is None:
         print("✗ 找不到 ffmpeg（請自行安裝 ffmpeg 並加入 PATH）"); ok = False
-    for p in (ASR_MODEL, VAD, SPK):
+    for p in (ASR_ENC, VAD, SPK):
         if not os.path.exists(p):
             print(f"✗ 缺少模型 {os.path.basename(p)}（執行 uv run download_models.py）"); ok = False
     print("✓ 環境就緒" if ok else "環境未完成，請照上面的提示處理")
