@@ -5,7 +5,9 @@
 - asr_full.jsonl：asr_timestamps.py 的輸出（每個 token 有起點秒數）。
 - 兩邊都轉成平假名再比對：筆記用 note.json 的ルビ（最準），辨識結果用 pykakasi 轉讀音，
   每個讀音字元記住它來自哪個 token，命中後取第一個 token 的起點、最後一個 token 的終點當時間。
-- 段末最後一個字的終點用聲音能量決定（speech_end）；其他字的終點＝下一個字的起點。
+- 命中頭尾若有和相鄰字相隔超過 1 秒的孤立字（模型吐出的雜訊字），剔除後再算起訖。
+- 命中內部相鄰字間隔超過 1 秒（8 拍以下）或 2 秒（較長句）時，標「間隔異常」，不算完整命中。
+- 段末最後一個字的終點用聲音能量決定（speech_end：往後找第一個停頓，最長 1.2 秒）；其他字的終點＝下一個字的起點。
 - 句子可能被 VAD 切成好幾段，所以每次比對都接上後面間隔 2 秒內的片段。
 - 只列「完整」命中；整句沒有完整命中時，只列分數最高的一筆部分命中（coverage 標缺頭／缺尾，起訖要人工確認）。
 - coverage：「完整」＝句首到句尾都對上；「缺頭／缺尾」＝句首或句尾有 2 拍以上對不上（1 拍以內的差異視為完整），起點或終點可能偏移超過 1 秒，要人工確認。
@@ -30,6 +32,7 @@ HOP = 160
 THRESHOLD = 85
 MIN_KANA = 9
 MAX_GAP = 2.0
+MAX_EDGE_GAP = 1.0
 MAX_HITS = 20
 SECTION_SPAN = {"上週複習": (900, 1350), "せっかく行ったのにお店が休みだった": (1350, 2550),
                 "スマホを落としてしまった": (2550, 3420), "ネットで靴を買ったら…": (3420, 6620),
@@ -47,19 +50,22 @@ def hira(s):
 
 
 def speech_end(wav, t_last, seg_start, seg_end):
-    """段末最後一個字的終點：在 [最後一個字起點＋0.08 秒, 片段結束] 內，找最後一段連續 3 格（30 ms）
-    超過「附近最安靜 20% 的 RMS×4」的位置。VAD 的片段結束常包含尾音後的雜音，直接用會切太晚。"""
+    """段末最後一個字的終點：從最後一個字起點＋0.08 秒往後，找第一段連續 150 ms 低於
+    「附近最安靜 20% 的 RMS×4」的停頓，停頓開始處就是終點；最長到最後一個字起點＋1.2 秒、且不超過片段結束。
+    （片段結束常包含後面沒被辨識出來的聲音，直接用會把終點拖晚好幾秒。）"""
     a = max(0.0, seg_start - 1.0)
     wav.seek(int(a * SR))
     x = wav.read(int((seg_end + 1.0 - a) * SR), dtype="float32")
     rms = np.sqrt(np.convolve(x ** 2, np.ones(HOP) / HOP, mode="valid")[::HOP] + 1e-12)
     t = a + np.arange(len(rms)) * HOP / SR
     thr = np.percentile(rms, 20) * 4
-    idx = np.where((t >= t_last + 0.08) & (t <= seg_end))[0]
-    for k in idx[::-1]:
-        if k >= 2 and (rms[k - 2:k + 1] > thr).all():
-            return float(t[k]) + HOP / SR
-    return min(seg_end, t_last + 0.3)
+    cap = min(seg_end, t_last + 1.2)
+    quiet = rms <= thr
+    idx = np.where((t >= t_last + 0.08) & (t <= cap))[0]
+    for k in idx:
+        if quiet[k:k + 15].all():
+            return float(t[k])
+    return cap
 
 
 def asr_stream(path, wav_path):
@@ -72,11 +78,11 @@ def asr_stream(path, wav_path):
         if not toks:
             continue
         last_end = speech_end(wav, ts[-1], seg["start"], seg["end"])
-        # 每個文字字元對應的 token 時間
+        # 每個文字字元：所屬 token 的起點、終點
         cstart, cend = [], []
         for i, tok in enumerate(toks):
             a = ts[i]
-            # 段內：到下一個 token 為止（最長 0.6 秒）；段末最後一個字：到說話片段結束（尾音可能拉長）
+            # 段內：到下一個 token 為止（最長 0.6 秒）；段末最後一個字：到第一個停頓（speech_end）
             b = min(ts[i + 1], a + 0.6) if i + 1 < len(ts) else max(last_end, a + 0.05)
             for _ in tok:
                 cstart.append(a); cend.append(b)
@@ -85,13 +91,17 @@ def asr_stream(path, wav_path):
         for w in KKS.convert(text):
             orig = w["orig"]
             rd = OVERRIDE.get(orig) or "".join(LETTERS.get(c.upper(), c) for c in w["hira"])
-            span = range(pos, min(pos + len(orig), len(cstart)))
-            if span:
-                a, b = cstart[span[0]], cend[span[-1]]
-                rk = [c for c in hira(rd) if KEEP.match(c)]
+            span = list(range(pos, min(pos + len(orig), len(cstart))))
+            rk = [c for c in hira(rd) if KEEP.match(c)]
+            if span and rk:
+                # 讀音字元依比例分給詞裡的各個字（token），在該字的時間範圍內再細分；
+                # 不跨字平均，才看得出詞內的空檔（例：画 和 面 之間隔 2 秒＝拼接到不相干的地方）
                 for j, c in enumerate(rk):
-                    # 讀音字元依比例分配到 orig 的時間範圍
-                    f0, f1 = j / len(rk), (j + 1) / len(rk)
+                    k = span[min(len(span) - 1, j * len(span) // len(rk))]
+                    share = [jj for jj in range(len(rk)) if span[min(len(span) - 1, jj * len(span) // len(rk))] == k]
+                    f0 = share.index(j) / len(share)
+                    f1 = (share.index(j) + 1) / len(share)
+                    a, b = cstart[k], cend[k]
                     chars.append(c); times.append((a + (b - a) * f0, a + (b - a) * f1)); segids.append(sid)
             pos += len(orig)
     return "".join(chars), times, segids
@@ -189,6 +199,18 @@ def main(note_p, asr_p, rec_name, wav_p):
                 miss = ("頭" if qa > 1 else "") + ("尾" if len(q) - qb > 1 else "")
                 cov = "完整" if not miss else "缺" + miss
                 a_i, b_i = i0 + al.dest_start + sa, i0 + al.dest_start + sb - 1
+                # 頭尾孤立字：和相鄰字間隔超過 MAX_EDGE_GAP 秒（辨識模型在片段開頭／結尾吐出的雜訊字），剔除
+                drop_a = drop_b = 0
+                while a_i < b_i and times[a_i + 1][0] - times[a_i][0] > MAX_EDGE_GAP:
+                    a_i += 1; drop_a += 1
+                while b_i > a_i and times[b_i][0] - times[b_i - 1][0] > MAX_EDGE_GAP:
+                    b_i -= 1; drop_b += 1
+                miss = ("頭" if qa + drop_a > 1 else "") + ("尾" if len(q) - qb + drop_b > 1 else "")
+                cov = "完整" if not miss else "缺" + miss
+                # 內部空檔：短詞句不可能中間停超過 1 秒；長句（含子句停頓）放寬到 2 秒。超過＝拼接到不相干的片段
+                gap = max((times[k + 1][0] - times[k][0] for k in range(a_i, b_i)), default=0)
+                if gap > (1.0 if len(q) <= 8 else 2.0):
+                    cov = "間隔異常"
                 hits.append((times[a_i][0], times[b_i][1], al.score, snip[sa:sb], cov))
                 masked = masked[:al.dest_start] + "＿" * (al.dest_end - al.dest_start) + masked[al.dest_end:]
         hits.sort()
