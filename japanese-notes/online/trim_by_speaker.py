@@ -6,6 +6,7 @@
 - 收緊後重新辨識，相似度掉超過 0.1 就保留原切法並標記。
 """
 import csv
+import os
 import sys
 
 import numpy as np
@@ -13,7 +14,7 @@ import sherpa_onnx
 import soundfile as sf
 from rapidfuzz.distance import Levenshtein
 
-sys.path.insert(0, __file__.rsplit("/", 1)[0])
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import locate_audio as L  # noqa: E402
 from refine_cuts import kana_of, low_points  # noqa: E402
 

@@ -15,6 +15,7 @@
 import csv
 import itertools
 import json
+import os
 import sys
 
 import numpy as np
@@ -23,7 +24,7 @@ import soundfile as sf
 from rapidfuzz import fuzz
 from rapidfuzz.distance import Levenshtein
 
-sys.path.insert(0, __file__.rsplit("/", 1)[0])
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import locate_audio as L  # noqa: E402
 
 SR = 16000

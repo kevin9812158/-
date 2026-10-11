@@ -17,6 +17,7 @@ import datetime
 import difflib
 import json
 import re
+import os
 import sys
 
 import numpy as np
@@ -24,7 +25,7 @@ import pykakasi
 import soundfile as sf
 from rapidfuzz import fuzz
 
-sys.path.insert(0, __file__.rsplit("/", 2)[0])
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from mcp_apply import line_morae, plain  # noqa: E402
 
 SR = 16000

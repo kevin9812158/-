@@ -5,6 +5,7 @@
 用法：python3 check_start_all.py audio_positions_checked.tsv 音檔.wav 模型資料夾 asr_full.jsonl 原始音檔.wav
 """
 import csv
+import os
 import sys
 
 import numpy as np
@@ -23,7 +24,7 @@ def ts(s):
 
 
 def main(tsv, wav, model, asr_p, main_wav):
-    sys.path.insert(0, __file__.rsplit("/", 2)[0] + "/online")
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import bisect
     import locate_audio as L
     mstream, mtimes, _ = L.asr_stream(asr_p, main_wav)
