@@ -33,6 +33,10 @@ CONNS = 8
 MIN_SEG = 8 << 20  # 小於 8 MB 的檔案不分段
 RETRIES = 8
 CHUNK = 1 << 20
+SLOW_WINDOW = 15      # 秒
+SLOW_BPS = 300_000    # 單一連線低於每秒 300 KB 就換一條
+MAX_RECONNECT = 20    # 每段最多換幾次（整條線路都慢時就不再換）
+stats = {"reconnect": 0}
 
 
 class Failed(Exception):
@@ -51,7 +55,9 @@ def head(url):
 def fetch_range(url, path, a, b, done, lock):
     """把 [a, b] 下載到 path（可續傳）；done 是共用的已下載位元組計數。"""
     need = b - a + 1
-    for attempt in range(1, RETRIES + 1):
+    attempt = swaps = 0
+    while attempt < RETRIES:
+        attempt += 1
         have = os.path.getsize(path) if os.path.exists(path) else 0
         if have > need:
             os.remove(path); have = 0
@@ -62,13 +68,23 @@ def fetch_range(url, path, a, b, done, lock):
             with urllib.request.urlopen(req, timeout=60) as r, open(path, "ab") as f:
                 if r.status != 206:
                     raise Failed("伺服器不支援分段")
+                t0, n0, slow = time.time(), 0, False
                 while True:
                     buf = r.read(CHUNK)
                     if not buf:
                         break
-                    f.write(buf)
+                    f.write(buf); n0 += len(buf)
                     with lock:
                         done[0] += len(buf)
+                    # 同一條連線的速度整段不會變：被分到慢的節點就斷開重連（不算失敗次數）
+                    if swaps < MAX_RECONNECT and time.time() - t0 >= SLOW_WINDOW:
+                        if n0 / (time.time() - t0) < SLOW_BPS:
+                            slow = True; break
+                        t0, n0 = time.time(), 0
+            if slow:
+                with lock:
+                    stats["reconnect"] += 1
+                swaps += 1; attempt -= 1; continue
             if os.path.getsize(path) == need:
                 return
         except Failed:
@@ -107,7 +123,7 @@ def fetch(url, dst):
     while any(t.is_alive() for t in th):
         time.sleep(0.5)
         sp = (done[0] - base) / max(0.1, time.time() - start) / 1e6
-        sys.stdout.write(f"\r  {done[0] * 100 // total:3d}%  {done[0] / 1e6:.0f} / {total / 1e6:.0f} MB  {sp:.1f} MB/s   ")
+        sys.stdout.write(f"\r  {done[0] * 100 // total:3d}%  {done[0] / 1e6:.0f} / {total / 1e6:.0f} MB  {sp:.1f} MB/s  換線 {stats['reconnect']} 次   ")
         sys.stdout.flush()
     print()
     if errs:
