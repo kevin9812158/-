@@ -1,6 +1,8 @@
 # 線上課音訊流程（本地）— 給在使用者電腦上執行的 Claude
 
-先讀 `../實驗_線上課流程_交接.md` 最後幾節（音訊定位、更正、PoC），了解為什麼是現在這套做法。
+**接手時先讀 `交接_給本地Claude.md`（目前進度、下一步、驗收標準）。**
+
+背景：`../實驗_線上課流程_交接.md` 最後幾節（音訊定位、更正、PoC），了解為什麼是現在這套做法。
 
 ## 使用者偏好
 - 繁體中文、口吻自然；成本敏感，大量處理前先說明時間。
@@ -26,12 +28,13 @@
 
 ## 一課的流程
 1. `lessons/<課名>/` 放課堂音檔（只放一個）。筆記內容 note.json 在 `../online/`（或該課的位置）。
-2. `uv run pipeline.py asr lessons/<課名>`（3 小時約 25 分鐘；結果存檔，之後不重跑）
+2. `uv run pipeline.py asr lessons/<課名>`（使用者電腦上 3 小時錄音約 11 分鐘；結果存檔，之後不重跑）
 3. 找 Haruki 錨點：逐字稿（Plaud MCP）裡老師說「Haruki，請念」之後那句的時間，3～6 個，
    用 asr_full.jsonl 確認那幾秒的辨識內容是 Haruki 念的句子。
    `uv run pipeline.py speakers lessons/<課名> 秒數1 秒數2 …`
 4. `uv run pipeline.py locate lessons/<課名> <note.json>` → audio_positions.tsv（粗定位，找出句子編號與大約時段）
-5. `uv run pipeline.py refine lessons/<課名> <note.json> <時段起秒> <時段迄秒> <句子編號…>` → cuts.tsv
+5. 全部長句：`uv run pipeline.py all lessons/<課名> <note.json>` → cuts.tsv（依主題時段逐段精修，可續跑）
+   只做指定句子：`uv run pipeline.py refine lessons/<課名> <note.json> <時段起秒> <時段迄秒> <句子編號…>` → cuts.tsv
 6. 驗收：照 cuts.tsv 從原始音檔用 ffmpeg 切下來重新辨識，確認剛好是那一句；有疑問的列給使用者。
 7. `uv run pipeline.py tool lessons/<課名>` 打開切割工具，讓使用者試聽、微調、匯出。
 
